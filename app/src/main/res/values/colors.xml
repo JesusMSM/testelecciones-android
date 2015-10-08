@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red">#ffff0000</color>
+    <color name="white">#fff</color>
+    <color name="ColorTestButtonPrimary">#ff3632</color>
+    <color name="ColorTestButtonSecondary">#9d2f2d</color>
+    <color name="ColorSecondaryButtonPrimary">#335b80</color>
+    <color name="ColorSecondaryButtonSecondary">#203950</color>
+    <color name="actionBarColor">#203950</color>
+</resources>

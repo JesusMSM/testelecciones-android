@@ -1,5 +1,6 @@
 package com.moonfish.testeleccionesgenerales2015.activities;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.ActionBarActivity;
@@ -18,6 +19,7 @@ public class EstadisticasActivity extends ActionBarActivity {
         setContentView(R.layout.activity_estadisticas);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
     }
 
     @Override

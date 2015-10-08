@@ -1,6 +1,8 @@
 package com.moonfish.testeleccionesgenerales2015.activities;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,7 +14,7 @@ import android.widget.Toast;
 import com.moonfish.testeleccionesgenerales2015.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,11 @@ public class MainActivity extends ActionBarActivity {
         Button encuestas = (Button) findViewById(R.id.encuestasButton);
         Button estadisticas = (Button) findViewById(R.id.estadisticasButton);
         Button programas = (Button) findViewById(R.id.programasButton);
+
+        test.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
+        encuestas.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
+        estadisticas.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
+        programas.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
 
         test.setOnClickListener(new View.OnClickListener() {
             @Override
