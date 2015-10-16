@@ -20,6 +20,7 @@
         <activity android:name=".activities.EncuestasActivity" android:label="Encuestas"></activity>
         <activity android:name=".activities.EstadisticasActivity" android:label="Estadísticas"></activity>
         <activity android:name=".activities.ProgramasActivity" android:label="Programas"></activity>
+        <activity android:name=".activities.TestActivity" android:label="Test"></activity>
     </application>
 
 </manifest>
