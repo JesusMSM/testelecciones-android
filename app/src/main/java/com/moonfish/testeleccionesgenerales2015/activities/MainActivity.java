@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
                 Intent i = new Intent(getApplicationContext(),ChooseTestActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-                Toast.makeText(v.getContext(),"Choose Test",Toast.LENGTH_SHORT).show();
+
             }
         });
         encuestas.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
                 Intent i = new Intent(v.getContext(),EncuestasActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-                Toast.makeText(v.getContext(),"Encuestas",Toast.LENGTH_SHORT).show();
+
             }
         });
         estadisticas.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
                 Intent i = new Intent(v.getContext(),EstadisticasActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-                Toast.makeText(v.getContext(),"Estadisticas",Toast.LENGTH_SHORT).show();
+
 
             }
         });
@@ -66,7 +66,7 @@ public class MainActivity extends Activity {
                 Intent i = new Intent(v.getContext(),ProgramasActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
-                Toast.makeText(v.getContext(),"Programas politicos",Toast.LENGTH_SHORT).show();
+
             }
         });
     }
