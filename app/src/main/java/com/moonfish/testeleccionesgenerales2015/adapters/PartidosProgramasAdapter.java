@@ -44,7 +44,6 @@ public class PartidosProgramasAdapter extends RecyclerView.Adapter<PartidosProgr
         @Override
         public void onClick(View v) {
 
-            Toast.makeText(context,"The Item Clicked is: "+getPosition(), Toast.LENGTH_SHORT).show();
             Intent i = new Intent(v.getContext(),ProgramaContentActivity.class);
             i.putExtra("indice", getPosition());
             context.startActivity(i);
