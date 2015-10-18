@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.moonfish.testeleccionesgenerales2015" >
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,32 +18,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ChooseTestActivity" android:label="Escoja el tipo de test"></activity>
+        <activity
+            android:name=".activities.ChooseTestActivity"
+            android:label="Escoja el tipo de test" />
         <activity
             android:name=".activities.EncuestasActivity"
             android:label="Encuestas"
-            android:parentActivityName=".activities.MainActivity">
-
-            </activity>
+            android:parentActivityName=".activities.MainActivity" >
+        </activity>
         <activity
             android:name=".activities.EstadisticasActivity"
             android:label="Estadísticas"
-            android:parentActivityName=".activities.MainActivity"
-            >
-
-            </activity>
+            android:parentActivityName=".activities.MainActivity" >
+        </activity>
         <activity
             android:name=".activities.ProgramasActivity"
-            android:label="Programas electorales"
-            android:parentActivityName=".activities.MainActivity">
-
-            </activity>
+            android:label="@string/titulo_programas"
+            android:parentActivityName=".activities.MainActivity" >
+        </activity>
         <activity
             android:name=".activities.TestActivity"
             android:label="Test"
-            android:parentActivityName=".activities.MainActivity">
-
-            </activity>
+            android:parentActivityName=".activities.MainActivity" >
+        </activity>
+        <activity
+            android:name=".activities.ProgramaContentActivity"
+            android:label="@string/titulo_programa"
+            android:parentActivityName=".activities.ProgramasActivity" >
+        </activity>
     </application>
 
 </manifest>

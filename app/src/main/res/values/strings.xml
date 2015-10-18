@@ -4,5 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="titulo_programas">Programas electorales</string>
+    <string name="titulo_programa">Programa electoral</string>
     <string name="appbar_scrolling_view_behavior">Hola</string>
+    <string name="title_activity_programa_content">ProgramaContentActivity</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.moonfish.testeleccionesgenerales2015.adapters;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,8 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.moonfish.testeleccionesgenerales2015.activities.ProgramaContentActivity;
+import com.moonfish.testeleccionesgenerales2015.activities.ProgramasActivity;
 import com.moonfish.testeleccionesgenerales2015.model.PartidoProgramas;
 
 import java.util.List;
@@ -19,14 +24,31 @@ import java.util.List;
  */
 public class PartidosProgramasAdapter extends RecyclerView.Adapter<PartidosProgramasAdapter.PartidoViewHolder>{
 
-    public static class PartidoViewHolder extends RecyclerView.ViewHolder {
+
+
+    public static class PartidoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         CardView cv;
         ImageView personPhoto;
+        Context context;
 
-        PartidoViewHolder(View itemView) {
+        PartidoViewHolder(Context c, View itemView) {
             super(itemView);
+
+            itemView.setClickable(true);
+            itemView.setOnClickListener(this);
+            context = c;
             cv = (CardView)itemView.findViewById(R.id.cv);
             personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            Toast.makeText(context,"The Item Clicked is: "+getPosition(), Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(v.getContext(),ProgramaContentActivity.class);
+            i.putExtra("indice", getPosition());
+            context.startActivity(i);
+
         }
     }
     List<PartidoProgramas> partidos;
@@ -43,7 +65,7 @@ public class PartidosProgramasAdapter extends RecyclerView.Adapter<PartidosProgr
     @Override
     public PartidoViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.listitem_partido, viewGroup, false);
-        PartidoViewHolder pvh = new PartidoViewHolder(v);
+        PartidoViewHolder pvh = new PartidoViewHolder(viewGroup.getContext(),v);
         return pvh;
     }
     @Override
