@@ -15,5 +15,6 @@
     <string name="respuestaEconomia1_2">Está bien como está, un aumento supondría para las empresas mayores dificultades de contratación.</string>
     <string name="respuestaEconomia1_3">Sí, progresivamente hasta el 60% del salario medio tal y como dicta la Carta Social Europea.</string>
     <string name="respuestaEconomia1_4">Sí, notablemente. Se reduciría la pobreza y se impulsaría el consumo.</string>
+    <string name="title_activity_resultados">Resultados</string>
 
 </resources>
