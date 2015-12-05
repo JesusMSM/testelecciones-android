@@ -19,6 +19,16 @@
             android:textAllCaps="true"
             android:textSize="10pt"
             android:paddingTop="10dp"/>
+        <TextView
+            android:id="@+id/nombrePregunta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:text="SALARIO MÍNIMO"
+            android:textAllCaps="true"
+            android:textSize="10pt"
+            android:paddingTop="10dp"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
@@ -31,7 +41,6 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
             android:textColor="@color/white"
-            android:text="@string/preguntaEconomia1"
             android:textSize="8pt"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"/>
@@ -40,6 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:onClick="onClick"
+            android:clickable="true"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginRight="10dp"
@@ -54,12 +65,13 @@
             android:gravity="center_horizontal"
             android:textSize="7pt"
             android:textColor="@color/ColorSecondaryButtonPrimary"
-            android:text="@string/respuestaEconomia1_1"
             android:textAllCaps="false"/>
         <Button
             android:id="@+id/respuesta2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="onClick"
             android:background="@color/white"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
@@ -75,12 +87,13 @@
             android:gravity="center_horizontal"
             android:textSize="7pt"
             android:textColor="@color/ColorSecondaryButtonPrimary"
-            android:text="@string/respuestaEconomia1_2"
             android:textAllCaps="false"/>
         <Button
             android:id="@+id/respuesta3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="onClick"
             android:background="@color/white"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
@@ -96,28 +109,6 @@
             android:gravity="center_horizontal"
             android:textSize="7pt"
             android:textColor="@color/ColorSecondaryButtonPrimary"
-            android:text="@string/respuestaEconomia1_3"
-            android:textAllCaps="false"/>
-        <Button
-            android:id="@+id/respuesta4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="20dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:paddingLeft="2dp"
-            android:paddingStart="2dp"
-            android:paddingRight="2dp"
-            android:paddingEnd="2dp"
-            android:gravity="center_horizontal"
-            android:textSize="7pt"
-            android:textColor="@color/ColorSecondaryButtonPrimary"
-            android:text="@string/respuestaEconomia1_4"
             android:textAllCaps="false"/>
     </LinearLayout>
     <LinearLayout
@@ -127,9 +118,11 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp">
         <ProgressBar
+            android:id="@+id/barra_progreso"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_weight="16"
+            style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginEnd="5dp"
@@ -139,11 +132,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="right"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
-            android:text="1/24"
+            android:text="1"
+            android:textColor="@color/white"
+            android:textSize="8pt"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:text="/ 24"
             android:textColor="@color/white"
             android:textSize="8pt"/>
     </LinearLayout>

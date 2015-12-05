@@ -7,14 +7,6 @@
     <string name="titulo_programa">Programa electoral</string>
     <string name="appbar_scrolling_view_behavior">Hola</string>
     <string name="title_activity_programa_content">ProgramaContentActivity</string>
-
-    <!-- PREGUNTAS Y RESPUESTAS -->
-
-    <string name="preguntaEconomia1">¿Cree que debería aumentarse el salarío mínimo?</string>
-    <string name="respuestaEconomia1_1">El salario mínimo como tal debería desaparecer, debería basarse en la oferta y la demanda.</string>
-    <string name="respuestaEconomia1_2">Está bien como está, un aumento supondría para las empresas mayores dificultades de contratación.</string>
-    <string name="respuestaEconomia1_3">Sí, progresivamente hasta el 60% del salario medio tal y como dicta la Carta Social Europea.</string>
-    <string name="respuestaEconomia1_4">Sí, notablemente. Se reduciría la pobreza y se impulsaría el consumo.</string>
-    <string name="title_activity_resultados">Resultados</string>
+    <string name="title_activity_resultados">ResultadosActivity</string>
 
 </resources>

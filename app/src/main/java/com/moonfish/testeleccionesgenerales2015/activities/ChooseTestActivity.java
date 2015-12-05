@@ -19,6 +19,10 @@ import com.moonfish.testeleccionesgenerales2015.R;
  * Created by Afll on 05/10/2015.
  */
 public class ChooseTestActivity extends Activity {
+
+    private int NUMERO_PREGUNTAS_ESTANDAR=16;
+    private int NUMERO_PREGUNTAS_DETALLADO=24;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +55,7 @@ public class ChooseTestActivity extends Activity {
 
     public void empezarTestEstandar(View v) {
         Intent i = new Intent(getApplicationContext(),TestActivity.class);
+        i.putExtra("numero_preguntas", NUMERO_PREGUNTAS_ESTANDAR);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
         finish();
@@ -58,6 +63,7 @@ public class ChooseTestActivity extends Activity {
 
     public void empezarTestDetallado(View v) {
         Intent i = new Intent(getApplicationContext(),TestActivity.class);
+        i.putExtra("numero_preguntas", NUMERO_PREGUNTAS_DETALLADO);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
         finish();

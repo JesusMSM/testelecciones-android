@@ -48,12 +48,7 @@
         </activity>
         <activity
             android:name=".activities.ResultadosActivity"
-            android:label="@string/title_activity_resultados"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.moonfish.testeleccionesgenerales2015.activities.MainActivity" />
+            android:label="@string/title_activity_resultados" >
         </activity>
     </application>
 
