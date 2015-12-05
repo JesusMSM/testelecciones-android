@@ -6,17 +6,30 @@ import android.os.PersistableBundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.moonfish.testeleccionesgenerales2015.adapters.MyRecyclerViewAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Afll on 05/10/2015.
  */
 public class EncuestasActivity extends AppCompatActivity {
+
+    List<Object> items = new ArrayList<>();
+
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +48,14 @@ public class EncuestasActivity extends AppCompatActivity {
         });
 
         toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
+
+        //RecyclerView
+        mRecyclerView = (RecyclerView) findViewById(R.id.listEncuestas);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        addItems();
     }
 
     @Override
@@ -49,5 +70,14 @@ public class EncuestasActivity extends AppCompatActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addItems(){
+        items.add("ENCUESTA_HEADER");
+        items.add("ENCUESTA_HEADER");
+        items.add("ENCUESTA_HEADER");
+
+        mAdapter = new MyRecyclerViewAdapter(this,items);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
