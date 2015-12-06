@@ -117,6 +117,20 @@ public class TestActivity extends AppCompatActivity {
             pacma.setPartido("PACMA");
             vox.setPartido("VOX");
 
+            pp.setColor("#1ba1ef");
+            psoe.setColor("#ce1415");
+            cs.setColor("#f58723");
+            podemos.setColor("#591253");
+            upyd.setColor("#f5407b");
+            iu.setColor("#18a196");
+            convergencia.setColor("#3838FF");
+            erc.setColor("#FFB232");
+            pnv.setColor("#118747");
+            bildu.setColor("#99C020");
+            pacma.setColor("#abbd0b");
+            vox.setColor("#00BB00");
+
+
             i.putExtra("PP", pp);
             i.putExtra("PSOE", psoe);
             i.putExtra("CS", cs);

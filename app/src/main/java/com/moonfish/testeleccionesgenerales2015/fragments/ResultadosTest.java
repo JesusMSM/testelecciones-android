@@ -19,6 +19,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.activities.ResultadosActivity;
+import com.moonfish.testeleccionesgenerales2015.charts.HorizontalBarMoonfish;
 import com.moonfish.testeleccionesgenerales2015.model.ResultadosPartido;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import java.util.Comparator;
  */
 public class ResultadosTest extends Fragment {
 
-    private HorizontalBarChart chart;
+    private HorizontalBarMoonfish chart;
     private ArrayList<ResultadosPartido> resultados;
     private boolean todosLosPartidos;
 
@@ -52,7 +53,7 @@ public class ResultadosTest extends Fragment {
 
         resultados = ((ResultadosActivity)this.getActivity()).getResultados();
         // Inflate the layout for this fragment
-        chart = (HorizontalBarChart) v.findViewById(R.id.chart);
+        chart = (HorizontalBarMoonfish) v.findViewById(R.id.chart);
 
         new MaterialDialog.Builder(getActivity())
                 .title(R.string.titulo_alert)
@@ -90,6 +91,9 @@ public class ResultadosTest extends Fragment {
 
         chart.setDrawBarShadow(false);
 
+        chart.animateY(2500);
+        //chart.animateX(2500);
+
         chart.setDrawValueAboveBar(false);
 
         chart.setDescription("% de afinidad");
@@ -122,6 +126,7 @@ public class ResultadosTest extends Fragment {
         xl.setDrawGridLines(false);
         xl.setGridLineWidth(0.3f);
 
+
         YAxis yl = chart.getAxisLeft();
         yl.setTypeface(tf);
         yl.setDrawAxisLine(true);
@@ -142,6 +147,7 @@ public class ResultadosTest extends Fragment {
         l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         l.setFormSize(8f);
         l.setXEntrySpace(4f);
+        l.setEnabled(false);
     }
 
     private void setData(){
@@ -164,7 +170,9 @@ public class ResultadosTest extends Fragment {
 
         //Escalado
         for (int i=0; i<resultados.size(); i++){
-            resultados.get(i).setPuntuacionTotalEscalada(resultados.get(i).getPuntuacionTotal()*100/maximo);
+            int res = resultados.get(i).getPuntuacionTotal()*100/maximo;
+            if (res<0) res=0;
+            resultados.get(i).setPuntuacionTotalEscalada(res);
         }
 
         //Ordenado
@@ -174,16 +182,21 @@ public class ResultadosTest extends Fragment {
             }
         });
 
+        ArrayList<Integer> colors = new ArrayList<>();
         //Pintar
         for (int i = 0; i < resultados.size(); i++) {
             xVals.add(resultados.get(i).getPartido());
             yVals1.add(new BarEntry((float) resultados.get(i).getPuntuacionTotalEscalada(), i));
+            if(resultados.get(i).getColor()!=null)colors.add(Color.parseColor(resultados.get(i).getColor()));
+            //colors.add(Color.parseColor(resultados.get(i).getColor()));
         }
 
-        BarDataSet set1 = new BarDataSet(yVals1, "Resultados Globales");
+        BarDataSet set1 = new BarDataSet(yVals1, "");
+        set1.setColors(colors);
 
         ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
         dataSets.add(set1);
+
 
         BarData data = new BarData(xVals, dataSets);
         data.setValueTextSize(10f);

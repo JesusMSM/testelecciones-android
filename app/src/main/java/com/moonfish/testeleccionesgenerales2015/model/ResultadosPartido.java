@@ -66,6 +66,7 @@ public class ResultadosPartido implements Parcelable{
         this.puntuacionEstado = 0;
 
         this.partido = "";
+        this.color = "";
         puntuacionTotalEscalada=0;
         puntuacionEconomiaEscalada=0;
         puntuacionSocialEscalada=0;
@@ -78,6 +79,7 @@ public class ResultadosPartido implements Parcelable{
         puntuacionSocial = in.readInt();
         puntuacionEstado = in.readInt();
         partido = in.readString();
+        color = in.readString();
     }
 
     public int getPuntuacionTotal() {
@@ -150,6 +152,7 @@ public class ResultadosPartido implements Parcelable{
         dest.writeInt(puntuacionSocial);
         dest.writeInt(puntuacionEstado);
         dest.writeString(partido);
+        dest.writeString(color);
     }
 
     public static final Parcelable.Creator<ResultadosPartido> CREATOR = new Parcelable.Creator<ResultadosPartido>()
