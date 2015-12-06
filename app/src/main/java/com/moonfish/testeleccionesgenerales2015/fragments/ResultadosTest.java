@@ -32,8 +32,8 @@ import java.util.Comparator;
 public class ResultadosTest extends Fragment {
 
     private HorizontalBarMoonfish chart;
-    private ArrayList<ResultadosPartido> resultados;
-    private boolean todosLosPartidos;
+    public static ArrayList<ResultadosPartido> resultados;
+    public static boolean todosLosPartidos;
 
     public ResultadosTest() {
         // Required empty public constructor
