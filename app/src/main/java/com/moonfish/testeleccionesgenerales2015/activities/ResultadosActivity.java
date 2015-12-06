@@ -1,14 +1,30 @@
 package com.moonfish.testeleccionesgenerales2015.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.moonfish.testeleccionesgenerales2015.fragments.EstadisticasEncuestas;
+import com.moonfish.testeleccionesgenerales2015.fragments.EstadisticasTest;
+import com.moonfish.testeleccionesgenerales2015.fragments.ResultadosDetallados;
+import com.moonfish.testeleccionesgenerales2015.fragments.ResultadosTest;
 import com.moonfish.testeleccionesgenerales2015.model.ResultadosPartido;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ResultadosActivity extends AppCompatActivity {
 
@@ -26,10 +42,40 @@ public class ResultadosActivity extends AppCompatActivity {
     public ResultadosPartido pacma = new ResultadosPartido();
     public ResultadosPartido vox = new ResultadosPartido();
 
+    private ArrayList<ResultadosPartido> resultados;
+    public static int num_preguntas;
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
+
+        //App bar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.appbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavUtils.navigateUpFromSameTask(ResultadosActivity.this);
+            }
+        });
+
+        toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
+
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        // Setting Custom Color for the Scroll bar indicator of the Tab View
+        tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.selectedTabColor));
+
+        tabLayout.setupWithViewPager(viewPager);
 
         //Identificamos el tipo de test a través del intent
         Intent intent = getIntent();
@@ -45,6 +91,24 @@ public class ResultadosActivity extends AppCompatActivity {
         bildu = intent.getParcelableExtra("EH-BILDU");
         pacma = intent.getParcelableExtra("PACMA");
         vox = intent.getParcelableExtra("VOX");
+        num_preguntas=intent.getIntExtra("numero_preguntas",1);
+
+
+        resultados = new ArrayList<>();
+        resultados.add(pp);
+        resultados.add(psoe);
+        resultados.add(cs);
+        resultados.add(podemos);
+        resultados.add(iu);
+        resultados.add(upyd);
+        resultados.add(convergencia);
+        resultados.add(erc);
+        resultados.add(pnv);
+        resultados.add(bildu);
+        resultados.add(pacma);
+        resultados.add(vox);
+
+
 
         Log.i("puntuaciones", "Nombre partido: TOTAL ECONOMÍA SOCIEDAD ESTADO");
         Log.i("puntuaciones", "Puntuaciones pp: " + pp.getPuntuacionTotal() + " " + pp.getPuntuacionEconomia() + " "+ pp.getPuntuacionSocial() + " "+ pp.getPuntuacionEstado() + " ");
@@ -61,25 +125,58 @@ public class ResultadosActivity extends AppCompatActivity {
         Log.i("puntuaciones", "Puntuaciones vox: " + vox.getPuntuacionTotal() + " " + vox.getPuntuacionEconomia() + " " + vox.getPuntuacionSocial() + " " + vox.getPuntuacionEstado() + " ");
     }
 
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(new ResultadosTest(), "GLOBALES");
+        adapter.addFragment(new ResultadosDetallados(), "DETALLADOS");
+
+        viewPager.setAdapter(adapter);
+    }
+
+    public ArrayList<ResultadosPartido> getResultados(){
+        return this.resultados;
+    }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_resultados, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if(id == android.R.id.home){
+            onBackPressed();
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

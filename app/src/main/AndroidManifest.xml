@@ -49,6 +49,9 @@
         <activity
             android:name=".activities.ResultadosActivity"
             android:label="@string/title_activity_resultados" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.moonfish.testeleccionesgenerales2015.activities.MainActivity" />
         </activity>
     </application>
 

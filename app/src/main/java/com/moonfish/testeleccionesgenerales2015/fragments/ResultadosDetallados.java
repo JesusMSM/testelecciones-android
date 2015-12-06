@@ -6,14 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.charts.PieChart;
 import com.moonfish.testeleccionesgenerales2015.R;
 
 /**
- * Created by Jesus on 05/12/2015.
+ * Created by Jesus on 06/12/2015.
  */
-public class ResultadosEncuestas extends Fragment {
+public class ResultadosDetallados extends Fragment {
 
-    public ResultadosEncuestas() {
+    private PieChart pieChart;
+
+    public ResultadosDetallados() {
         // Required empty public constructor
     }
 
@@ -26,7 +29,11 @@ public class ResultadosEncuestas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_encuestas, container, false);
+        View v = inflater.inflate(R.layout.fragment_resultados_detallados, container, false);
+        // Inflate the layout for this fragment
+        pieChart = (PieChart) v.findViewById(R.id.chart);
+        //configureChart();
+        return v;
     }
 
 }

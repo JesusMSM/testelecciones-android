@@ -7,6 +7,8 @@
     <string name="titulo_programa">Programa electoral</string>
     <string name="appbar_scrolling_view_behavior">Hola</string>
     <string name="title_activity_programa_content">ProgramaContentActivity</string>
-    <string name="title_activity_resultados">ResultadosActivity</string>
+    <string name="title_activity_resultados">Resultados</string>
+    <string name="titulo_alert">¿Qué partidos quieres incluir en los resultados?</string>
+    <string name="boton_aceptar">Aceptar</string>
 
 </resources>

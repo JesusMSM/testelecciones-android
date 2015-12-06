@@ -104,6 +104,19 @@ public class TestActivity extends AppCompatActivity {
 
         //Creamos el intent y preparamos la siguiente activity
             Intent i = new Intent(getApplicationContext(),ResultadosActivity.class);
+            pp.setPartido("PP");
+            psoe.setPartido("PSOE");
+            cs.setPartido("C's");
+            podemos.setPartido("Podemos");
+            upyd.setPartido("UPyD");
+            iu.setPartido("IU");
+            convergencia.setPartido("Convergencia");
+            erc.setPartido("ERC");
+            pnv.setPartido("PNV");
+            bildu.setPartido("EH-Bildu");
+            pacma.setPartido("PACMA");
+            vox.setPartido("VOX");
+
             i.putExtra("PP", pp);
             i.putExtra("PSOE", psoe);
             i.putExtra("CS", cs);

@@ -2,31 +2,22 @@ package com.moonfish.testeleccionesgenerales2015.activities;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.moonfish.testeleccionesgenerales2015.R;
-import com.moonfish.testeleccionesgenerales2015.fragments.ResultadosEncuestas;
-import com.moonfish.testeleccionesgenerales2015.fragments.ResultadosTest;
+import com.moonfish.testeleccionesgenerales2015.fragments.EstadisticasEncuestas;
+import com.moonfish.testeleccionesgenerales2015.fragments.EstadisticasTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +67,8 @@ public class EstadisticasActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ResultadosTest(), "TEST");
-        adapter.addFragment(new ResultadosEncuestas(), "ENCUESTAS");
+        adapter.addFragment(new EstadisticasTest(), "TEST");
+        adapter.addFragment(new EstadisticasEncuestas(), "ENCUESTAS");
 
         viewPager.setAdapter(adapter);
     }

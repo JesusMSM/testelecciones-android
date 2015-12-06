@@ -1,26 +1,38 @@
 package com.moonfish.testeleccionesgenerales2015.fragments;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.moonfish.testeleccionesgenerales2015.activities.ResultadosActivity;
+import com.moonfish.testeleccionesgenerales2015.model.ResultadosPartido;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
- * Created by Jesus on 05/12/2015.
+ * Created by Jesus on 06/12/2015.
  */
 public class ResultadosTest extends Fragment {
 
-    private PieChart pieChart;
+    private HorizontalBarChart chart;
+    private ArrayList<ResultadosPartido> resultados;
+    private boolean todosLosPartidos;
 
     public ResultadosTest() {
         // Required empty public constructor
@@ -35,156 +47,149 @@ public class ResultadosTest extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v = inflater.inflate(R.layout.fragment_test, container, false);
+        View v = inflater.inflate(R.layout.fragment_resultados_test, container, false);
+
+
+        resultados = ((ResultadosActivity)this.getActivity()).getResultados();
         // Inflate the layout for this fragment
-        pieChart = (PieChart) v.findViewById(R.id.chart);
-        configureChart();
+        chart = (HorizontalBarChart) v.findViewById(R.id.chart);
+
+        new MaterialDialog.Builder(getActivity())
+                .title(R.string.titulo_alert)
+                .items(R.array.opciones_alert)
+                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                        if (which==0) {
+                            todosLosPartidos=true;
+                        }else{
+                            todosLosPartidos=false;
+                        }
+                        /**
+                         * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
+                         * returning false here won't allow the newly selected radio button to actually be selected.
+                         **/
+                        chart.invalidate();
+                        configureChart();
+                        return true;
+                    }
+                })
+                .positiveText(R.string.boton_aceptar)
+                .typeface(Typeface.createFromAsset(getActivity().getAssets(),
+                        "Titillium-Regular.otf"), Typeface.createFromAsset(getActivity().getAssets(),
+                        "Titillium-Light.otf"))
+                .show();
+
+
         return v;
     }
 
     private void configureChart(){
 
+        chart.setHighlightPerTapEnabled(false);
 
-        // Define si va a usar valores porcentajes.
-        pieChart.setUsePercentValues(true);
+        chart.setDrawBarShadow(false);
+
+        chart.setDrawValueAboveBar(false);
+
+        chart.setDescription("% de afinidad");
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        chart.setMaxVisibleValueCount(60);
+
+        // scaling can now only be done on x- and y-axis separately
+        chart.setPinchZoom(false);
+
+        // draw shadows for each bar that show the maximum value
+        // chart.setDrawBarShadow(true);
+
+        // chart.setDrawXLabels(false);
+
+        chart.setDrawGridBackground(false);
+        chart.setGridBackgroundColor(Color.TRANSPARENT);
+        chart.setTouchEnabled(false);
 
 
-        // Círculos del centro.
-        pieChart.setDrawHoleEnabled(true);
-        pieChart.setHoleColorTransparent(true);
-        pieChart.setHoleRadius(50);
-        pieChart.setTransparentCircleRadius(10);
+        // chart.setDrawYLabels(false);
 
-        // Activa la rotación.
-        pieChart.setRotationAngle(0);
-        pieChart.setRotationEnabled(true);
+        Typeface tf = Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf");
 
-        // Cuando pulsas.
-       /* pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry entry, int i, Highlight highlight) {
-                if(entry==null) return;
-                Toast.makeText(getApplicationContext(), x_data[entry.getXIndex()] + " = " + entry.getVal() * 100 + "%", Toast.LENGTH_LONG).show();
-            }
+        XAxis xl = chart.getXAxis();
+        xl.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xl.setTypeface(tf);
+        xl.setDrawAxisLine(true);
+        xl.setDrawGridLines(false);
+        xl.setGridLineWidth(0.3f);
 
-            @Override
-            public void onNothingSelected() {
+        YAxis yl = chart.getAxisLeft();
+        yl.setTypeface(tf);
+        yl.setDrawAxisLine(true);
+        yl.setDrawGridLines(false);
+        yl.setGridLineWidth(0.3f);
+//        yl.setInverted(true);
 
-            }
-        });*/
+        YAxis yr = chart.getAxisRight();
+        yr.setTypeface(tf);
+        yr.setDrawAxisLine(true);
+        yr.setDrawGridLines(false);
+//        yr.setInverted(true);
 
-        addData();
+        setData();
 
-        // Leyenda del gráfico.
-        Legend l = pieChart.getLegend();
-        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
-        l.setXEntrySpace(7);
-        l.setYEntrySpace(5);
+
+        Legend l = chart.getLegend();
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setFormSize(8f);
+        l.setXEntrySpace(4f);
     }
 
-    private void addData(){
-        ArrayList<Entry> yVals1 = new ArrayList<Entry>();
-
-        // IMPORTANT: In a PieChart, no values (Entry) should have the same
-        // xIndex (even if from different DataSets), since no values can be
-        // drawn above each other.
-        for (int i = 0; i < 5; i++) {
-            yVals1.add(new Entry((float) Math.random() , i));
-        }
-
+    private void setData(){
+        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
         ArrayList<String> xVals = new ArrayList<String>();
 
-        for (int i = 0; i < 5 + 1; i++)
-            xVals.add("PP");
-
-        PieDataSet dataSet = new PieDataSet(yVals1, "Election Results");
-        dataSet.setSliceSpace(3);
-        dataSet.setSelectionShift(5);
-        PieData data = new PieData(xVals, dataSet);
-        pieChart.setData(data);
-
-    }
-
-    /*private ArrayList<Party> getPartiesInArea(){
-        ArrayList<Party> partiesInArea = new ArrayList<>();
-        for(Party p : parties){
-            for(PartyAdminArea pa : partyAdminAreas){
-                if(pa.getAreaId()==administrativeArea.getAdminAreaId() && p.getPartyId()==pa.getPartyId()){
-                    p.setPartyScore(pa.getScore());
-                    partiesInArea.add(p);
-                    break;
+        //Filtrado
+        String[] partidosRegionales = {"Convergencia","ERC","PNV","EH-Bildu"};
+        if(todosLosPartidos==false){
+            for (int i= 0; i<resultados.size(); i++){
+                for(int j=0; j<partidosRegionales.length; j++) {
+                    if (resultados.get(i).getPartido().equals(partidosRegionales[j])) resultados.remove(i);
                 }
             }
         }
-        return partiesInArea;
-    }
 
-    private void addData(){
-        ArrayList<Entry> y_vals = new ArrayList<>();
-        for(int i = 0; i< y_data.length; i++){
-            y_vals.add(new Entry(y_data[i], i));
-        }
-        ArrayList<String> x_vals = new ArrayList<>();
+        //Calculo de maximo
+        int maximo = ResultadosActivity.num_preguntas*2;
 
-        for(int i = 0; i< x_data.length; i++){
-            x_vals.add(x_data[i]);
+
+        //Escalado
+        for (int i=0; i<resultados.size(); i++){
+            resultados.get(i).setPuntuacionTotalEscalada(resultados.get(i).getPuntuacionTotal()*100/maximo);
         }
 
-        // Esto es el espacio entre porciones y lo que se agranda cuando pulsas.
-        PieDataSet data_set = new PieDataSet(y_vals, "Partidos");
-        data_set.setSliceSpace(3);
-        data_set.setSelectionShift(5);
-
-        ArrayList<Integer> colors = new ArrayList<>();
-        for(Party p: parties){
-            if(p.getPartyScore()!=0) colors.add(p.getColor());
-        }
-
-
-        // Esto con los atributos de los nombres de partidos y porcentajes que aparecen sobre
-        // el gráfico.
-        data_set.setColors(colors);
-        PieData data = new PieData(x_vals, data_set);
-        data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(11f);
-        data.setValueTextColor(Color.GRAY);
-
-        pieChart.setData(data);
-        pieChart.highlightValues(null);
-        pieChart.invalidate();
-    }
-
-    private float[] getPercentages(){
-        float total = 0;
-
-        for(Party p : parties){
-            total+=p.getPartyScore();
-            if(p.getPartyScore()!=0) elements_num++;
-        }
-        float[] y_data = new float[elements_num];
-
-        int i = 0;
-        for(Party p : parties){
-            if(p.getPartyScore()!=0){
-                y_data[i] = p.getPartyScore()/total;
-                i++;
+        //Ordenado
+        Collections.sort(resultados, new Comparator<ResultadosPartido>() {
+            public int compare(ResultadosPartido partido1, ResultadosPartido partido2) {
+                return Double.compare(partido1.getPuntuacionTotalEscalada(), partido2.getPuntuacionTotalEscalada());
             }
+        });
+
+        //Pintar
+        for (int i = 0; i < resultados.size(); i++) {
+            xVals.add(resultados.get(i).getPartido());
+            yVals1.add(new BarEntry((float) resultados.get(i).getPuntuacionTotalEscalada(), i));
         }
-        return y_data;
+
+        BarDataSet set1 = new BarDataSet(yVals1, "Resultados Globales");
+
+        ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
+        dataSets.add(set1);
+
+        BarData data = new BarData(xVals, dataSets);
+        data.setValueTextSize(10f);
+        data.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
+
+        chart.setData(data);
     }
-
-    private String[] getNames(){
-        String[] x_data = new String[elements_num];
-
-        int i = 0;
-        for(Party p : parties){
-            if(p.getPartyScore()!=0){
-                x_data[i] = p.getPartyName();
-                i++;
-            }
-
-        }
-        return x_data;
-    }*/
 
 }

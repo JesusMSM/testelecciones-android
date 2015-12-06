@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="opciones_alert">
+        <item>Incluir partidos nacionales y regionales</item>
+        <item>Incluir sólo partidos nacionales</item>
+    </string-array>
+</resources>
