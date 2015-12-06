@@ -11,4 +11,8 @@
     <string name="titulo_alert">¿Qué partidos quieres incluir en los resultados?</string>
     <string name="boton_aceptar">Aceptar</string>
 
+    <string name="banner_activity_main">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="interstitial_ontest_click">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitial_onshow_result">ca-app-pub-3940256099942544/1033173712</string>
+
 </resources>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.model.ResultadosPartido;
 
@@ -38,6 +42,7 @@ public class TestActivity extends AppCompatActivity {
 
     private int NUM_PREGUNTAS = 0;
 
+    InterstitialAd mInterstitialAd;
 
     private String[] preguntas;
     private final int[] arrayNumRespuestas = {4,3,3,3,4, 3,3,3,3,3 ,2,3};
@@ -93,6 +98,21 @@ public class TestActivity extends AppCompatActivity {
         if(json ==null){
             Log.i("puntuacion", "El json es nulo");
         }
+
+        //Intersticial
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getResources().getString(R.string.interstitial_onshow_result));
+
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+                siguientePregunta();
+            }
+        });
+
+        requestNewInterstitial();
+
         siguientePregunta();
 
     }
@@ -101,53 +121,57 @@ public class TestActivity extends AppCompatActivity {
 
         if(nPreguntaActual>NUM_PREGUNTAS){
             //TEST ACABADO
+            //Anuncio muy rico
+            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            }else {
+                //Creamos el intent y preparamos la siguiente activity
+                Intent i = new Intent(getApplicationContext(), ResultadosActivity.class);
+                pp.setPartido("PP");
+                psoe.setPartido("PSOE");
+                cs.setPartido("C's");
+                podemos.setPartido("Podemos");
+                upyd.setPartido("UPyD");
+                iu.setPartido("IU");
+                convergencia.setPartido("Convergencia");
+                erc.setPartido("ERC");
+                pnv.setPartido("PNV");
+                bildu.setPartido("EH-Bildu");
+                pacma.setPartido("PACMA");
+                vox.setPartido("VOX");
 
-        //Creamos el intent y preparamos la siguiente activity
-            Intent i = new Intent(getApplicationContext(),ResultadosActivity.class);
-            pp.setPartido("PP");
-            psoe.setPartido("PSOE");
-            cs.setPartido("C's");
-            podemos.setPartido("Podemos");
-            upyd.setPartido("UPyD");
-            iu.setPartido("IU");
-            convergencia.setPartido("Convergencia");
-            erc.setPartido("ERC");
-            pnv.setPartido("PNV");
-            bildu.setPartido("EH-Bildu");
-            pacma.setPartido("PACMA");
-            vox.setPartido("VOX");
-
-            pp.setColor("#1ba1ef");
-            psoe.setColor("#ce1415");
-            cs.setColor("#f58723");
-            podemos.setColor("#591253");
-            upyd.setColor("#f5407b");
-            iu.setColor("#18a196");
-            convergencia.setColor("#3838FF");
-            erc.setColor("#FFB232");
-            pnv.setColor("#118747");
-            bildu.setColor("#99C020");
-            pacma.setColor("#abbd0b");
-            vox.setColor("#00BB00");
+                pp.setColor("#1ba1ef");
+                psoe.setColor("#ce1415");
+                cs.setColor("#f58723");
+                podemos.setColor("#591253");
+                upyd.setColor("#f5407b");
+                iu.setColor("#18a196");
+                convergencia.setColor("#3838FF");
+                erc.setColor("#FFB232");
+                pnv.setColor("#118747");
+                bildu.setColor("#99C020");
+                pacma.setColor("#abbd0b");
+                vox.setColor("#00BB00");
 
 
-            i.putExtra("PP", pp);
-            i.putExtra("PSOE", psoe);
-            i.putExtra("CS", cs);
-            i.putExtra("PODEMOS", podemos);
-            i.putExtra("CIUDADANOS", cs);
-            i.putExtra("UPYD", upyd);
-            i.putExtra("IU", iu);
-            i.putExtra("CONVERGENCIA", convergencia);
-            i.putExtra("ERC", erc);
-            i.putExtra("PNV", pnv);
-            i.putExtra("EH-BILDU", bildu);
-            i.putExtra("PACMA", pacma);
-            i.putExtra("VOX", vox);
-            //Pasamos tambien el numero de preguntas del test, para poder aplicar porcentajes
-            i.putExtra("numero_preguntas", NUM_PREGUNTAS);
-            startActivity(i);
-            finish();
+                i.putExtra("PP", pp);
+                i.putExtra("PSOE", psoe);
+                i.putExtra("CS", cs);
+                i.putExtra("PODEMOS", podemos);
+                i.putExtra("CIUDADANOS", cs);
+                i.putExtra("UPYD", upyd);
+                i.putExtra("IU", iu);
+                i.putExtra("CONVERGENCIA", convergencia);
+                i.putExtra("ERC", erc);
+                i.putExtra("PNV", pnv);
+                i.putExtra("EH-BILDU", bildu);
+                i.putExtra("PACMA", pacma);
+                i.putExtra("VOX", vox);
+                //Pasamos tambien el numero de preguntas del test, para poder aplicar porcentajes
+                i.putExtra("numero_preguntas", NUM_PREGUNTAS);
+                startActivity(i);
+                finish();
+            }
         }else {
             //Actualizamos la barra de progreso
             barraProgreso.setProgress(nPreguntaActual);
@@ -457,5 +481,15 @@ public class TestActivity extends AppCompatActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void requestNewInterstitial() {
+        String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("372AA28CB6E55C8D0AFD4BE1C0BC2A70")
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
     }
 }
