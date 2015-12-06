@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 
 public class MainActivity extends Activity {
@@ -20,6 +22,13 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            Parse.enableLocalDatastore(getApplicationContext());
+            Parse.initialize(this, "4fP3XRn8if2uekAMFMNZHUv27ZDbHuBdVXce3NsV", "4BY9wy4KFTy6VwmvmsIpnJRkfLlVC8CMXTsdbVit");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         setContentView(R.layout.activity_main);
 
         //Buttons
