@@ -11,8 +11,9 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:background="@color/white"
         card_view:contentPadding="@dimen/activity_horizontal_margin"
-        card_view:cardCornerRadius="10dp"
+        card_view:cardCornerRadius="6dp"
         card_view:elevation="6dp"
+        card_view:cardBackgroundColor="@color/white"
         android:id="@+id/cv"
         >
 
@@ -24,8 +25,8 @@
             >
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:id="@+id/person_photo"
                 />

@@ -72,6 +72,11 @@ public class ProgramasActivity extends AppCompatActivity {
         partidos.add(new PartidoProgramas(R.drawable.logo_upyd));
         partidos.add(new PartidoProgramas(R.drawable.logo_iu));
         partidos.add(new PartidoProgramas(R.drawable.logo_pacma));
+        partidos.add(new PartidoProgramas(R.drawable.logo_convergencia));
+        partidos.add(new PartidoProgramas(R.drawable.logo_erc));
+        partidos.add(new PartidoProgramas(R.drawable.logo_pnv));
+        partidos.add(new PartidoProgramas(R.drawable.logo_bildu));
+        partidos.add(new PartidoProgramas(R.drawable.logo_vox));
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
