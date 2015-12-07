@@ -7,11 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.adapters.PartidosProgramasAdapter;
@@ -74,7 +72,7 @@ public class ProgramasActivity extends AppCompatActivity {
         partidos.add(new PartidoProgramas(R.drawable.logo_pacma));
         partidos.add(new PartidoProgramas(R.drawable.logo_convergencia));
         partidos.add(new PartidoProgramas(R.drawable.logo_erc));
-        partidos.add(new PartidoProgramas(R.drawable.logo_pnv));
+        partidos.add(new PartidoProgramas(R.drawable.logopnv));
         partidos.add(new PartidoProgramas(R.drawable.logo_bildu));
         partidos.add(new PartidoProgramas(R.drawable.logo_vox));
 
