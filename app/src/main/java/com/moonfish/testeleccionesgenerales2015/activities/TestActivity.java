@@ -2,7 +2,9 @@ package com.moonfish.testeleccionesgenerales2015.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.NavUtils;
@@ -56,6 +58,7 @@ public class TestActivity extends AppCompatActivity {
     private int nPreguntaActual = 1;
     private String json;
 
+
     //Variables de los partidos donde iremos almacenando los resultados
     public ResultadosPartido pp = new ResultadosPartido();
     public ResultadosPartido psoe = new ResultadosPartido();
@@ -72,7 +75,7 @@ public class TestActivity extends AppCompatActivity {
 
     //Objetos del xml
     private ProgressBar barraProgreso;
-    private TextView categoria , nombrePregunta, pregunta, respuesta1, respuesta2, respuesta3;
+    private TextView categoria , pregunta, respuesta1, respuesta2, respuesta3, porcentajeProgreso;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -80,19 +83,32 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         categoria = (TextView)findViewById(R.id.categoria);
-        nombrePregunta = (TextView)findViewById(R.id.nombrePregunta);
         pregunta = (TextView)findViewById(R.id.pregunta);
         respuesta1 = (TextView)findViewById(R.id.respuesta1);
         respuesta2 = (TextView)findViewById(R.id.respuesta2);
         respuesta3 = (TextView)findViewById(R.id.respuesta3);
+        porcentajeProgreso = (TextView)findViewById(R.id.porcentajeProgreso);
+
+        //Typefaces
+        categoria.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
+        pregunta.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Regular.otf"));
+        respuesta1.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Regular.otf"));
+        respuesta2.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Regular.otf"));
+        respuesta3.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Regular.otf"));
+        porcentajeProgreso.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Regular.otf"));
+
 
         //Identificamos el tipo de test a través del intent
         Intent intent = getIntent();
         NUM_PREGUNTAS = intent.getIntExtra("numero_preguntas", 0);
         Log.i("puntuacion", "Número de preguntas del test " + NUM_PREGUNTAS);
 
+        //Barra de progreso
         barraProgreso = (ProgressBar) findViewById(R.id.barra_progreso);
         barraProgreso.setMax(NUM_PREGUNTAS);
+
+        Drawable draw= getResources().getDrawable(R.drawable.custom_progressbar);
+        barraProgreso.setProgressDrawable(draw);
 
         json = loadJSONFromAsset("PREGUNTAS_JSON");
         if(json ==null){
@@ -174,7 +190,8 @@ public class TestActivity extends AppCompatActivity {
             }
         }else {
             //Actualizamos la barra de progreso
-            barraProgreso.setProgress(nPreguntaActual);
+            barraProgreso.setProgress(nPreguntaActual-1);
+            porcentajeProgreso.setText(((nPreguntaActual-1)*100/NUM_PREGUNTAS) + " %");
             setPregunta();
         }
     }
@@ -190,16 +207,21 @@ public class TestActivity extends AppCompatActivity {
                     JSONObject preguntaObject = jArray.getJSONObject(nPreguntaActual-1);
                     //Rellenamos el encabezado y la pregunta
                     categoria.setText(preguntaObject.getString("categoria"));
-                    nombrePregunta.setText(preguntaObject.getString("nombre"));
                     pregunta.setText(preguntaObject.getString("pregunta"));
                     Log.i("puntuacion", "Nueva pregunta:  " + preguntaObject.getString("pregunta"));
                     //Rellenamos las respuestas
                     JSONObject respuesta1Object = preguntaObject.getJSONObject("opcion_1");
                     respuesta1.setText(respuesta1Object.getString("respuesta"));
+                    respuesta1.setX(5000);
+                    respuesta1.animate().translationX(0).setDuration(3000).start();
                     JSONObject respuesta2Object = preguntaObject.getJSONObject("opcion_2");
                     respuesta2.setText(respuesta2Object.getString("respuesta"));
+                    respuesta2.setX(-5000);
+                    respuesta2.animate().translationX(0).setDuration(3500).start();
                     JSONObject respuesta3Object = preguntaObject.getJSONObject("opcion_3");
                     respuesta3.setText(respuesta3Object.getString("respuesta"));
+                    respuesta3.setX(5000);
+                    respuesta3.animate().translationX(0).setDuration(4000).start();
                 } catch (JSONException e) {
                     Log.i("puntuacion", "Error lectura de JSON");
                 }
@@ -441,6 +463,7 @@ public class TestActivity extends AppCompatActivity {
         siguientePregunta();
 
     }
+
 
     //Método que lee un fichero json almacenado en assets
     public String loadJSONFromAsset(String nameFile) {
