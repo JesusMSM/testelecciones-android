@@ -259,6 +259,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         BarDataSet set1 = new BarDataSet(yVals1, "");
         set1.setColors(colors);
+        set1.setDrawValues(false);
 
         ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
         dataSets.add(set1);
@@ -298,7 +299,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         grafico.setTouchEnabled(false);
 
         grafico.setDrawBarShadow(false);
-        grafico.setDrawValueAboveBar(false);
+        grafico.setDrawValueAboveBar(true);
+
 
         grafico.setDescription("");
 
@@ -310,7 +312,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         grafico.setPinchZoom(false);
 
         grafico.setDrawGridBackground(false);
-        // grafico.setDrawYLabels(false);
+
 
 
 
@@ -377,6 +379,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         BarDataSet set1 = new BarDataSet(yVals1, "");
         set1.setColors(colors);
+        set1.setDrawValues(false);
 
         ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
         dataSets.add(set1);
@@ -498,6 +501,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
         dataSets.add(set1);
+        set1.setDrawValues(false);
 
         BarData data = new BarData(xVals, dataSets);
         if (GlobalMethod.getSizeName(context).equals("xlarge")) {
