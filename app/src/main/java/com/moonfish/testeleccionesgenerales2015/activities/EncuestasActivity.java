@@ -15,6 +15,9 @@ import android.view.View;
 
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.adapters.MyRecyclerViewAdapter;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +32,8 @@ public class EncuestasActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    public String jsonEncuestas = "";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,9 @@ public class EncuestasActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        //getEncuestasFromParse();
+
+
         addItems();
     }
 
@@ -79,5 +87,18 @@ public class EncuestasActivity extends AppCompatActivity {
 
         mAdapter = new MyRecyclerViewAdapter(this,items);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void getEncuestasFromParse(){
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Encuesta");
+        try {
+            ParseObject object = query.whereEqualTo("title", "Encuestas Debug").getFirst();
+            jsonEncuestas = (String) object.get("json");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+    public void readEncuestasJSON(){
+
     }
 }

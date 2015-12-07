@@ -63,18 +63,18 @@ public class ProgramasActivity extends AppCompatActivity {
     private void setupRecyclerView() {
 
         partidos = new ArrayList<>();
-        partidos.add(new PartidoProgramas(R.drawable.logo_pp));
-        partidos.add(new PartidoProgramas(R.drawable.logo_psoe));
-        partidos.add(new PartidoProgramas(R.drawable.logo_podemos));
-        partidos.add(new PartidoProgramas(R.drawable.logo_ciudadanos));
-        partidos.add(new PartidoProgramas(R.drawable.logo_upyd));
-        partidos.add(new PartidoProgramas(R.drawable.logo_iu));
-        partidos.add(new PartidoProgramas(R.drawable.logo_pacma));
-        partidos.add(new PartidoProgramas(R.drawable.logo_convergencia));
-        partidos.add(new PartidoProgramas(R.drawable.logo_erc));
-        partidos.add(new PartidoProgramas(R.drawable.logopnv));
-        partidos.add(new PartidoProgramas(R.drawable.logo_bildu));
-        partidos.add(new PartidoProgramas(R.drawable.logo_vox));
+        partidos.add(new PartidoProgramas(R.drawable.logo_pp,"PP"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_psoe,"PSOE"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_podemos,"PODEMOS"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_ciudadanos,"CIUDADANOS"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_upyd,"UPYD"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_iu,"IU"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_pacma,"PACMA"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_convergencia,"CONVERGENCIA"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_erc,"ERC"));
+        partidos.add(new PartidoProgramas(R.drawable.logopnv,"PNV"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_bildu,"BILDU"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_vox,"VOX"));
 
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);

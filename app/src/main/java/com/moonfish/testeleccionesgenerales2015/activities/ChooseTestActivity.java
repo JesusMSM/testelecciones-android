@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.parse.ParseAnalytics;
 
 /**
  * Created by Afll on 05/10/2015.
@@ -54,6 +55,8 @@ public class ChooseTestActivity extends Activity {
     }
 
     public void empezarTestEstandar(View v) {
+        //ParseAnalytics
+        ParseAnalytics.trackEventInBackground("ONCHOOSE_TEST_ESTANDAR");
         Intent i = new Intent(getApplicationContext(),TestActivity.class);
         i.putExtra("numero_preguntas", NUMERO_PREGUNTAS_ESTANDAR);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -62,6 +65,8 @@ public class ChooseTestActivity extends Activity {
     }
 
     public void empezarTestDetallado(View v) {
+        //ParseAnalytics
+        ParseAnalytics.trackEventInBackground("ONCHOOSE_TEST_DETALLADO");
         Intent i = new Intent(getApplicationContext(),TestActivity.class);
         i.putExtra("numero_preguntas", NUMERO_PREGUNTAS_DETALLADO);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -23,6 +23,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.model.ResultadosPartido;
+import com.parse.ParseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -137,6 +138,8 @@ public class TestActivity extends AppCompatActivity {
 
         if(nPreguntaActual>NUM_PREGUNTAS){
             //TEST ACABADO
+            //ParseAnalytics
+            ParseAnalytics.trackEventInBackground("ONFINISH_TEST");
             //Anuncio muy rico
             if (mInterstitialAd.isLoaded()) {
                 mInterstitialAd.show();
@@ -213,15 +216,15 @@ public class TestActivity extends AppCompatActivity {
                     JSONObject respuesta1Object = preguntaObject.getJSONObject("opcion_1");
                     respuesta1.setText(respuesta1Object.getString("respuesta"));
                     respuesta1.setX(5000);
-                    respuesta1.animate().translationX(0).setDuration(3000).start();
+                    respuesta1.animate().translationX(0).setDuration(1000).start();
                     JSONObject respuesta2Object = preguntaObject.getJSONObject("opcion_2");
                     respuesta2.setText(respuesta2Object.getString("respuesta"));
                     respuesta2.setX(5000);
-                    respuesta2.animate().translationX(0).setDuration(3200).start();
+                    respuesta2.animate().translationX(0).setDuration(1000).start();
                     JSONObject respuesta3Object = preguntaObject.getJSONObject("opcion_3");
                     respuesta3.setText(respuesta3Object.getString("respuesta"));
                     respuesta3.setX(5000);
-                    respuesta3.animate().translationX(0).setDuration(3400).start();
+                    respuesta3.animate().translationX(0).setDuration(1000).start();
                 } catch (JSONException e) {
                     Log.i("puntuacion", "Error lectura de JSON");
                 }

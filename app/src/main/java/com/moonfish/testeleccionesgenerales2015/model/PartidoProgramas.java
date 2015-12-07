@@ -11,10 +11,12 @@ import java.util.List;
 public class PartidoProgramas {
 
     public int photoId;
+    public String nameParty;
 
-    public PartidoProgramas(int photoId) {
+    public PartidoProgramas(int photoId, String nameParty) {
 
         this.photoId = photoId;
+        this.nameParty = nameParty;
     }
 }
 

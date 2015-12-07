@@ -19,7 +19,11 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.parse.Parse;
+import com.parse.ParseAnalytics;
 import com.parse.ParseObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends Activity {
@@ -73,6 +77,9 @@ public class MainActivity extends Activity {
                     Intent i = new Intent(getApplicationContext(), ChooseTestActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
+
+                    //ParseAnalytics
+                    ParseAnalytics.trackEventInBackground("ONTAP_TEST");
                 }
             }
         });
@@ -83,6 +90,8 @@ public class MainActivity extends Activity {
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 
+                //ParseAnalytics
+                ParseAnalytics.trackEventInBackground("ONTAP_ENCUESTAS");
             }
         });
         estadisticas.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +101,8 @@ public class MainActivity extends Activity {
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 
-
+                //ParseAnalytics
+                ParseAnalytics.trackEventInBackground("ONTAP_ESTADISTICAS");
             }
         });
         programas.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +112,8 @@ public class MainActivity extends Activity {
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(i);
 
+                //ParseAnalytics
+                ParseAnalytics.trackEventInBackground("ONTAP_PROGRAMAS");
             }
         });
 
