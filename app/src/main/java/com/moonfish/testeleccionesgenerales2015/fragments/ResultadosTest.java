@@ -58,7 +58,7 @@ public class ResultadosTest extends Fragment {
         new MaterialDialog.Builder(getActivity())
                 .title(R.string.titulo_alert)
                 .items(R.array.opciones_alert)
-                .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                .itemsCallbackSingleChoice(0, new MaterialDialog.ListCallbackSingleChoice() {
                     @Override
                     public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
                         if (which==0) {
@@ -76,6 +76,7 @@ public class ResultadosTest extends Fragment {
                     }
                 })
                 .positiveText(R.string.boton_aceptar)
+                .cancelable(false)
                 .typeface(Typeface.createFromAsset(getActivity().getAssets(),
                         "Titillium-Regular.otf"), Typeface.createFromAsset(getActivity().getAssets(),
                         "Titillium-Light.otf"))
@@ -122,22 +123,26 @@ public class ResultadosTest extends Fragment {
         XAxis xl = chart.getXAxis();
         xl.setPosition(XAxis.XAxisPosition.BOTTOM);
         xl.setTypeface(tf);
-        xl.setDrawAxisLine(true);
+        xl.setDrawAxisLine(false);
         xl.setDrawGridLines(false);
         xl.setGridLineWidth(0.3f);
 
 
         YAxis yl = chart.getAxisLeft();
         yl.setTypeface(tf);
-        yl.setDrawAxisLine(true);
+        yl.setDrawAxisLine(false);
         yl.setDrawGridLines(false);
+        yl.setEnabled(false);
         yl.setGridLineWidth(0.3f);
+        yl.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
 //        yl.setInverted(true);
 
         YAxis yr = chart.getAxisRight();
         yr.setTypeface(tf);
-        yr.setDrawAxisLine(true);
+        yr.setDrawAxisLine(false);
         yr.setDrawGridLines(false);
+        yr.setEnabled(false);
+        yr.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
 //        yr.setInverted(true);
 
         setData();
