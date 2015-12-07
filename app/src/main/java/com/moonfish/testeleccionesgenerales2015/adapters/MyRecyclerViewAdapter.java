@@ -298,7 +298,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         grafico.setTouchEnabled(false);
 
         grafico.setDrawBarShadow(false);
-        grafico.setDrawValueAboveBar(true);
+        grafico.setDrawValueAboveBar(false);
 
         grafico.setDescription("");
 
