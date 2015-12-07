@@ -216,12 +216,12 @@ public class TestActivity extends AppCompatActivity {
                     respuesta1.animate().translationX(0).setDuration(3000).start();
                     JSONObject respuesta2Object = preguntaObject.getJSONObject("opcion_2");
                     respuesta2.setText(respuesta2Object.getString("respuesta"));
-                    respuesta2.setX(-5000);
-                    respuesta2.animate().translationX(0).setDuration(3500).start();
+                    respuesta2.setX(5000);
+                    respuesta2.animate().translationX(0).setDuration(3200).start();
                     JSONObject respuesta3Object = preguntaObject.getJSONObject("opcion_3");
                     respuesta3.setText(respuesta3Object.getString("respuesta"));
                     respuesta3.setX(5000);
-                    respuesta3.animate().translationX(0).setDuration(4000).start();
+                    respuesta3.animate().translationX(0).setDuration(3400).start();
                 } catch (JSONException e) {
                     Log.i("puntuacion", "Error lectura de JSON");
                 }
