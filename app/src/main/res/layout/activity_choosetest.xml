@@ -65,7 +65,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="50dp"
                     android:weightSum="3">
 
@@ -90,7 +89,7 @@
                             android:layout_marginLeft="10dp"
                             android:id="@+id/preguntas"
                             android:textColor="@color/white"
-                            android:text="15 preguntas"/>
+                            android:text="16 preguntas"/>
 
                     </LinearLayout>
                     <LinearLayout
@@ -199,7 +198,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="40dp"
                     android:weightSum="3">
 
@@ -224,7 +222,7 @@
                             android:layout_marginLeft="10dp"
                             android:id="@+id/preguntas2"
                             android:textColor="@color/white"
-                            android:text="25 preguntas"/>
+                            android:text="24 preguntas"/>
 
                     </LinearLayout>
                     <LinearLayout
@@ -247,7 +245,7 @@
                             android:layout_marginLeft="10dp"
                             android:id="@+id/minutos2"
                             android:textColor="@color/white"
-                            android:text="17 minutos"/>
+                            android:text="15 minutos"/>
 
                     </LinearLayout>
                     <LinearLayout
@@ -266,11 +264,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="18dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginLeft="10dp"
                             android:id="@+id/resultados2"
                             android:textColor="@color/white"
-                            android:text="Resultados detallados"/>
+                            android:text="Resultados globales\ny por secciones"/>
 
                     </LinearLayout>
 

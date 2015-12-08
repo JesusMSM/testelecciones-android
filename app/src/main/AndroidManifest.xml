@@ -30,7 +30,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,31 +40,37 @@
         </activity>
         <activity
             android:name=".activities.ChooseTestActivity"
-            android:label="Escoja el tipo de test" />
+            android:label="Escoja el tipo de test"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.EncuestasActivity"
             android:label="Encuestas"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.EstadisticasActivity"
             android:label="Estadísticas"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.ProgramasActivity"
             android:label="@string/titulo_programas"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.TestActivity"
             android:label="Test"
-            android:parentActivityName=".activities.MainActivity" >
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.ProgramaContentActivity"
             android:label="@string/titulo_programa"
-            android:parentActivityName=".activities.ProgramasActivity" >
+            android:parentActivityName=".activities.ProgramasActivity"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.ResultadosActivity"

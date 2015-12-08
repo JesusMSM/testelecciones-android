@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdListener;
@@ -57,11 +58,33 @@ public class MainActivity extends Activity {
         Button encuestas = (Button) findViewById(R.id.encuestasButton);
         Button estadisticas = (Button) findViewById(R.id.estadisticasButton);
         Button programas = (Button) findViewById(R.id.programasButton);
+        TextView titulo = (TextView) findViewById(R.id.titulo);
+        TextView contacto = (TextView) findViewById(R.id.contacto);
+        TextView fraseContacto = (TextView) findViewById(R.id.fraseContacto);
 
+        contacto.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
+        titulo.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
         test.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
         encuestas.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
         estadisticas.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
         programas.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Semibold.otf"));;
+        fraseContacto.setTypeface(Typeface.createFromAsset(getAssets(), "Titillium-Regular.otf"));;
+
+        contacto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+                    sendIntent.setType("plain/text");
+                    sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+                    sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"moonfishteam@gmail.com"});
+                    sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Contacto Test Generales 20-D");
+                    startActivity(sendIntent);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         //Intersticial
         mInterstitialAd = new InterstitialAd(this);
