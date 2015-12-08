@@ -777,11 +777,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         //Ordenado
 
-        Collections.sort(resEnc, new Comparator<ResultadoEncuestas>() {
+        /*Collections.sort(resEnc, new Comparator<ResultadoEncuestas>() {
             public int compare(ResultadoEncuestas res1, ResultadoEncuestas res2) {
                 return Double.compare(res2.puntuacion, res1.puntuacion);
             }
-        });
+        });*/
 
         ArrayList<Integer> colors = new ArrayList<>();
         //Pintar
