@@ -593,7 +593,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
                         notifyDataSetChanged();
                         vh.isContentDisplayed = true;
                     } else {
-                        items.add(position + 1, new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales de esta encuesta en la sección de Estadísticas."));
+                        items.add(position + 1, new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales en la sección de Estadísticas."));
                         notifyItemInserted(position);
                         notifyDataSetChanged();
                         vh.isContentDisplayed = true;
@@ -705,7 +705,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
             }
             //Change viewholder
             items.remove(position);
-            items.add(position,new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales de esta encuesta en la sección de Estadísticas."));
+            items.add(position,new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales en la sección de Estadísticas."));
             notifyItemChanged(position);
         }
     }
