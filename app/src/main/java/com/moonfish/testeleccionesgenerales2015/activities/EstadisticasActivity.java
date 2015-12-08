@@ -1,5 +1,6 @@
 package com.moonfish.testeleccionesgenerales2015.activities;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -46,7 +47,10 @@ public class EstadisticasActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavUtils.navigateUpFromSameTask(EstadisticasActivity.this);
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(i);
+                finish();
+
             }
         });
 

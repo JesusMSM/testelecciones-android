@@ -51,7 +51,10 @@ public class ProgramaContentActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavUtils.navigateUpFromSameTask(ProgramaContentActivity.this);
+                Intent i = new Intent(getApplicationContext(), ProgramasActivity.class);
+                startActivity(i);
+                finish();
+
             }
         });
         toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
