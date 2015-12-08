@@ -59,6 +59,8 @@ public class ProgramaContentActivity extends AppCompatActivity {
 
         WebView myWebView = (WebView) findViewById(R.id.webView);
         myWebView.getSettings().setJavaScriptEnabled(true);
+        myWebView.getSettings().setBuiltInZoomControls(true);
+        myWebView.getSettings().setDisplayZoomControls(false);
         myWebView.loadUrl(links[indice]);
 
 
