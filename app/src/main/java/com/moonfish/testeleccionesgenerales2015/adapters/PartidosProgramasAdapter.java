@@ -16,6 +16,7 @@ import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.activities.ProgramaContentActivity;
 import com.moonfish.testeleccionesgenerales2015.activities.ProgramasActivity;
 import com.moonfish.testeleccionesgenerales2015.model.PartidoProgramas;
+import com.parse.ParseAnalytics;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class PartidosProgramasAdapter extends RecyclerView.Adapter<PartidosProgr
     public static class PartidoViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         CardView cv;
         ImageView personPhoto;
+        String nameParty="";
         Context context;
 
         PartidoViewHolder(Context c, View itemView) {
@@ -43,11 +45,12 @@ public class PartidosProgramasAdapter extends RecyclerView.Adapter<PartidosProgr
 
         @Override
         public void onClick(View v) {
+            //Parse Analytics
+            ParseAnalytics.trackEvent("ONTAP_PROGRAMA_" + nameParty);
 
             Intent i = new Intent(v.getContext(),ProgramaContentActivity.class);
             i.putExtra("indice", getPosition());
             context.startActivity(i);
-
         }
     }
     List<PartidoProgramas> partidos;
@@ -70,6 +73,7 @@ public class PartidosProgramasAdapter extends RecyclerView.Adapter<PartidosProgr
     @Override
     public void onBindViewHolder(PartidoViewHolder partidoViewHolder, int i) {
         partidoViewHolder.personPhoto.setImageResource(partidos.get(i).photoId);
+        partidoViewHolder.nameParty = partidos.get(i).nameParty;
     }
 
     @Override

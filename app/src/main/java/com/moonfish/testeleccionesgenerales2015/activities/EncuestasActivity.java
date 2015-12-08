@@ -9,17 +9,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.adapters.MyRecyclerViewAdapter;
+import com.moonfish.testeleccionesgenerales2015.model.Encuesta;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -33,7 +40,8 @@ public class EncuestasActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    public String jsonEncuestas = "";
+    public static String jsonEncuestas = "";
+    public static List<Encuesta> encuestas = new ArrayList<>(); // <Titulo,List<Preguntas>>
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,9 +68,6 @@ public class EncuestasActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        //getEncuestasFromParse();
-
-
         addItems();
     }
 
@@ -81,24 +86,11 @@ public class EncuestasActivity extends AppCompatActivity {
     }
 
     public void addItems(){
-        items.add("ENCUESTA_HEADER");
-        items.add("ENCUESTA_HEADER");
-        items.add("ENCUESTA_HEADER");
+        for (int i = encuestas.size()-1; i>=0;i--){
+            items.add(encuestas.get(i));
+        }
 
         mAdapter = new MyRecyclerViewAdapter(this,items);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    public void getEncuestasFromParse(){
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Encuesta");
-        try {
-            ParseObject object = query.whereEqualTo("title", "Encuestas Debug").getFirst();
-            jsonEncuestas = (String) object.get("json");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-    public void readEncuestasJSON(){
-
     }
 }

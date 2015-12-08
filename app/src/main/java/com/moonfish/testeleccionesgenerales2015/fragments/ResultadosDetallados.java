@@ -13,6 +13,7 @@ import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.activities.MainActivity;
 import com.moonfish.testeleccionesgenerales2015.activities.ResultadosActivity;
 import com.moonfish.testeleccionesgenerales2015.adapters.MyRecyclerViewAdapter;
+import com.moonfish.testeleccionesgenerales2015.model.Mensaje;
 import com.moonfish.testeleccionesgenerales2015.model.Title;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class ResultadosDetallados extends Fragment {
         if(items.size()>0) items.clear();
 
         if(ResultadosActivity.num_preguntas<20){
-            items.add("MENSAJE");
+            items.add(new Mensaje("Para ver los resultados detallados, haga el test en modo detallado"));
         }
         else{
             items.add(new Title("ECONOMÍA"));

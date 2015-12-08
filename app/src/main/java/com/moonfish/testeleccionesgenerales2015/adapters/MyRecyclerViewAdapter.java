@@ -3,6 +3,7 @@ package com.moonfish.testeleccionesgenerales2015.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +16,24 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.YAxisValueFormatter;
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.moonfish.testeleccionesgenerales2015.fragments.EstadisticasEncuestas;
 import com.moonfish.testeleccionesgenerales2015.fragments.ResultadosTest;
+import com.moonfish.testeleccionesgenerales2015.model.Encuesta;
 import com.moonfish.testeleccionesgenerales2015.model.GlobalMethod;
+import com.moonfish.testeleccionesgenerales2015.model.Mensaje;
+import com.moonfish.testeleccionesgenerales2015.model.ResultadoEncuestas;
 import com.moonfish.testeleccionesgenerales2015.model.ResultadosPartido;
 import com.moonfish.testeleccionesgenerales2015.model.Title;
 import com.moonfish.testeleccionesgenerales2015.viewholders.EncuestaContentViewHolder;
 import com.moonfish.testeleccionesgenerales2015.viewholders.EncuestaHeaderViewHolder;
+import com.moonfish.testeleccionesgenerales2015.viewholders.EncuestasGraficoViewHolder;
 import com.moonfish.testeleccionesgenerales2015.viewholders.GraficoBarrasViewHolder;
 import com.moonfish.testeleccionesgenerales2015.viewholders.MensajeViewHolder;
 import com.moonfish.testeleccionesgenerales2015.viewholders.TitleViewHolder;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,7 +48,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     Context context;
     private ArrayList<ResultadosPartido> resultadosAdapter;
 
-    private final int ENCUESTA_HEADER = 0, ENCUESTA_CONTENT = 1, MENSAJE=2, TITULO=3, GRAFICO_ECONOMIA=4, GRAFICO_SOCIEDAD=5, GRAFICO_ESTADO=6;
+    private final int ENCUESTA_HEADER = 0, ENCUESTA_CONTENT = 1, MENSAJE=2, TITULO=3, GRAFICO_ECONOMIA=4, GRAFICO_SOCIEDAD=5, GRAFICO_ESTADO=6, GRAFICO_ENCUESTAS = 7;
 
     public MyRecyclerViewAdapter(Context context, List<Object> items) {
         this.context = context;
@@ -49,13 +57,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if(items.get(position).equals("ENCUESTA_HEADER")){
+        if(items.get(position) instanceof Encuesta){
             return ENCUESTA_HEADER;
         }
         if(items.get(position).equals("ENCUESTA_CONTENT")){
             return ENCUESTA_CONTENT;
         }
-        if (items.get(position).equals("MENSAJE")) {
+        if (items.get(position) instanceof Mensaje) {
             return MENSAJE;
         }
         if (items.get(position) instanceof Title) {
@@ -69,6 +77,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         }
         if (items.get(position).equals("GRAFICO_ESTADO")) {
             return GRAFICO_ESTADO;
+        }
+        if (items.get(position) instanceof List){
+            return GRAFICO_ENCUESTAS;
         }
         return -1;
     }
@@ -111,6 +122,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
                 View v7 = inflater.inflate(R.layout.recyclerview_item_grafico,viewGroup,false);
                 viewHolder = new GraficoBarrasViewHolder(v7);
                 break;
+            case GRAFICO_ENCUESTAS:
+                View v8 = inflater.inflate(R.layout.recyclerview_item_grafico,viewGroup,false);
+                viewHolder = new EncuestasGraficoViewHolder(v8);
+                break;
             default:
                 viewHolder=null;
                 break;
@@ -149,6 +164,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
                 GraficoBarrasViewHolder vh7 = (GraficoBarrasViewHolder) viewHolder;
                 configureGraficoEstadoViewHolder(vh7, i);
                 break;
+            case GRAFICO_ENCUESTAS:
+                EncuestasGraficoViewHolder vh8 = (EncuestasGraficoViewHolder) viewHolder;
+                configureEncuestasGraficoViewHolder(vh8, i);
         }
     }
 
@@ -158,8 +176,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public void configureMensajeViewHolder(MensajeViewHolder vh, int position){
-
-        vh.mensaje.setText("Para ver resultados detallados, haga el test en modo detallado.");
+        Mensaje msg = (Mensaje) items.get(position);
+        vh.mensaje.setText(msg.getMensaje());
 
         //Fonts
         vh.mensaje.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
@@ -536,19 +554,31 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public void configureEncuestaHeaderViewholder(final EncuestaHeaderViewHolder vh, final int position){
+        final Encuesta encuesta = (Encuesta) items.get(position);
+        vh.title.setText(encuesta.titulo);
+        vh.fecha.setText(encuesta.fecha);
+        vh.title.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
+        vh.fecha.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
         vh.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!vh.isContentDisplayed){
+                if (!vh.isContentDisplayed) {
                     //ShowContent
-                    items.add(position+1, "ENCUESTA_CONTENT");
-                    notifyItemInserted(position);
-                    notifyDataSetChanged();
-                    vh.isContentDisplayed = true;
-                }else{
+                    if (PreferenceManager.getDefaultSharedPreferences(context).getString(encuesta.id, "false").equals("false")) {
+                        items.add(position + 1, "ENCUESTA_CONTENT");
+                        notifyItemInserted(position);
+                        notifyDataSetChanged();
+                        vh.isContentDisplayed = true;
+                    } else {
+                        items.add(position + 1, new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales de esta encuesta en la sección de Estadísticas."));
+                        notifyItemInserted(position);
+                        notifyDataSetChanged();
+                        vh.isContentDisplayed = true;
+                    }
+                } else {
                     //HideContent
-                    items.remove(position+1);
-                    notifyItemRemoved(position+1);
+                    items.remove(position + 1);
+                    notifyItemRemoved(position + 1);
                     notifyDataSetChanged();
                     vh.isContentDisplayed = false;
                 }
@@ -557,6 +587,224 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     }
 
     public void configureEncuestaContentViewHolder(EncuestaContentViewHolder vh, int position){
+        Encuesta encuesta = (Encuesta) items.get(position-1);
+        List<String> respuestas = encuesta.respuestas;
 
+        //Muestra/Oculta los textview en funcion del numero de respuesta. Artificioswitch (respuestas.size()){
+        if (respuestas.size() >= 1) {
+                vh.respuesta1.setVisibility(View.VISIBLE);
+                vh.respuesta1.setText(respuestas.get(0));
+                vh.respuesta1.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(0),position));
+                if (respuestas.size() >= 2) {
+                    vh.respuesta2.setVisibility(View.VISIBLE);
+                    vh.respuesta2.setText(respuestas.get(1));
+                    vh.respuesta2.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(1),position));
+                    if (respuestas.size() >= 3) {
+                        vh.respuesta3.setVisibility(View.VISIBLE);
+                        vh.respuesta3.setText(respuestas.get(2));
+                        vh.respuesta3.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(2),position));
+                        if (respuestas.size() >= 4) {
+                            vh.respuesta4.setVisibility(View.VISIBLE);
+                            vh.respuesta4.setText(respuestas.get(3));
+                            vh.respuesta4.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(3),position));
+                            if (respuestas.size() >= 5) {
+                                vh.respuesta5.setVisibility(View.VISIBLE);
+                                vh.respuesta5.setText(respuestas.get(4));
+                                vh.respuesta5.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(4),position));
+                                if (respuestas.size() >= 6) {
+                                    vh.respuesta6.setVisibility(View.VISIBLE);
+                                    vh.respuesta6.setText(respuestas.get(5));
+                                    vh.respuesta6.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(5),position));
+                                    if (respuestas.size() >= 7) {
+                                        vh.respuesta7.setVisibility(View.VISIBLE);
+                                        vh.respuesta7.setText(respuestas.get(6));
+                                        vh.respuesta7.setOnClickListener(new myOnEncuestaClickListener(encuesta.id,respuestas.get(6),position));
+                                        if (respuestas.size() >= 8) {
+                                            vh.respuesta8.setVisibility(View.VISIBLE);
+                                            vh.respuesta8.setText(respuestas.get(7));
+                                            vh.respuesta8.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(7),position));
+                                            if (respuestas.size() >= 9) {
+                                                vh.respuesta9.setVisibility(View.VISIBLE);
+                                                vh.respuesta9.setText(respuestas.get(8));
+                                                vh.respuesta9.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(8),position));
+                                                if (respuestas.size() >= 10) {
+                                                    vh.respuesta10.setVisibility(View.VISIBLE);
+                                                    vh.respuesta10.setText(respuestas.get(9));
+                                                    vh.respuesta10.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(9),position));
+                                                } else {
+                                                    vh.respuesta10.setVisibility(View.GONE);
+                                                }
+                                            } else {
+                                                vh.respuesta9.setVisibility(View.GONE);
+                                            }
+                                        } else {
+                                            vh.respuesta8.setVisibility(View.GONE);
+                                        }
+                                    } else {
+                                        vh.respuesta7.setVisibility(View.GONE);
+                                    }
+                                } else {
+                                    vh.respuesta6.setVisibility(View.GONE);
+                                }
+                            } else {
+                                vh.respuesta5.setVisibility(View.GONE);
+                            }
+                        } else {
+                            vh.respuesta4.setVisibility(View.GONE);
+                        }
+                    } else {
+                        vh.respuesta3.setVisibility(View.GONE);
+                    }
+                } else {
+                    vh.respuesta2.setVisibility(View.GONE);
+                }
+            } else {
+                vh.respuesta1.setVisibility(View.GONE);
+        }
+
+        //Fonts
+        vh.respuesta1.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta2.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta3.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta4.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta5.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta6.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta7.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta8.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta9.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.respuesta10.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+    }
+
+    public class myOnEncuestaClickListener implements View.OnClickListener{
+        String idPreg,respuesta;
+        int position;
+        myOnEncuestaClickListener(String idPreg,String respuesta,int position){
+            this.idPreg = idPreg;
+            this.respuesta = respuesta;
+            this.position=position;
+        }
+
+        @Override
+        public void onClick(View v) {
+            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(idPreg, "true").commit();
+            //Send to parse
+            ParseQuery<ParseObject> query = ParseQuery.getQuery("ResultadosEncuestas");
+            try {
+                ParseObject object = query.whereEqualTo("idEncuesta", idPreg).whereEqualTo("respuesta",respuesta).getFirst();
+                object.increment("puntuacion");
+                object.saveInBackground();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            //Change viewholder
+            items.remove(position);
+            items.add(position,new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales de esta encuesta en la sección de Estadísticas."));
+            notifyItemChanged(position);
+        }
+    }
+
+    private void configureEncuestasGraficoViewHolder(EncuestasGraficoViewHolder vh, int position) {
+        //ID del resultado
+        List<ResultadoEncuestas> resEnc = (List<ResultadoEncuestas>) items.get(position);
+
+        BarChart grafico = vh.grafico;
+
+
+        // scaling can now only be done on x- and y-axis separately
+        grafico.setPinchZoom(false);
+
+        grafico.setDrawGridBackground(false);
+        grafico.setClickable(false);
+        grafico.setPinchZoom(false);
+        grafico.setDoubleTapToZoomEnabled(false);
+        grafico.setTouchEnabled(false);
+
+        grafico.setDrawBarShadow(false);
+        grafico.setDrawValueAboveBar(true);
+
+
+        grafico.setDescription("");
+
+        // if more than 60 entries are displayed in the chart, no values will be
+        // drawn
+        grafico.setMaxVisibleValueCount(60);
+
+        // scaling can now only be done on x- and y-axis separately
+        grafico.setPinchZoom(false);
+
+        grafico.setDrawGridBackground(false);
+
+
+        XAxis xAxis = grafico.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
+        xAxis.setDrawGridLines(false);
+        xAxis.setSpaceBetweenLabels(2);
+
+
+        YAxis leftAxis = grafico.getAxisLeft();
+        leftAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
+        leftAxis.setLabelCount(8, false);
+        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+        leftAxis.setSpaceTop(15f);
+        leftAxis.setEnabled(false);
+
+        YAxis rightAxis = grafico.getAxisRight();
+        rightAxis.setDrawGridLines(false);
+        rightAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
+        rightAxis.setLabelCount(8, false);
+        rightAxis.setSpaceTop(15f);
+        rightAxis.setEnabled(false);
+
+        Legend l = grafico.getLegend();
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setForm(Legend.LegendForm.SQUARE);
+        l.setFormSize(9f);
+        l.setTextSize(11f);
+        l.setXEntrySpace(4f);
+        l.setEnabled(false);
+
+        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        ArrayList<String> xVals = new ArrayList<String>();
+
+
+        //Ordenado
+
+        Collections.sort(resEnc, new Comparator<ResultadoEncuestas>() {
+            public int compare(ResultadoEncuestas res1, ResultadoEncuestas res2) {
+                return Double.compare(res2.puntuacion, res1.puntuacion);
+            }
+        });
+
+        ArrayList<Integer> colors = new ArrayList<>();
+        //Pintar
+        for (int i = 0; i < resEnc.size(); i++) {
+            xVals.add(resEnc.get(i).nombreRespuesta);
+            yVals1.add(new BarEntry((float) resEnc.get(i).puntuacion, i));
+            colors.add(Color.parseColor(resEnc.get(i).color));
+        }
+
+        BarDataSet set1 = new BarDataSet(yVals1, "");
+        set1.setColors(colors);
+        set1.setDrawValues(true);
+
+        ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
+        dataSets.add(set1);
+
+        BarData data = new BarData(xVals, dataSets);
+        if (GlobalMethod.getSizeName(context).equals("xlarge")) {
+            data.setValueTextSize(23f);
+        } else if (GlobalMethod.getSizeName(context).equals("large")) {
+            data.setValueTextSize(17f);
+        }else if (GlobalMethod.getSizeName(context).equals("normal")) {
+            data.setValueTextSize(11f);
+        }else {
+            data.setValueTextSize(11f);
+        }
+        data.setValueTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));;
+
+        grafico.setData(data);
+
+        grafico.invalidate();
     }
 }
