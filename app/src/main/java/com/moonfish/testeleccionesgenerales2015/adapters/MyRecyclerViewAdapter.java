@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -211,6 +212,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         grafico.setDrawGridBackground(false);
         // grafico.setDrawYLabels(false);
+        grafico.animateY(2500);
 
 
 
@@ -218,6 +220,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
         xAxis.setDrawGridLines(false);
+        xAxis.setDrawAxisLine(false);
         xAxis.setSpaceBetweenLabels(2);
 
 
@@ -318,7 +321,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         grafico.setDrawBarShadow(false);
         grafico.setDrawValueAboveBar(true);
-
+        grafico.animateY(2500);
 
         grafico.setDescription("");
 
@@ -339,6 +342,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         xAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
         xAxis.setDrawGridLines(false);
         xAxis.setSpaceBetweenLabels(2);
+        xAxis.setDrawAxisLine(false);
 
 
         YAxis leftAxis = grafico.getAxisLeft();
@@ -438,6 +442,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         grafico.setDrawBarShadow(false);
         grafico.setDrawValueAboveBar(true);
+        grafico.animateY(2500);
 
         grafico.setDescription("");
 
@@ -458,6 +463,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         xAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
         xAxis.setDrawGridLines(false);
         xAxis.setSpaceBetweenLabels(2);
+        xAxis.setDrawAxisLine(false);
 
 
         YAxis leftAxis = grafico.getAxisLeft();
@@ -491,6 +497,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         //Filtrado
         String[] partidosRegionales = {"Convergencia","ERC","PNV","EH-Bildu"};
         if(ResultadosTest.todosLosPartidos==false){
+            Log.d("porcentajes", "Es false, los borro");
             for (int i= 0; i<resultadosAdapter.size(); i++){
                 for(int j=0; j<partidosRegionales.length; j++) {
                     if (resultadosAdapter.get(i).getPartido().equals(partidosRegionales[j])) resultadosAdapter.remove(i);

@@ -77,6 +77,7 @@ public class ResultadosTest extends Fragment {
                          **/
                         chart.invalidate();
                         configureChart();
+                        ResultadosDetallados.addItems(getActivity());
                         return true;
                     }
                 })

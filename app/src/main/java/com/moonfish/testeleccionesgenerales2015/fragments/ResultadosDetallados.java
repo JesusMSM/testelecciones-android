@@ -1,5 +1,6 @@
 package com.moonfish.testeleccionesgenerales2015.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,11 +25,11 @@ import java.util.List;
  */
 public class ResultadosDetallados extends Fragment {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private static RecyclerView mRecyclerView;
+    private static RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    List<Object> items = new ArrayList<>();
+    static List<Object> items = new ArrayList<>();
 
     public ResultadosDetallados() {
         // Required empty public constructor
@@ -51,11 +52,11 @@ public class ResultadosDetallados extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        addItems();
+        //addItems();
         return v;
     }
 
-    public void addItems(){
+    public static void addItems(Context context){
 
         if(items.size()>0) items.clear();
 
@@ -73,7 +74,7 @@ public class ResultadosDetallados extends Fragment {
         }
 
 
-        mAdapter = new MyRecyclerViewAdapter(getActivity(),items);
+        mAdapter = new MyRecyclerViewAdapter(context,items);
         mRecyclerView.setAdapter(mAdapter);
     }
 
