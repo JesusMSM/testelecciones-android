@@ -14,6 +14,7 @@ import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.model.GlobalMethod;
 import com.moonfish.testeleccionesgenerales2015.model.PartidoGrafica;
@@ -230,6 +231,7 @@ public class EstadisticasTest extends Fragment {
         dataSet.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
         dataSet.setSelectionShift(5);
         PieData data = new PieData(xVals, dataSet);
+        data.setValueFormatter(new PercentFormatter());
         data.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
         pieChart.setData(data);
 
