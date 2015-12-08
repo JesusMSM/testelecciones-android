@@ -265,6 +265,7 @@ public class ResultadosTest extends Fragment {
         for (int i=0; i<resultados.size(); i++){
             int res = resultados.get(i).getPuntuacionTotal()*100/maximo;
             if (res<0) res=0;
+            if (res>100) res =0;
             resultados.get(i).setPuntuacionTotalEscalada(res);
         }
 
