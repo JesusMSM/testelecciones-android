@@ -613,11 +613,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         Encuesta encuesta = (Encuesta) items.get(position-1);
         List<String> respuestas = encuesta.respuestas;
 
+        //Ocultamos todas las respuestas
+        vh.respuesta1.setVisibility(View.GONE);vh.respuesta2.setVisibility(View.GONE);vh.respuesta3.setVisibility(View.GONE);vh.respuesta4.setVisibility(View.GONE);vh.respuesta5.setVisibility(View.GONE);vh.respuesta6.setVisibility(View.GONE);
+        vh.respuesta7.setVisibility(View.GONE);vh.respuesta8.setVisibility(View.GONE);vh.respuesta9.setVisibility(View.GONE);vh.respuesta10.setVisibility(View.GONE);
+
         //Muestra/Oculta los textview en funcion del numero de respuesta. Artificioswitch (respuestas.size()){
         if (respuestas.size() >= 1) {
                 vh.respuesta1.setVisibility(View.VISIBLE);
                 vh.respuesta1.setText(respuestas.get(0));
-                vh.respuesta1.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(0),position));
+                vh.respuesta1.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(0), position));
                 if (respuestas.size() >= 2) {
                     vh.respuesta2.setVisibility(View.VISIBLE);
                     vh.respuesta2.setText(respuestas.get(1));
@@ -654,36 +658,16 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
                                                     vh.respuesta10.setVisibility(View.VISIBLE);
                                                     vh.respuesta10.setText(respuestas.get(9));
                                                     vh.respuesta10.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(9),position));
-                                                } else {
-                                                    vh.respuesta10.setVisibility(View.GONE);
                                                 }
-                                            } else {
-                                                vh.respuesta9.setVisibility(View.GONE);
                                             }
-                                        } else {
-                                            vh.respuesta8.setVisibility(View.GONE);
                                         }
-                                    } else {
-                                        vh.respuesta7.setVisibility(View.GONE);
                                     }
-                                } else {
-                                    vh.respuesta6.setVisibility(View.GONE);
                                 }
-                            } else {
-                                vh.respuesta5.setVisibility(View.GONE);
                             }
-                        } else {
-                            vh.respuesta4.setVisibility(View.GONE);
                         }
-                    } else {
-                        vh.respuesta3.setVisibility(View.GONE);
                     }
-                } else {
-                    vh.respuesta2.setVisibility(View.GONE);
                 }
-            } else {
-                vh.respuesta1.setVisibility(View.GONE);
-        }
+            }
 
         //Fonts
         vh.respuesta1.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
@@ -802,7 +786,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         ArrayList<Integer> colors = new ArrayList<>();
         //Pintar
         for (int i = 0; i < resEnc.size(); i++) {
-            xVals.add(resEnc.get(i).nombreRespuesta);
+            xVals.add(resEnc.get(i).niceName);
             yVals1.add(new BarEntry((float) resEnc.get(i).puntuacion, i));
             colors.add(Color.parseColor(resEnc.get(i).color));
         }

@@ -76,14 +76,19 @@ public class EstadisticasEncuestas extends Fragment {
     }
 
     public void getResultsFromParse() throws ParseException {
-        for (int i = EncuestasActivity.encuestas.size()-1; i>=0 ;i--){
+        //Numero de encuestas
+        int nEncuestas = 0;
+        ParseObject object = ParseQuery.getQuery("Encuesta").whereEqualTo("titulo","nEncuestas").getFirst();
+        nEncuestas= Integer.parseInt(object.getString("json"));
+
+        for (int i = nEncuestas-1; i>=0 ;i--){
             ParseQuery<ParseObject> query = ParseQuery.getQuery("ResultadosEncuestas");
             List<ParseObject> objects = query.whereEqualTo("idEncuesta", String.valueOf(i+1)).find();
             listResultados = new ArrayList<>();
 
             for (ParseObject obj : objects){
                 Log.i("Estadisticas", obj.getString("respuesta"));
-                listResultados.add(new ResultadoEncuestas(obj.getString("idEncuesta"), obj.getString("respuesta"), obj.getInt("puntuacion"), obj.getString("tituloPregunta"),obj.getString("color")));
+                listResultados.add(new ResultadoEncuestas(obj.getString("idEncuesta"), obj.getString("respuesta"), obj.getInt("puntuacion"), obj.getString("tituloPregunta"),obj.getString("color"),obj.getString("niceName")));
             }
             items.add(new Title(objects.get(0).getString("tituloPregunta")));
             items.add(listResultados);
