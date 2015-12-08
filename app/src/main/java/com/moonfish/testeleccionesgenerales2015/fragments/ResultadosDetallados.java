@@ -61,7 +61,7 @@ public class ResultadosDetallados extends Fragment {
         if(items.size()>0) items.clear();
 
         if(ResultadosActivity.num_preguntas<20){
-            items.add(new Mensaje("Para ver los resultados detallados, haga el test en modo detallado"));
+            items.add(new Mensaje("Para ver los resultados detallados, haga el test en modo detallado", 0));
         }
         else{
             items.add(new Title("ECONOMÍA"));

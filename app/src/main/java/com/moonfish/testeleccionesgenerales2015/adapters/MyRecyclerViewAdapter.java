@@ -1,6 +1,7 @@
 package com.moonfish.testeleccionesgenerales2015.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.preference.PreferenceManager;
@@ -18,6 +19,8 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.moonfish.testeleccionesgenerales2015.activities.ChooseTestActivity;
+import com.moonfish.testeleccionesgenerales2015.activities.ResultadosActivity;
 import com.moonfish.testeleccionesgenerales2015.fragments.EstadisticasEncuestas;
 import com.moonfish.testeleccionesgenerales2015.fragments.ResultadosTest;
 import com.moonfish.testeleccionesgenerales2015.model.Encuesta;
@@ -179,6 +182,19 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     public void configureMensajeViewHolder(MensajeViewHolder vh, int position){
         Mensaje msg = (Mensaje) items.get(position);
         vh.mensaje.setText(msg.getMensaje());
+        switch(msg.getDestino()){
+            case 0:
+                vh.link.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(context,ChooseTestActivity.class);
+                        context.startActivity(i);
+                        ((ResultadosActivity)context).finish();
+                    }
+                });
+
+        }
+
 
         //Fonts
         vh.mensaje.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
