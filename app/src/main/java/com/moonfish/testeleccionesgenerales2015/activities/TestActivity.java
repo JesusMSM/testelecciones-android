@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -18,10 +19,13 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.moonfish.testeleccionesgenerales2015.R;
+import com.moonfish.testeleccionesgenerales2015.fragments.ResultadosDetallados;
 import com.moonfish.testeleccionesgenerales2015.model.ResultadosPartido;
 import com.parse.ParseAnalytics;
 
@@ -517,5 +521,32 @@ public class TestActivity extends AppCompatActivity {
                 .build();
 
         mInterstitialAd.loadAd(adRequest);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new MaterialDialog.Builder(this)
+                .title(R.string.titulo_onback)
+                .content(R.string.content_onback)
+                .positiveText("Sí")
+                .negativeText("No")
+                .cancelable(false)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        TestActivity.super.onBackPressed();
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                    }
+                })
+                .typeface(Typeface.createFromAsset(getAssets(),
+                        "Titillium-Regular.otf"), Typeface.createFromAsset(getAssets(),
+                        "Titillium-Light.otf"))
+                .show();
+
     }
 }

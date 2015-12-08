@@ -10,6 +10,8 @@
     <string name="title_activity_resultados">Resultados</string>
     <string name="titulo_alert">¿Qué partidos quieres incluir en los resultados?</string>
     <string name="boton_aceptar">Aceptar</string>
+    <string name="titulo_onback">Advertencia</string>
+    <string name="content_onback">¿Estás seguro de que quieres salir? Los datos se perderán</string>
 
     <string name="banner_activity_main">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstitial_ontest_click">ca-app-pub-3940256099942544/1033173712</string>
