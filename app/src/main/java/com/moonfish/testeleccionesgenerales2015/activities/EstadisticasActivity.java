@@ -205,8 +205,8 @@ public class EstadisticasActivity extends AppCompatActivity {
             }
             String text="";
             switch (viewPager.getCurrentItem()){
-                case 0: text="Así van las estadísticas generales en @testelecciones. Descarga la app en https://goo.gl/T0C426 #Elecciones20D #EleccionesGenerales #20D";break;
-                case 1:text="Así van las encuestas en @testelecciones. Descarga la app en https://goo.gl/T0C426 #Elecciones20D #EleccionesGenerales #20D";break;
+                case 0: text="Así van las estadísticas generales en @testelecciones https://goo.gl/T0C426 #Elecciones20D #Indecisos20D";break;
+                case 1:text="Así van las encuestas en @testelecciones https://goo.gl/T0C426 #Elecciones20D #Indecisos20D";break;
             }
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("image/png");

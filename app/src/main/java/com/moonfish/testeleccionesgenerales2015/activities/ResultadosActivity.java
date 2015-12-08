@@ -275,8 +275,8 @@ public class ResultadosActivity extends AppCompatActivity {
             }
             String text="";
             switch (viewPager.getCurrentItem()){
-                case 0: text="Estos han sido mis resultados en @testelecciones. Descarga la app en https://goo.gl/T0C426 #Elecciones20D #EleccionesGenerales #20D";break;
-                case 1:text="Estos han sido mis resultados en @testelecciones. Descarga la app en https://goo.gl/T0C426 #Elecciones20D #EleccionesGenerales #20D";break;
+                case 0: text="Estos han sido mis resultados en @testelecciones.Descárgala en https://goo.gl/T0C426 #Elecciones20D #Indecisos20D";break;
+                case 1:text="Estos han sido mis resultados en @testelecciones.Descárgala en https://goo.gl/T0C426 #Elecciones20D #Indecisos20";break;
             }
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("image/png");
