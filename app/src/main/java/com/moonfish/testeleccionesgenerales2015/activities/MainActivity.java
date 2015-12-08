@@ -40,6 +40,7 @@ import java.util.Map;
 public class MainActivity extends Activity {
 
     InterstitialAd mInterstitialAd;
+    InterstitialAd mInterstitialAd2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class MainActivity extends Activity {
 
         //Buttons
         final Button test = (Button) findViewById(R.id.testButton);
-        Button encuestas = (Button) findViewById(R.id.encuestasButton);
+        final Button encuestas = (Button) findViewById(R.id.encuestasButton);
         Button estadisticas = (Button) findViewById(R.id.estadisticasButton);
         Button programas = (Button) findViewById(R.id.programasButton);
         TextView titulo = (TextView) findViewById(R.id.titulo);
@@ -100,6 +101,21 @@ public class MainActivity extends Activity {
 
         requestNewInterstitial();
 
+        //Intersticial
+        mInterstitialAd2 = new InterstitialAd(this);
+        mInterstitialAd2.setAdUnitId(getResources().getString(R.string.interstitial_onencuestas_click));
+
+        mInterstitialAd2.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial2();
+                encuestas.callOnClick();
+            }
+        });
+
+        requestNewInterstitial();
+        requestNewInterstitial2();
+
         test.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,12 +135,16 @@ public class MainActivity extends Activity {
         encuestas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(),EncuestasActivity.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
+                if (mInterstitialAd2.isLoaded()) {
+                    mInterstitialAd2.show();
+                } else {
+                    Intent i = new Intent(v.getContext(), EncuestasActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
 
-                //ParseAnalytics
-                ParseAnalytics.trackEventInBackground("ONTAP_ENCUESTAS");
+                    //ParseAnalytics
+                    ParseAnalytics.trackEventInBackground("ONTAP_ENCUESTAS");
+                }
             }
         });
         estadisticas.setOnClickListener(new View.OnClickListener() {
@@ -161,10 +181,17 @@ public class MainActivity extends Activity {
         String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("372AA28CB6E55C8D0AFD4BE1C0BC2A70")
                 .build();
 
         mInterstitialAd.loadAd(adRequest);
+    }
+    private void requestNewInterstitial2() {
+        String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+
+        mInterstitialAd2.loadAd(adRequest);
     }
 
 

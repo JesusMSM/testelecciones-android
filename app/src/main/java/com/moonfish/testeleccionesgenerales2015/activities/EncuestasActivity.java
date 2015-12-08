@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.provider.Settings;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.adapters.MyRecyclerViewAdapter;
 import com.moonfish.testeleccionesgenerales2015.model.Encuesta;
@@ -44,6 +48,7 @@ public class EncuestasActivity extends AppCompatActivity {
     public static String jsonEncuestas = "";
     public static List<Encuesta> encuestas = new ArrayList<>(); // <Titulo,List<Preguntas>>
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +62,7 @@ public class EncuestasActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
                 finish();
 
@@ -73,6 +78,7 @@ public class EncuestasActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         //Encuestas
+        encuestas.clear();
         getEncuestasFromParse();
 
         try {
@@ -99,23 +105,23 @@ public class EncuestasActivity extends AppCompatActivity {
     }
 
     public void addItems() {
-        if (items.size() > 0) {
-            items.clear();
-        } else {
-            for (int i = encuestas.size() - 1; i >= 0; i--) {
-                items.add(encuestas.get(i));
-            }
+                if (items.size() > 0) {
+                    items.clear();
+                } else {
+                    for (int i = encuestas.size() - 1; i >= 0; i--) {
+                        items.add(encuestas.get(i));
+                    }
 
-            mAdapter = new MyRecyclerViewAdapter(this, items);
-            mRecyclerView.setAdapter(mAdapter);
-        }
+                    mAdapter = new MyRecyclerViewAdapter(this, items);
+                    mRecyclerView.setAdapter(mAdapter);
+                }
     }
 
     /**********FUNCIONES ENCUESTAS********/
     public void getEncuestasFromParse(){
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Encuesta");
         try {
-            ParseObject object = query.whereEqualTo("titulo", "Encuestas Debug").getFirst();
+            ParseObject object = query.whereEqualTo("titulo", "Encuestas Release").getFirst();
             EncuestasActivity.jsonEncuestas = (String) object.get("json");
         } catch (ParseException e) {
             e.printStackTrace();
@@ -153,4 +159,11 @@ public class EncuestasActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 }

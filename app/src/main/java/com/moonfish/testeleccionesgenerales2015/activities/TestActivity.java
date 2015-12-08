@@ -517,7 +517,6 @@ public class TestActivity extends AppCompatActivity {
         String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice("372AA28CB6E55C8D0AFD4BE1C0BC2A70")
                 .build();
 
         mInterstitialAd.loadAd(adRequest);

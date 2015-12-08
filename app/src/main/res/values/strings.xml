@@ -13,8 +13,15 @@
     <string name="titulo_onback">Advertencia</string>
     <string name="content_onback">¿Estás seguro de que quieres salir? Los datos se perderán</string>
 
-    <string name="banner_activity_main">ca-app-pub-3940256099942544/6300978111</string>
+    <!--Test-->
+    <!--<string name="banner_activity_main">ca-app-pub-3940256099942544/6300978111</string>
     <string name="interstitial_ontest_click">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="interstitial_onshow_result">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitial_onshow_result">ca-app-pub-3940256099942544/1033173712</string>-->
+
+    <string name="banner_activity_main">ca-app-pub-7764481803384049/6731525019</string>
+    <string name="interstitial_ontest_click">ca-app-pub-7764481803384049/4835989417</string>
+    <string name="interstitial_onshow_result">ca-app-pub-7764481803384049/6312722618</string>
+    <string name="interstitial_onencuestas_click">ca-app-pub-7764481803384049/4517931817</string>
+
 
 </resources>
