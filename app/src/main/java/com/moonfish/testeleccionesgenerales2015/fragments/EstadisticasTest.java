@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -26,8 +27,10 @@ import com.parse.ParseQuery;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by Jesus on 05/12/2015.
@@ -190,12 +193,6 @@ public class EstadisticasTest extends Fragment {
             }
         });*/
 
-        // Leyenda del gráfico.
-        Legend l = pieChart.getLegend();
-        l.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
-        l.setXEntrySpace(7);
-        l.setYEntrySpace(5);
-        l.setEnabled(false);
 
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
@@ -227,11 +224,26 @@ public class EstadisticasTest extends Fragment {
         PieDataSet dataSet = new PieDataSet(yVals1, "");
         dataSet.setSliceSpace(3);
         dataSet.setColors(colors);
+        dataSet.setValueTextSize(14);
         dataSet.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
         dataSet.setSelectionShift(5);
         PieData data = new PieData(xVals, dataSet);
         data.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
         pieChart.setData(data);
+
+        // Leyenda del gráfico.
+        Legend l = pieChart.getLegend();
+        l.setYEntrySpace(0f);
+        l.setYOffset(10f);
+        l.setWordWrapEnabled(true);
+        l.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "Titillium-Light.otf"));
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+        l.setXEntrySpace(7);
+        l.setYEntrySpace(5);
+
+        l.setCustom(data.getColors(),createLegend(data));
+        l.setEnabled(true);
+
 
 
     }
@@ -318,5 +330,23 @@ public class EstadisticasTest extends Fragment {
         }
         return x_data;
     }*/
+    public String [] createLegend(ChartData<?> mChartData){
+        //Datos de alias de partidos.
+        List<String> alias = mChartData.getXVals();
+        //Datos de porcentaje
+        com.github.mikephil.charting.data.DataSet myDataSet = mChartData.getDataSetByLabel("",true);
+        String element = "";
+        List<String> elements = new ArrayList<String>(Arrays.asList(new String[]{}));
+        //Creamos cada string
+        for (int i = 0;i<myDataSet.getEntryCount(); i++){
+            String nombre = alias.get(i);
+            if(nombre.equals("PARTIDO ANIMALISTA CONTRA EL MALTRATO ANIMAL")){
+                nombre = "PACMA";
+            }
+            element = nombre + " (" + (myDataSet.getEntryForXIndex(i).getVal()) + "%)";
+            elements.add(element);
+        }
+        return elements.toArray(new String[elements.size()]);
+    }
 
 }
