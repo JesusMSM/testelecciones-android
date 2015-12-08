@@ -205,11 +205,17 @@ public class ResultadosActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Cambia de TAB pasándole el número correspondiente
+    public void switchFragment(int target){
+        viewPager.setCurrentItem(target);
+    }
+
     //Compartir
     public void shareit()
     {
         //ParseAnalytics
         ParseAnalytics.trackEventInBackground("ONSHARE_RESULTS");
+        switchFragment(0);
         View view = getWindow().getDecorView();
         view.getRootView();
         String state = Environment.getExternalStorageState();

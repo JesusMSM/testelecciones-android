@@ -287,7 +287,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         ArrayList<Integer> colors = new ArrayList<>();
         //Pintar
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             xVals.add(resultadosAdapter.get(i).getPartido());
             yVals1.add(new BarEntry((float) resultadosAdapter.get(i).getPuntuacionEconomia(), i));
             if(resultadosAdapter.get(i).getColor()!=null)colors.add(Color.parseColor(resultadosAdapter.get(i).getColor()));
@@ -408,7 +408,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         ArrayList<Integer> colors = new ArrayList<>();
         //Pintar
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             xVals.add(resultadosAdapter.get(i).getPartido());
             yVals1.add(new BarEntry((float) resultadosAdapter.get(i).getPuntuacionEstado(), i));
             if(resultadosAdapter.get(i).getColor()!=null)colors.add(Color.parseColor(resultadosAdapter.get(i).getColor()));
@@ -530,7 +530,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         ArrayList<Integer> colors = new ArrayList<>();
         //Pintar
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             xVals.add(resultadosAdapter.get(i).getPartido());
             yVals1.add(new BarEntry((float) resultadosAdapter.get(i).getPuntuacionSocial(), i));
             if(resultadosAdapter.get(i).getColor()!=null)colors.add(Color.parseColor(resultadosAdapter.get(i).getColor()));

@@ -65,10 +65,13 @@ public class ResultadosDetallados extends Fragment {
         }
         else{
             items.add(new Title("ECONOMÍA"));
+            items.add(new Mensaje("A continuación se muestran los 4 partidos que han tenido mayor grado de coincidencia frente a sus respuestas  en materia económica, de empleo y del sistema público."));
             items.add("GRAFICO_ECONOMIA");
             items.add(new Title("SOCIEDAD"));
+            items.add(new Mensaje("A continuación se muestran los 4 partidos que han tenido mayor grado de coincidencia frente a sus respuestas  en aspectos sociales como las libertades individuales y derechos civiles."));
             items.add("GRAFICO_SOCIEDAD");
             items.add(new Title("ESTADO"));
+            items.add(new Mensaje("A continuación se muestran los 4 partidos que han tenido mayor grado de coincidencia frente a sus respuestas en materia de modelo de Estado, Estado plurinacional y descentralización."));
             items.add("GRAFICO_ESTADO");
 
         }
