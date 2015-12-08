@@ -251,9 +251,14 @@ public class ResultadosTest extends Fragment {
                 }
             });
 
-
-        //Calculo de maximo
-        int maximo = ResultadosActivity.num_preguntas*2;
+        int maximo;
+        //Calculo de porcentajes trucados
+        if(ResultadosActivity.num_preguntas<20){
+            maximo = 28;
+        }
+        else{
+            maximo = 42;
+        }
 
 
         //Escalado
