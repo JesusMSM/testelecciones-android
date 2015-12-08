@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +17,12 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.model.GlobalMethod;
 import com.moonfish.testeleccionesgenerales2015.model.PartidoGrafica;
-import com.moonfish.testeleccionesgenerales2015.model.ResultadosPartido;
-import com.parse.GetCallback;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import org.json.JSONArray;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -38,6 +35,8 @@ import java.util.List;
 public class EstadisticasTest extends Fragment {
 
     private PieChart pieChart;
+    private ArrayList<PartidoGrafica> resultados;
+    private int suma;
 
     public EstadisticasTest() {
         // Required empty public constructor
@@ -129,7 +128,7 @@ public class EstadisticasTest extends Fragment {
         pacma.setColor("#abbd0b");
         vox.setColor("#00BB00");
 
-        ArrayList<PartidoGrafica> resultados = new ArrayList<>();
+        resultados = new ArrayList<>();
         resultados.add(pp);
         resultados.add(psoe);
         resultados.add(cs);
@@ -153,7 +152,9 @@ public class EstadisticasTest extends Fragment {
         int muestras = 0;
         for (int i = 0; i < datos.length(); i++) {
             muestras += resultados.get(i).getPorcentaje();
+
         }
+        suma=muestras;
 
 
     /*    for (int i=0; i< resultados.size(); i++){
@@ -164,8 +165,7 @@ public class EstadisticasTest extends Fragment {
             }
         }*/
 
-        // Define si va a usar valores porcentajes.
-        pieChart.setUsePercentValues(true);
+
 
 
         // Círculos del centro.
@@ -209,15 +209,17 @@ public class EstadisticasTest extends Fragment {
         pieChart.setDescription(muestras + " muestras");
         pieChart.setDescriptionTextSize(16f);
         pieChart.setDescriptionTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
-        pieChart.animateXY(1500,1500);
+        pieChart.animateXY(1500, 1500);
+
+        // Define si va a usar valores porcentajes.
+        pieChart.setUsePercentValues(true);
 
 
         ArrayList<String> xVals = new ArrayList<String>();
         ArrayList<Integer> colors = new ArrayList<>();
 
         for (int i = 0; i < resultados.size(); i++) {
-            if (yVals1.get(i).getVal()<3) xVals.add("");
-            else xVals.add(resultados.get(i).getPartido());
+            xVals.add("");
             if(resultados.get(i).getColor()!=null)colors.add(Color.parseColor(resultados.get(i).getColor()));
         }
 
@@ -241,7 +243,14 @@ public class EstadisticasTest extends Fragment {
         l.setXEntrySpace(7);
         l.setYEntrySpace(5);
 
-        l.setCustom(data.getColors(),createLegend(data));
+        ArrayList<Integer> arrayListColorsAux = new ArrayList<>();
+        arrayListColorsAux.addAll(colors);
+        Collections.reverse(arrayListColorsAux);
+        int[] coloresDelReves = new int[arrayListColorsAux.size()];
+        for (int i=0; i<coloresDelReves.length; i++){
+            coloresDelReves[i]=arrayListColorsAux.get(i);
+        }
+        l.setCustom(coloresDelReves,createLegend(data));
         l.setEnabled(true);
 
 
@@ -249,92 +258,29 @@ public class EstadisticasTest extends Fragment {
     }
 
 
-    /*private ArrayList<Party> getPartiesInArea(){
-        ArrayList<Party> partiesInArea = new ArrayList<>();
-        for(Party p : parties){
-            for(PartyAdminArea pa : partyAdminAreas){
-                if(pa.getAreaId()==administrativeArea.getAdminAreaId() && p.getPartyId()==pa.getPartyId()){
-                    p.setPartyScore(pa.getScore());
-                    partiesInArea.add(p);
-                    break;
-                }
-            }
-        }
-        return partiesInArea;
-    }
-
-    private void addData(){
-        ArrayList<Entry> y_vals = new ArrayList<>();
-        for(int i = 0; i< y_data.length; i++){
-            y_vals.add(new Entry(y_data[i], i));
-        }
-        ArrayList<String> x_vals = new ArrayList<>();
-
-        for(int i = 0; i< x_data.length; i++){
-            x_vals.add(x_data[i]);
-        }
-
-        // Esto es el espacio entre porciones y lo que se agranda cuando pulsas.
-        PieDataSet data_set = new PieDataSet(y_vals, "Partidos");
-        data_set.setSliceSpace(3);
-        data_set.setSelectionShift(5);
-
-        ArrayList<Integer> colors = new ArrayList<>();
-        for(Party p: parties){
-            if(p.getPartyScore()!=0) colors.add(p.getColor());
-        }
-
-
-        // Esto con los atributos de los nombres de partidos y porcentajes que aparecen sobre
-        // el gráfico.
-        data_set.setColors(colors);
-        PieData data = new PieData(x_vals, data_set);
-        data.setValueFormatter(new PercentFormatter());
-        data.setValueTextSize(11f);
-        data.setValueTextColor(Color.GRAY);
-
-        pieChart.setData(data);
-        pieChart.highlightValues(null);
-        pieChart.invalidate();
-    }
-
-    private float[] getPercentages(){
-        float total = 0;
-
-        for(Party p : parties){
-            total+=p.getPartyScore();
-            if(p.getPartyScore()!=0) elements_num++;
-        }
-        float[] y_data = new float[elements_num];
-
-        int i = 0;
-        for(Party p : parties){
-            if(p.getPartyScore()!=0){
-                y_data[i] = p.getPartyScore()/total;
-                i++;
-            }
-        }
-        return y_data;
-    }
-
-    private String[] getNames(){
-        String[] x_data = new String[elements_num];
-
-        int i = 0;
-        for(Party p : parties){
-            if(p.getPartyScore()!=0){
-                x_data[i] = p.getPartyName();
-                i++;
-            }
-
-        }
-        return x_data;
-    }*/
     public String [] createLegend(ChartData<?> mChartData){
         //Datos de alias de partidos.
-        List<String> alias = mChartData.getXVals();
+        List<String> alias = new ArrayList<>();
+        ArrayList<PartidoGrafica> resultadosAux = new ArrayList<>();
+        ArrayList<Double> porcentajesCalculados = new ArrayList<>();
+        resultadosAux.addAll(resultados);
+        for(int i=0; i<resultadosAux.size(); i++){
+            porcentajesCalculados.add(resultadosAux.get(i).getPorcentaje()*100/suma);
+        }
+
+        //Ordenado
+        Collections.sort(resultadosAux, new Comparator<PartidoGrafica>() {
+            public int compare(PartidoGrafica partido1, PartidoGrafica partido2) {
+                return Double.compare(partido1.getPorcentaje(), partido2.getPorcentaje());
+            }
+        });
+
+        for(int i=0; i<resultadosAux.size(); i++){
+            alias.add(resultadosAux.get(i).getPartido());
+        }
         //Datos de porcentaje
         com.github.mikephil.charting.data.DataSet myDataSet = mChartData.getDataSetByLabel("",true);
+
         String element = "";
         List<String> elements = new ArrayList<String>(Arrays.asList(new String[]{}));
         //Creamos cada string
@@ -343,9 +289,10 @@ public class EstadisticasTest extends Fragment {
             if(nombre.equals("PARTIDO ANIMALISTA CONTRA EL MALTRATO ANIMAL")){
                 nombre = "PACMA";
             }
-            element = nombre + " (" + (myDataSet.getEntryForXIndex(i).getVal()) + "%)";
+            element = nombre + " (" + (new DecimalFormat("##.#").format(porcentajesCalculados.get(i))) + "%)";
             elements.add(element);
         }
+        Collections.reverse(elements);
         return elements.toArray(new String[elements.size()]);
     }
 

@@ -6,7 +6,7 @@ package com.moonfish.testeleccionesgenerales2015.model;
 public class PartidoGrafica {
     private String nombre;
     private String color;
-    private int porcentaje;
+    private double porcentaje;
 
     public PartidoGrafica() {
     }
@@ -33,11 +33,11 @@ public class PartidoGrafica {
         this.color = color;
     }
 
-    public int getPorcentaje() {
+    public double getPorcentaje() {
         return porcentaje;
     }
 
-    public void setPorcentaje(int porcentaje) {
+    public void setPorcentaje(double porcentaje) {
         this.porcentaje = porcentaje;
     }
 }
