@@ -174,7 +174,7 @@ public class EstadisticasTest extends Fragment {
 
         // Activa la rotación.
         pieChart.setRotationAngle(0);
-        pieChart.setRotationEnabled(true);
+        pieChart.setRotationEnabled(false);
 
         // Cuando pulsas.
        /* pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
