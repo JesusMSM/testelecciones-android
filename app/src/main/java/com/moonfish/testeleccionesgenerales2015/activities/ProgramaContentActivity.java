@@ -51,9 +51,7 @@ public class ProgramaContentActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), ProgramasActivity.class);
-                startActivity(i);
-                finish();
+                onBackPressed();
 
             }
         });
