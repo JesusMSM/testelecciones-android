@@ -2,9 +2,9 @@
   {
     "nombre": "Salario mínimo",
     "pregunta": "¿Debería incrementarse el salario mínimo?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
-      "respuesta": "No, aumentarlo supondría mayor dificultad para contratar.",
+      "respuesta": "No, aumentarlo supondría mayores dificultades a la hora de contratar.",
       "PP": 2,
       "PSOE": 0,
       "CIUDADANOS": 2,
@@ -30,7 +30,7 @@
       "PNV": 2,
       "ERC": 0,
       "EH-BILDU": 0,
-      "PACMA": 2,
+      "PACMA": 0,
       "VOX": 0
     },
     "opcion_3": {
@@ -45,16 +45,16 @@
       "PNV": 0,
       "ERC": 2,
       "EH-BILDU": 2,
-      "PACMA": 0,
+      "PACMA": 2,
       "VOX": -1
     }
   },
   {
     "nombre": "IRPF",
     "pregunta": "¿Debe disminuirse el Impuesto sobre la Renta de las Personas Físicas (IRPF)?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
-      "respuesta": "No, debe subirse a las rentas más altas.",
+      "respuesta": "No, el IRPF debe subirse a las rentas más altas.",
       "PP": 0,
       "PSOE": 2,
       "CIUDADANOS": 0,
@@ -84,7 +84,7 @@
       "VOX": 0
     },
     "opcion_3": {
-      "respuesta": "Deben reducirse para todos, independientemente de su renta.",
+      "respuesta": "Deben reducirse para todos, independientemente de la renta.",
       "PP": 2,
       "PSOE": 0,
       "CIUDADANOS": 2,
@@ -102,7 +102,7 @@
   {
     "nombre": "Renta mínima",
     "pregunta": "¿Qué opina de la dotación por parte del Estado de una renta mínima a los ciudadanos?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
       "respuesta": "A favor, siendo ésta una renta básica universal.",
       "PP": -1,
@@ -110,7 +110,7 @@
       "CIUDADANOS": -1,
       "PODEMOS": 0,
       "IU": 0,
-      "UPYD": 0,
+      "UPYD": -1,
       "CONVERGENCIA": -1,
       "PNV": 0,
       "ERC": 0,
@@ -145,14 +145,14 @@
       "PNV": 0,
       "ERC": -1,
       "EH-BILDU": -1,
-      "PACMA": 0,
+      "PACMA": -1,
       "VOX": 2
     }
   },
   {
     "nombre": "TTIP",
     "pregunta": "¿Estás a favor del Tratado de Libre Comercio (TTIP) entre EEUU y la UE?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
       "respuesta": "Sí, daría fruto a considerables ventajas económicas.",
       "PP": 2,
@@ -291,10 +291,10 @@
       "PODEMOS": 0,
       "IU": 0,
       "UPYD": 2,
-      "CONVERGENCIA": -1,
+      "CONVERGENCIA": -6,
       "PNV": -1,
-      "ERC": -1,
-      "EH-BILDU": -1,
+      "ERC": -6,
+      "EH-BILDU": -6,
       "PACMA": 0,
       "VOX": 2
     }
@@ -304,13 +304,13 @@
     "pregunta": "¿Se debería de proporcionar atención sanitaria a los inmigrantes ilegales?",
     "categoria": "sociedad",
     "opcion_1": {
-      "respuesta": "Únicamente a los servicios de urgencia, ya que no cotizan a la Seguridad Social.",
+      "respuesta": "Únicamente para servicios de urgencia, ya que no cotizan a la Seguridad Social.",
       "PP": 2,
       "PSOE": 0,
       "CIUDADANOS": 2,
       "PODEMOS": 0,
       "IU": 0,
-      "UPYD": 0,
+      "UPYD": -1,
       "CONVERGENCIA": 2,
       "PNV": 0,
       "ERC": 0,
@@ -319,19 +319,19 @@
       "VOX": 0
     },
     "opcion_2": {
-      "respuesta": "Sí, pero no deben tener acceso a tarjeta sanitaria y deben cumplir ciertos requisitos.",
-      "PP": 0,
+      "respuesta": "Sí, pero no deben tener acceso a tarjeta sanitaria.",
+      "PP": 2,
       "PSOE": 0,
       "CIUDADANOS": 2,
-      "PODEMOS": 2,
+      "PODEMOS": 0,
       "IU": 0,
-      "UPYD": 0,
+      "UPYD": -1,
       "CONVERGENCIA": 2,
       "PNV": 0,
       "ERC": 0,
       "EH-BILDU": 0,
       "PACMA": 0,
-      "VOX": 0
+      "VOX": 2
     },
     "opcion_3": {
       "respuesta": "Sí, la Sanidad debe ser universal y gratuita indistintamente de cuestiones políticas y territoriales.",
@@ -346,7 +346,7 @@
       "ERC": 2,
       "EH-BILDU": 2,
       "PACMA": 2,
-      "VOX": 2
+      "VOX": 0
     }
   },
     {
@@ -369,7 +369,7 @@
       "VOX": 2
     },
     "opcion_2": {
-      "respuesta": "España debe quedarse en un segundo plano, aunque apoyando a estas naciones si lo solicitan.",
+      "respuesta": "España debe quedarse en un segundo plano, aunque debe enviar tropas si estas naciones se lo solicitan.",
       "PP": 0,
       "PSOE": 2,
       "CIUDADANOS": 0,
@@ -384,19 +384,19 @@
       "VOX": 0
     },
     "opcion_3": {
-      "respuesta": "No, bombardear las bases del Daesh no es la solución al conflicto.",
-      "PP": 0,
+      "respuesta": "No, enviar tropas o bombardear las bases del Daesh no son la solución al conflicto.",
+      "PP": -1,
       "PSOE": 0,
-      "CIUDADANOS": 0,
+      "CIUDADANOS": -1,
       "PODEMOS": 2,
       "IU": 2,
-      "UPYD": 0,
+      "UPYD": -1,
       "CONVERGENCIA": 0,
       "PNV": 2,
       "ERC": 2,
       "EH-BILDU": 2,
       "PACMA": 2,
-      "VOX": 0
+      "VOX": -1
     }
   },
   {
@@ -407,7 +407,7 @@
       "respuesta": "Sí, creo que la medida es adecuada.",
       "PP": 2,
       "PSOE": 0,
-      "CIUDADANOS": 0,
+      "CIUDADANOS": 2,
       "PODEMOS": 0,
       "IU": 0,
       "UPYD": 0,
@@ -419,7 +419,7 @@
       "VOX": 0
     },
     "opcion_2": {
-      "respuesta": "No, soy partidario de una Ley más restrictiva a favor del Derecho a la vida.",
+      "respuesta": "No, el aborto debe prohibirse salvo para ciertos casos. Creo en una ley que proteja más el Derecho a la Vida.",
       "PP": 0,
       "PSOE": -1,
       "CIUDADANOS": -1,
@@ -437,7 +437,7 @@
       "respuesta": "No, el aborto debe considerarse un Derecho, independientemente de la edad.",
       "PP": -1,
       "PSOE": 2,
-      "CIUDADANOS": 2,
+      "CIUDADANOS": 0,
       "PODEMOS": 2,
       "IU": 2,
       "UPYD": 2,
@@ -446,7 +446,7 @@
       "ERC": 2,
       "EH-BILDU": 2,
       "PACMA": 2,
-      "VOX": -1
+      "VOX": -6
     }
   },
   {
@@ -486,11 +486,11 @@
     "opcion_3": {
       "respuesta": "Sí, al igual que cualquier negocio que maltrate a los animales, como los circos y los zoológicos.",
       "PP": 0,
-      "PSOE": 2,
+      "PSOE": 0,
       "CIUDADANOS": 0,
       "PODEMOS": 0,
       "IU": 0,
-      "UPYD": 0,
+      "UPYD": -1,
       "CONVERGENCIA": 0,
       "PNV": 0,
       "ERC": 0,
@@ -502,9 +502,9 @@
   {
     "nombre": "Desahucios",
     "pregunta": "¿Se debe legalizar la dación en pago?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
-      "respuesta": "Sí, y de caracter retroactivo. Es decir, el propietario salda la totalidad de la deuda si vende la casa al banco, aunque la deuda sea mayor.",
+      "respuesta": "Sí, y de carácter retroactivo. Es decir, el propietario salda la totalidad de la deuda si vende la casa al banco, aunque la deuda sea mayor.",
       "PP": 0,
       "PSOE": 0,
       "CIUDADANOS": 0,
@@ -519,7 +519,7 @@
       "VOX": 0
     },
     "opcion_2": {
-      "respuesta": "Sí, de tal forma que el si propietario vende su vivienda al banco salda el porcentaje de la deuda que cueste el inmueble en ese momento.",
+      "respuesta": "Sí, de tal forma que si propietario vende su vivienda al banco salda el porcentaje de la deuda que cueste el inmueble en ese momento.",
       "PP": 0,
       "PSOE": 2,
       "CIUDADANOS": 2,
@@ -552,7 +552,7 @@
   {
     "nombre": "Empleo",
     "pregunta": "¿Qué opina sobre la temporalidad de los contratos?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
       "respuesta": "Los contratos temporales son necesarios y facilitan la contratación.",
       "PP": 0,
@@ -560,7 +560,7 @@
       "CIUDADANOS": 0,
       "PODEMOS": -1,
       "IU": -1,
-      "UPYD": 0,
+      "UPYD": -1,
       "CONVERGENCIA": 2,
       "PNV": 2,
       "ERC": -1,
@@ -605,7 +605,7 @@
     "pregunta": "¿Qué opina de la reforma de la Constitución para avanzar hacia un modelo Federal?",
     "categoria": "estado",
     "opcion_1": {
-      "respuesta": "De acuerdo, existiría un Estado Central y a su vez Estado federados con su propia Constitución, sustituyendo a las Autonomías.",
+      "respuesta": "De acuerdo, existiría un Estado Central y a su vez Estados federados con mayores competencias que las actuales Autonomías.",
       "PP": 0,
       "PSOE": 2,
       "CIUDADANOS": 0,
@@ -617,7 +617,7 @@
       "ERC": 0,
       "EH-BILDU": 0,
       "PACMA": 2,
-      "VOX": -1
+      "VOX": -6
     },
     "opcion_2": {
       "respuesta": "En desacuerdo, prefiero el modelo Autonómico actual.",
@@ -632,16 +632,16 @@
       "ERC": 2,
       "EH-BILDU": 2,
       "PACMA": 0,
-      "VOX": 0
+      "VOX": -6
     },
     "opcion_3": {
-      "respuesta": "En desacuerdo, además las autonomías deben eliminarse, ya que un modelo centralizado es mucho más barato.",
+      "respuesta": "En desacuerdo, además pienso que las autonomías deben eliminarse ya que un modelo centralizado es mucho más barato.",
       "PP": 0,
       "PSOE": 0,
       "CIUDADANOS": 0,
       "PODEMOS": -1,
       "IU": -1,
-      "UPYD": 0,
+      "UPYD": -1,
       "CONVERGENCIA": -1,
       "PNV": -1,
       "ERC": -1,
@@ -659,7 +659,7 @@
       "PP": 0,
       "PSOE": 0,
       "CIUDADANOS": 0,
-      "PODEMOS": 0,
+      "PODEMOS": 2,
       "IU": 0,
       "UPYD": 0,
       "CONVERGENCIA": 0,
@@ -670,11 +670,11 @@
       "VOX": 0
     },
     "opcion_2": {
-      "respuesta": "Sí, las prostitutas deberían poder incorporarse al régimen de autónomos si se quiere dedicar profesionalmente a ello, con su contrato y sus impuestos.",
+      "respuesta": "Sí, de esta forma el Estado puede regularla de una forma más eficaz.",
       "PP": 0,
       "PSOE": 0,
       "CIUDADANOS": 2,
-      "PODEMOS": 2,
+      "PODEMOS": 0,
       "IU": 0,
       "UPYD": 2,
       "CONVERGENCIA": 0,
@@ -717,7 +717,7 @@
       "ERC": -1,
       "EH-BILDU": -1,
       "PACMA": -1,
-      "VOX": 0
+      "VOX": 2
     },
     "opcion_2": {
       "respuesta": "Estoy a favor de una prisión permanente revisable en los casos más graves, pero no de una condena a cadena perpetua.",
@@ -732,7 +732,7 @@
       "ERC": 0,
       "EH-BILDU": 0,
       "PACMA": 0,
-      "VOX": 2
+      "VOX": 0
     },
     "opcion_3": {
       "respuesta": "No, vulnera varios artículos de la Constitución, ya que todas las personas tienen derecho a reinsertarse al acabar la pena.",
@@ -747,7 +747,7 @@
       "ERC": 2,
       "EH-BILDU": 2,
       "PACMA": 2,
-      "VOX": 0
+      "VOX": -1
     }
   },
   {
@@ -758,7 +758,7 @@
       "respuesta": "Sí, de esta forma habría una mayor participación ciudadana.",
       "PP": 0,
       "PSOE": 0,
-      "CIUDADANOS": 0,
+      "CIUDADANOS": 2,
       "PODEMOS": 2,
       "IU": 0,
       "UPYD": 0,
@@ -773,7 +773,7 @@
       "respuesta": "Los afiliados a los partidos deberían poder votar a un representante que reúna un determinado número de firmas.",
       "PP": 0,
       "PSOE": 2,
-      "CIUDADANOS": 2,
+      "CIUDADANOS": 0,
       "PODEMOS": 0,
       "IU": 0,
       "UPYD": 2,
@@ -803,7 +803,7 @@
   {
     "nombre": "Banca pública",
     "pregunta": "¿Qué opina de la nacionalización de la Banca?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
       "respuesta": "La Banca Pública puede ayudar en medidas sociales más que la privada, que sólo buscan su propia rentabilidad.",
       "PP": -1,
@@ -823,7 +823,7 @@
       "respuesta": "Las ventajas que puede traer la Banca Pública se han visto empañadas por la corrupción en anteriores experiencias en España.",
       "PP": 0,
       "PSOE": 2,
-      "CIUDADANOS": 2,
+      "CIUDADANOS": 0,
       "PODEMOS": 0,
       "IU": 0,
       "UPYD": 0,
@@ -853,7 +853,7 @@
   {
     "nombre": "Pensiones",
     "pregunta": "¿Crees que la edad de jubilación debería reducirse?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
       "respuesta": "No, cada vez vivimos más años y la edad de jubilación debe tender a subir, para mantener el sistema de pensiones.",
       "PP": 2,
@@ -911,10 +911,10 @@
       "CIUDADANOS": 0,
       "PODEMOS": 0,
       "IU": 0,
-      "UPYD": 0,
+      "UPYD": 2,
       "CONVERGENCIA": 2,
       "PNV": 2,
-      "ERC": 2,
+      "ERC": 0,
       "EH-BILDU": 0,
       "PACMA": 2,
       "VOX": 0
@@ -926,7 +926,7 @@
       "CIUDADANOS": 2,
       "PODEMOS": 2,
       "IU": 2,
-      "UPYD": 2,
+      "UPYD": 0,
       "CONVERGENCIA": 0,
       "PNV": 0,
       "ERC": 2,
@@ -982,7 +982,7 @@
       "ERC": 0,
       "EH-BILDU": 0,
       "PACMA": 0,
-      "VOX": 2
+      "VOX": 0
     },
     "opcion_3": {
       "respuesta": "No, España debería negarse a acoger refugiados, hay que evitar riesgos de que puedan colarse terroristas.",
@@ -997,7 +997,7 @@
       "ERC": -1,
       "EH-BILDU": -1,
       "PACMA": -1,
-      "VOX": 0
+      "VOX": 2
     }
   },
   {
@@ -1053,7 +1053,7 @@
   {
     "nombre": "Grandes superficies",
     "pregunta": "¿Se debe limitar el poder a las grandes superficies?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
       "respuesta": "Tienen prácticas de competencia abusivas. Deberían restringirse sus condiciones.",
       "PP": -1,
@@ -1103,20 +1103,20 @@
   {
     "nombre": "Medioambiente",
     "pregunta": "¿Debe priorizarse más la protección al Medio Ambiente que el crecimiento económico?",
-    "categoria": "economia",
+    "categoria": "economía",
     "opcion_1": {
       "respuesta": "Totalmente en desacuerdo, el Estado debe centrarse en el impulso de la economía.",
       "PP": 2,
       "PSOE": 0,
       "CIUDADANOS": 0,
-      "PODEMOS": 0,
-      "IU": 0,
+      "PODEMOS": -1,
+      "IU": -1,
       "UPYD": 0,
       "CONVERGENCIA": 0,
       "PNV": 0,
-      "ERC": 0,
-      "EH-BILDU": 0,
-      "PACMA": 0,
+      "ERC": -1,
+      "EH-BILDU": -1,
+      "PACMA": -1,
       "VOX": 0
     },
     "opcion_2": {
@@ -1176,7 +1176,7 @@
       "CIUDADANOS": 0,
       "PODEMOS": 0,
       "IU": 0,
-      "UPYD": 0,
+      "UPYD": -1,
       "CONVERGENCIA": 2,
       "PNV": 2,
       "ERC": 2,
@@ -1189,17 +1189,15 @@
       "PP": 2,
       "PSOE": 2,
       "CIUDADANOS": 0,
-      "PODEMOS": 0,
-      "IU": 0,
-      "UPYD": 0,
+      "PODEMOS": -1,
+      "IU": -1,
+      "UPYD": -1,
       "CONVERGENCIA": 2,
       "PNV": 2,
       "ERC": 2,
       "EH-BILDU": 2,
-      "PACMA": 0,
-      "VOX": 0
+      "PACMA": -1,
+      "VOX": -1
     }
   }
-
-
 ]

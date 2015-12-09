@@ -253,6 +253,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         leftAxis.setLabelCount(8, false);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
+        leftAxis.setEnabled(false);
 
         YAxis rightAxis = grafico.getAxisRight();
         rightAxis.setDrawGridLines(false);
