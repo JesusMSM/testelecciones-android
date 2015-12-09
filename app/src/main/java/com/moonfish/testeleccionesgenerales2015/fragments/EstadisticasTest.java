@@ -197,6 +197,7 @@ public class EstadisticasTest extends Fragment {
 
 
         ArrayList<Entry> yVals1 = new ArrayList<Entry>();
+        GlobalMethod globalMethod = new GlobalMethod(getContext());
 
         // IMPORTANT: In a PieChart, no values (Entry) should have the same
         // xIndex (even if from different DataSets), since no values can be
@@ -209,6 +210,15 @@ public class EstadisticasTest extends Fragment {
         }
         pieChart.setDescription(muestras + " muestras");
         pieChart.setDescriptionTextSize(16f);
+        if (globalMethod.getSizeName(getContext()).equals("xlarge")) {
+            pieChart.setDescriptionTextSize(23f);
+        } else if (globalMethod.getSizeName(getContext()).equals("large")) {
+            pieChart.setDescriptionTextSize(17f);
+        }else if (globalMethod.getSizeName(getContext()).equals("normal")) {
+            pieChart.setDescriptionTextSize(11f);
+        }else {
+            pieChart.setDescriptionTextSize(11f);
+        }
         pieChart.setDescriptionTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
         pieChart.animateXY(1500, 1500);
 
@@ -234,6 +244,16 @@ public class EstadisticasTest extends Fragment {
         data.setValueFormatter(new PercentFormatter());
         data.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
         pieChart.setData(data);
+        if (globalMethod.getSizeName(getContext()).equals("xlarge")) {
+            data.setValueTextSize(23f);
+        } else if (globalMethod.getSizeName(getContext()).equals("large")) {
+            data.setValueTextSize(17f);
+        }else if (globalMethod.getSizeName(getContext()).equals("normal")) {
+            data.setValueTextSize(11f);
+        }else {
+            data.setValueTextSize(11f);
+        }
+
 
         // Leyenda del gráfico.
         Legend l = pieChart.getLegend();
@@ -244,6 +264,16 @@ public class EstadisticasTest extends Fragment {
         l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
         l.setXEntrySpace(7);
         l.setYEntrySpace(5);
+        if (globalMethod.getSizeName(getContext()).equals("xlarge")) {
+            l.setTextSize(23f);
+        } else if (globalMethod.getSizeName(getContext()).equals("large")) {
+            l.setTextSize(17f);
+        }else if (globalMethod.getSizeName(getContext()).equals("normal")) {
+            l.setTextSize(11f);
+        }else {
+            l.setTextSize(11f);
+        }
+
 
         ArrayList<Integer> arrayListColorsAux = new ArrayList<>();
         arrayListColorsAux.addAll(colors);

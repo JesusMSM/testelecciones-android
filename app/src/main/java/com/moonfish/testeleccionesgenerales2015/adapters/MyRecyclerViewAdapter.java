@@ -203,8 +203,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     public void configureGraficoEconomiaViewHolder(GraficoBarrasViewHolder vh, int position){
 
             BarChart grafico = vh.grafico;
-
-
+        GlobalMethod globalMethod = new GlobalMethod(context);
         // scaling can now only be done on x- and y-axis separately
         grafico.setPinchZoom(false);
 
@@ -238,6 +237,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(false);
         xAxis.setSpaceBetweenLabels(2);
+        if (globalMethod.getSizeName(context).equals("xlarge")) {
+            xAxis.setTextSize(23f);
+        } else if (globalMethod.getSizeName(context).equals("large")) {
+            xAxis.setTextSize(17f);
+        }else if (globalMethod.getSizeName(context).equals("normal")) {
+            xAxis.setTextSize(11f);
+        }else {
+            xAxis.setTextSize(11f);
+        }
 
 
         YAxis leftAxis = grafico.getAxisLeft();
@@ -245,7 +253,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         leftAxis.setLabelCount(8, false);
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
-        leftAxis.setEnabled(false);
 
         YAxis rightAxis = grafico.getAxisRight();
         rightAxis.setDrawGridLines(false);
@@ -302,11 +309,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         dataSets.add(set1);
 
         BarData data = new BarData(xVals, dataSets);
-        if (GlobalMethod.getSizeName(context).equals("xlarge")) {
+        if (globalMethod.getSizeName(context).equals("xlarge")) {
             data.setValueTextSize(23f);
-        } else if (GlobalMethod.getSizeName(context).equals("large")) {
+        } else if (globalMethod.getSizeName(context).equals("large")) {
             data.setValueTextSize(17f);
-        }else if (GlobalMethod.getSizeName(context).equals("normal")) {
+        }else if (globalMethod.getSizeName(context).equals("normal")) {
             data.setValueTextSize(11f);
         }else {
             data.setValueTextSize(11f);
@@ -325,6 +332,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         BarChart grafico = vh.grafico;
 
+        GlobalMethod globalMethod = new GlobalMethod(context);
 
         // scaling can now only be done on x- and y-axis separately
         grafico.setPinchZoom(false);
@@ -359,6 +367,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         xAxis.setDrawGridLines(false);
         xAxis.setSpaceBetweenLabels(2);
         xAxis.setDrawAxisLine(false);
+        if (globalMethod.getSizeName(context).equals("xlarge")) {
+            xAxis.setTextSize(23f);
+        } else if (globalMethod.getSizeName(context).equals("large")) {
+            xAxis.setTextSize(17f);
+        }else if (globalMethod.getSizeName(context).equals("normal")) {
+            xAxis.setTextSize(11f);
+        }else {
+            xAxis.setTextSize(11f);
+        }
 
 
         YAxis leftAxis = grafico.getAxisLeft();
@@ -367,6 +384,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         leftAxis.setSpaceTop(15f);
         leftAxis.setEnabled(false);
+
 
         YAxis rightAxis = grafico.getAxisRight();
         rightAxis.setDrawGridLines(false);
@@ -422,12 +440,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         ArrayList<BarDataSet> dataSets = new ArrayList<BarDataSet>();
         dataSets.add(set1);
 
+
         BarData data = new BarData(xVals, dataSets);
-        if (GlobalMethod.getSizeName(context).equals("xlarge")) {
+        if (globalMethod.getSizeName(context).equals("xlarge")) {
             data.setValueTextSize(23f);
-        } else if (GlobalMethod.getSizeName(context).equals("large")) {
+        } else if (globalMethod.getSizeName(context).equals("large")) {
             data.setValueTextSize(17f);
-        }else if (GlobalMethod.getSizeName(context).equals("normal")) {
+        }else if (globalMethod.getSizeName(context).equals("normal")) {
             data.setValueTextSize(11f);
         }else {
             data.setValueTextSize(11f);
@@ -445,7 +464,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     public void configureGraficoSociedadViewHolder(GraficoBarrasViewHolder vh, int position){
 
         BarChart grafico = vh.grafico;
-
+        GlobalMethod globalMethod = new GlobalMethod(context);
 
         // scaling can now only be done on x- and y-axis separately
         grafico.setPinchZoom(false);
@@ -480,6 +499,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         xAxis.setDrawGridLines(false);
         xAxis.setSpaceBetweenLabels(2);
         xAxis.setDrawAxisLine(false);
+        if (globalMethod.getSizeName(context).equals("xlarge")) {
+            xAxis.setTextSize(23f);
+        } else if (globalMethod.getSizeName(context).equals("large")) {
+            xAxis.setTextSize(17f);
+        }else if (globalMethod.getSizeName(context).equals("normal")) {
+            xAxis.setTextSize(11f);
+        }else {
+            xAxis.setTextSize(11f);
+        }
 
 
         YAxis leftAxis = grafico.getAxisLeft();
@@ -545,11 +573,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         set1.setDrawValues(false);
 
         BarData data = new BarData(xVals, dataSets);
-        if (GlobalMethod.getSizeName(context).equals("xlarge")) {
+        if (globalMethod.getSizeName(context).equals("xlarge")) {
             data.setValueTextSize(23f);
-        } else if (GlobalMethod.getSizeName(context).equals("large")) {
+        } else if (globalMethod.getSizeName(context).equals("large")) {
             data.setValueTextSize(17f);
-        }else if (GlobalMethod.getSizeName(context).equals("normal")) {
+        }else if (globalMethod.getSizeName(context).equals("normal")) {
             data.setValueTextSize(11f);
         }else {
             data.setValueTextSize(11f);
@@ -716,6 +744,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         BarChart grafico = vh.grafico;
 
+        GlobalMethod globalMethod = new GlobalMethod(context);
 
         // scaling can now only be done on x- and y-axis separately
         grafico.setPinchZoom(false);
@@ -747,6 +776,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         xAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
         xAxis.setDrawGridLines(false);
         xAxis.setSpaceBetweenLabels(2);
+        if (globalMethod.getSizeName(context).equals("xlarge")) {
+            xAxis.setTextSize(23f);
+        } else if (globalMethod.getSizeName(context).equals("large")) {
+            xAxis.setTextSize(17f);
+        }else if (globalMethod.getSizeName(context).equals("normal")) {
+            xAxis.setTextSize(11f);
+        }else {
+            xAxis.setTextSize(11f);
+        }
 
 
         YAxis leftAxis = grafico.getAxisLeft();

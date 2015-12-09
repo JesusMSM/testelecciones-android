@@ -94,6 +94,9 @@ public class ResultadosTest extends Fragment {
 
     private void configureChart(){
 
+        GlobalMethod globalMethod = new GlobalMethod(getContext());
+
+
         chart.setHighlightPerTapEnabled(false);
 
         chart.setDrawBarShadow(false);
@@ -104,10 +107,26 @@ public class ResultadosTest extends Fragment {
         chart.setDrawValueAboveBar(false);
 
         chart.setDescription("% de afinidad");
+        if (globalMethod.getSizeName(getContext()).equals("xlarge")) {
+            chart.setDescriptionTextSize(23f);
+        } else if (globalMethod.getSizeName(getContext()).equals("large")) {
+            chart.setDescriptionTextSize(17f);
+        }else if (globalMethod.getSizeName(getContext()).equals("normal")) {
+            chart.setDescriptionTextSize(11f);
+        }else {
+            chart.setDescriptionTextSize(11f);
+        }
 
-        // if more than 60 entries are displayed in the chart, no values will be
+
+            // if more than 60 entries are displayed in the chart, no values will be
         // drawn
         chart.setMaxVisibleValueCount(60);
+
+        if (GlobalMethod.getSizeName(getContext()).equals("xlarge")) {
+            chart.setExtraRightOffset(70f);
+        }else {
+            chart.setExtraRightOffset(50f);
+        }
 
         // scaling can now only be done on x- and y-axis separately
         chart.setPinchZoom(false);
@@ -132,6 +151,15 @@ public class ResultadosTest extends Fragment {
         xl.setDrawAxisLine(false);
         xl.setDrawGridLines(false);
         xl.setGridLineWidth(0.3f);
+        if (globalMethod.getSizeName(getContext()).equals("xlarge")) {
+            xl.setTextSize(23f);
+        } else if (globalMethod.getSizeName(getContext()).equals("large")) {
+            xl.setTextSize(17f);
+        }else if (globalMethod.getSizeName(getContext()).equals("normal")) {
+            xl.setTextSize(11f);
+        }else {
+            xl.setTextSize(11f);
+        }
 
 
         YAxis yl = chart.getAxisLeft();
@@ -141,6 +169,7 @@ public class ResultadosTest extends Fragment {
         yl.setEnabled(false);
         yl.setGridLineWidth(0.3f);
         yl.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+
 //        yl.setInverted(true);
 
         YAxis yr = chart.getAxisRight();
@@ -276,6 +305,8 @@ public class ResultadosTest extends Fragment {
             }
         });
 
+        GlobalMethod globalMethod = new GlobalMethod(getContext());
+
         ArrayList<Integer> colors = new ArrayList<>();
         //Pintar
         for (int i = 0; i < resultados.size(); i++) {
@@ -294,6 +325,16 @@ public class ResultadosTest extends Fragment {
 
         BarData data = new BarData(xVals, dataSets);
         data.setValueTextSize(10f);
+        if (globalMethod.getSizeName(getContext()).equals("xlarge")) {
+            data.setValueTextSize(23f);
+        } else if (globalMethod.getSizeName(getContext()).equals("large")) {
+            data.setValueTextSize(17f);
+        }else if (globalMethod.getSizeName(getContext()).equals("normal")) {
+            data.setValueTextSize(11f);
+        }else {
+            data.setValueTextSize(11f);
+        }
+
         data.setValueTypeface(Typeface.createFromAsset(getActivity().getAssets(), "Titillium-Regular.otf"));
 
         chart.setData(data);
