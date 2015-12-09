@@ -56,7 +56,7 @@ public class TestActivity extends AppCompatActivity {
     private String[] respuestas;
 
     //categorias
-    private String economia = "economia";
+    private String economia = "economía";
     private String sociedad = "sociedad";
     private String estado = "estado";
 
