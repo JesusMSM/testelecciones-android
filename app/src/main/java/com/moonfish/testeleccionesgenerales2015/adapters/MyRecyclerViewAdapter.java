@@ -771,6 +771,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         grafico.setDrawGridBackground(false);
 
 
+
+
         XAxis xAxis = grafico.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
@@ -785,7 +787,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         }else {
             xAxis.setTextSize(11f);
         }
-
 
         YAxis leftAxis = grafico.getAxisLeft();
         leftAxis.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
@@ -846,6 +847,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         }else {
             data.setValueTextSize(11f);
         }
+
         data.setValueTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));;
 
         grafico.setData(data);
