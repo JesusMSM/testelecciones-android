@@ -310,7 +310,7 @@
       "CIUDADANOS": 2,
       "PODEMOS": 0,
       "IU": 0,
-      "UPYD": -1,
+      "UPYD": 0,
       "CONVERGENCIA": 2,
       "PNV": 0,
       "ERC": 0,
@@ -325,7 +325,7 @@
       "CIUDADANOS": 2,
       "PODEMOS": 0,
       "IU": 0,
-      "UPYD": -1,
+      "UPYD": 0,
       "CONVERGENCIA": 2,
       "PNV": 0,
       "ERC": 0,
@@ -480,14 +480,14 @@
       "PNV": 2,
       "ERC": 2,
       "EH-BILDU": 0,
-      "PACMA": -2,
+      "PACMA": -6,
       "VOX": 0
     },
     "opcion_3": {
       "respuesta": "Sí, al igual que cualquier negocio que maltrate a los animales, como los circos y los zoológicos.",
-      "PP": 0,
-      "PSOE": 0,
-      "CIUDADANOS": 0,
+      "PP": -1,
+      "PSOE": -1,
+      "CIUDADANOS": -1,
       "PODEMOS": 0,
       "IU": 0,
       "UPYD": -1,
@@ -560,12 +560,12 @@
       "CIUDADANOS": 0,
       "PODEMOS": -1,
       "IU": -1,
-      "UPYD": -1,
+      "UPYD": 0,
       "CONVERGENCIA": 2,
       "PNV": 2,
       "ERC": -1,
       "EH-BILDU": -1,
-      "PACMA": 0,
+      "PACMA": -1,
       "VOX": 2
     },
     "opcion_2": {
@@ -646,7 +646,7 @@
       "PNV": -1,
       "ERC": -1,
       "EH-BILDU": -1,
-      "PACMA": 0,
+      "PACMA": -1,
       "VOX": 2
     }
   },
@@ -775,7 +775,7 @@
       "PSOE": 2,
       "CIUDADANOS": 0,
       "PODEMOS": 0,
-      "IU": 0,
+      "IU": 2,
       "UPYD": 2,
       "CONVERGENCIA": 0,
       "PNV": 0,
@@ -790,7 +790,7 @@
       "PSOE": 0,
       "CIUDADANOS": 0,
       "PODEMOS": 0,
-      "IU": 2,
+      "IU": 0,
       "UPYD": 0,
       "CONVERGENCIA": 2,
       "PNV": 2,
@@ -846,7 +846,7 @@
       "PNV": 2,
       "ERC": -1,
       "EH-BILDU": -1,
-      "PACMA": 0,
+      "PACMA": -1,
       "VOX": 2
     }
   },
@@ -1131,7 +1131,7 @@
       "PNV": 2,
       "ERC": 0,
       "EH-BILDU": 0,
-      "PACMA": 0,
+      "PACMA": -1,
       "VOX": 2
     },
     "opcion_3": {
