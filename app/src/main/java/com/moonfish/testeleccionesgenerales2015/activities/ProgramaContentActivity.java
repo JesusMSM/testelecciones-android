@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.moonfish.testeleccionesgenerales2015.R;
 
@@ -29,7 +30,7 @@ public class ProgramaContentActivity extends AppCompatActivity {
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/e2011-programa/e2011-programa.pdf",
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/17970-archivo/17970-archivo.pdf",
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/programa-gazteleraz/programa-gazteleraz.pdf",
-            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/programa-generales-2015/programa-generales-2015.pdf"
+            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/15/vox-programa-generales-2015-1-50/vox-programa-generales-2015-1-50.pdf"
 
 
     };
@@ -57,6 +58,10 @@ public class ProgramaContentActivity extends AppCompatActivity {
         });
         toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
 
+        if(indice==3||indice==11) {
+            Toast.makeText(this, "Se muestra una versión reducida de este programa al no ser posible cargar el programa completo",
+                    Toast.LENGTH_LONG).show();
+        }
 
         WebView myWebView = (WebView) findViewById(R.id.webView);
         myWebView.getSettings().setJavaScriptEnabled(true);
