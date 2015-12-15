@@ -605,42 +605,26 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
     }
 
-    public void configureEncuestaHeaderViewholder(final EncuestaHeaderViewHolder vh, final int position){
-        final Encuesta encuesta = (Encuesta) items.get(position);
+    public void configureEncuestaHeaderViewholder(EncuestaHeaderViewHolder vh, final int position){
+        Encuesta encuesta = (Encuesta) items.get(position);
         vh.title.setText(encuesta.titulo);
         vh.fecha.setText(encuesta.fecha);
         vh.title.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
         vh.fecha.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
-        vh.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!vh.isContentDisplayed) {
-                    //ShowContent
-                    if (PreferenceManager.getDefaultSharedPreferences(context).getString(encuesta.id, "false").equals("false")) {
-                        items.add(position + 1, "ENCUESTA_CONTENT");
-                        notifyItemInserted(position);
-                        notifyDataSetChanged();
-                        vh.isContentDisplayed = true;
-                    } else {
-                        items.add(position + 1, new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales en la sección de Estadísticas."));
-                        notifyItemInserted(position);
-                        notifyDataSetChanged();
-                        vh.isContentDisplayed = true;
-                    }
-                } else {
-                    //HideContent
-                    items.remove(position + 1);
-                    notifyItemRemoved(position + 1);
-                    notifyDataSetChanged();
-                    vh.isContentDisplayed = false;
-                }
-            }
-        });
+
+        //Listener SHOW-HIDE
+        vh.layout.setOnClickListener(new onHeaderClickListener(vh,position,encuesta.id));
     }
 
     public void configureEncuestaContentViewHolder(EncuestaContentViewHolder vh, int position){
-        Encuesta encuesta = (Encuesta) items.get(position-1);
-        List<String> respuestas = encuesta.respuestas;
+        List<String> respuestas = new ArrayList<>();
+        Encuesta encuesta = null;
+        try {
+            encuesta = (Encuesta) items.get(position - 1);
+            respuestas = encuesta.respuestas;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         //Ocultamos todas las respuestas
         vh.respuesta1.setVisibility(View.GONE);vh.respuesta2.setVisibility(View.GONE);vh.respuesta3.setVisibility(View.GONE);vh.respuesta4.setVisibility(View.GONE);vh.respuesta5.setVisibility(View.GONE);vh.respuesta6.setVisibility(View.GONE);
@@ -722,6 +706,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         @Override
         public void onClick(View v) {
+            Log.i("ENCUESTAS","Answered");
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(idPreg, "true").commit();
             //Send to parse
             ParseQuery<ParseObject> query = ParseQuery.getQuery("ResultadosEncuestas");
@@ -734,8 +719,47 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
             }
             //Change viewholder
             items.remove(position);
-            items.add(position,new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales en la sección de Estadísticas."));
+            items.add(position, new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales en la sección de Estadísticas."));
             notifyItemChanged(position);
+        }
+    }
+
+    public class onHeaderClickListener implements View.OnClickListener{
+        EncuestaHeaderViewHolder ehvh;
+        int position;
+        String encuestaId;
+        onHeaderClickListener(EncuestaHeaderViewHolder ehvh, int position, String encuestaId){
+            this.ehvh = ehvh;
+            this.position = position;
+            this.encuestaId = encuestaId;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (PreferenceManager.getDefaultSharedPreferences(context).getString("isContentDisplayed"+encuestaId, "false").equals("false")) {//Si no se estan mostrando -> Mostrar
+                //ShowContent
+                if (PreferenceManager.getDefaultSharedPreferences(context).getString(encuestaId, "false").equals("false")) {
+                    Log.i("ENCUESTAS", "Resultados displayed: " + ehvh.isContentDisplayed());
+                    items.add(position + 1, "ENCUESTA_CONTENT");
+                    PreferenceManager.getDefaultSharedPreferences(context).edit().putString("isContentDisplayed"+encuestaId, "true").commit();//Se esta mostrando
+                    notifyItemInserted(position + 1);
+                    notifyDataSetChanged();
+
+                } if(PreferenceManager.getDefaultSharedPreferences(context).getString(encuestaId, "false").equals("true")) {
+                    Log.i("ENCUESTAS", "Mensaje displayed: " + ehvh.isContentDisplayed);
+                    items.add(position + 1, new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales en la sección de Estadísticas."));
+                    PreferenceManager.getDefaultSharedPreferences(context).edit().putString("isContentDisplayed"+encuestaId, "true").commit();//Se esta mostrando
+                    notifyItemInserted(position + 1);
+                    notifyDataSetChanged();
+                }
+            }else{//Ocultar
+                //HideContent
+                Log.i("ENCUESTAS","Hide");
+                items.remove(position + 1);
+                notifyItemRemoved(position + 1);
+                notifyDataSetChanged();
+                PreferenceManager.getDefaultSharedPreferences(context).edit().putString("isContentDisplayed"+encuestaId, "false").commit();//No se esta mostrando
+            }
         }
     }
 

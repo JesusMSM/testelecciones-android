@@ -15,6 +15,14 @@ public class EncuestaHeaderViewHolder extends RecyclerView.ViewHolder {
     public LinearLayout layout;
     public boolean isContentDisplayed = false;
 
+    public boolean isContentDisplayed() {
+        return isContentDisplayed;
+    }
+
+    public void setIsContentDisplayed(boolean isContentDisplayed) {
+        this.isContentDisplayed = isContentDisplayed;
+    }
+
     public EncuestaHeaderViewHolder(View itemView) {
         super(itemView);
         title = (TextView) itemView.findViewById(R.id.titleHeader);
