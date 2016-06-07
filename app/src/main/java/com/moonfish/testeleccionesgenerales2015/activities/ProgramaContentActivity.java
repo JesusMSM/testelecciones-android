@@ -30,8 +30,6 @@ public class ProgramaContentActivity extends AppCompatActivity {
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/17970-archivo/17970-archivo.pdf",
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/programa-gazteleraz/programa-gazteleraz.pdf",
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/15/vox-programa-generales-2015-1-50/vox-programa-generales-2015-1-50.pdf"
-
-
     };
 
     @Override
@@ -67,7 +65,6 @@ public class ProgramaContentActivity extends AppCompatActivity {
         myWebView.getSettings().setBuiltInZoomControls(true);
         myWebView.getSettings().setDisplayZoomControls(false);
         myWebView.loadUrl(links[indice]);
-
 
     }
 

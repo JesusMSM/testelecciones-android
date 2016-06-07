@@ -22,6 +22,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.adapters.MyRecyclerViewAdapter;
 import com.moonfish.testeleccionesgenerales2015.model.Encuesta;
+import com.moonfish.testeleccionesgenerales2015.model.Mensaje;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -74,6 +75,8 @@ public class EncuestasActivity extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.getRecycledViewPool().setMaxRecycledViews(0,0);//Evita que se repitan respuestas al hacer scroll
+
 
         //Encuestas
         encuestas.clear();
@@ -106,6 +109,7 @@ public class EncuestasActivity extends AppCompatActivity {
                 if (items.size() > 0) {
                     items.clear();
                 } else {
+                    items.add("INFO_ENCUESTA");
                     for (int i = encuestas.size() - 1; i >= 0; i--) {
                         items.add(encuestas.get(i));
                     }

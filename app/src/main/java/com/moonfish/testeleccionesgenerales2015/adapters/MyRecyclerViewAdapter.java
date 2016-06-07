@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -21,7 +23,6 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.moonfish.testeleccionesgenerales2015.R;
 import com.moonfish.testeleccionesgenerales2015.activities.ChooseTestActivity;
 import com.moonfish.testeleccionesgenerales2015.activities.ResultadosActivity;
-import com.moonfish.testeleccionesgenerales2015.fragments.EstadisticasEncuestas;
 import com.moonfish.testeleccionesgenerales2015.fragments.ResultadosTest;
 import com.moonfish.testeleccionesgenerales2015.model.Encuesta;
 import com.moonfish.testeleccionesgenerales2015.model.GlobalMethod;
@@ -33,6 +34,7 @@ import com.moonfish.testeleccionesgenerales2015.viewholders.EncuestaContentViewH
 import com.moonfish.testeleccionesgenerales2015.viewholders.EncuestaHeaderViewHolder;
 import com.moonfish.testeleccionesgenerales2015.viewholders.EncuestasGraficoViewHolder;
 import com.moonfish.testeleccionesgenerales2015.viewholders.GraficoBarrasViewHolder;
+import com.moonfish.testeleccionesgenerales2015.viewholders.InfoEncuestasViewHolder;
 import com.moonfish.testeleccionesgenerales2015.viewholders.MensajeViewHolder;
 import com.moonfish.testeleccionesgenerales2015.viewholders.TitleViewHolder;
 import com.parse.ParseException;
@@ -52,7 +54,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     Context context;
     private ArrayList<ResultadosPartido> resultadosAdapter;
 
-    private final int ENCUESTA_HEADER = 0, ENCUESTA_CONTENT = 1, MENSAJE=2, TITULO=3, GRAFICO_ECONOMIA=4, GRAFICO_SOCIEDAD=5, GRAFICO_ESTADO=6, GRAFICO_ENCUESTAS = 7;
+    private final int ENCUESTA_HEADER = 0, MENSAJE=2, TITULO=3, GRAFICO_ECONOMIA=4, GRAFICO_SOCIEDAD=5, GRAFICO_ESTADO=6, GRAFICO_ENCUESTAS = 7, INFO_ENCUESTA =8;
 
     public MyRecyclerViewAdapter(Context context, List<Object> items) {
         this.context = context;
@@ -63,9 +65,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
         if(items.get(position) instanceof Encuesta){
             return ENCUESTA_HEADER;
-        }
-        if(items.get(position).equals("ENCUESTA_CONTENT")){
-            return ENCUESTA_CONTENT;
         }
         if (items.get(position) instanceof Mensaje) {
             return MENSAJE;
@@ -85,6 +84,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         if (items.get(position) instanceof List){
             return GRAFICO_ENCUESTAS;
         }
+        if (items.get(position).equals("INFO_ENCUESTA")) {
+            return INFO_ENCUESTA;
+        }
         return -1;
     }
 
@@ -101,10 +103,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
             case ENCUESTA_HEADER:
                 View v1 = inflater.inflate(R.layout.recyclerview_item_encuestaheader,viewGroup,false);
                 viewHolder = new EncuestaHeaderViewHolder(v1);
-                break;
-            case ENCUESTA_CONTENT:
-                View v2 = inflater.inflate(R.layout.recyclerview_item_encuestacontent,viewGroup,false);
-                viewHolder = new EncuestaContentViewHolder(v2);
                 break;
             case MENSAJE:
                 View v3 = inflater.inflate(R.layout.recyclerview_item_mensaje,viewGroup,false);
@@ -130,6 +128,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
                 View v8 = inflater.inflate(R.layout.recyclerview_item_grafico,viewGroup,false);
                 viewHolder = new EncuestasGraficoViewHolder(v8);
                 break;
+            case INFO_ENCUESTA:
+                View v9 = inflater.inflate(R.layout.recyclerview_item_infoencuesta,viewGroup,false);
+                viewHolder = new InfoEncuestasViewHolder(v9);
+                break;
             default:
                 viewHolder=null;
                 break;
@@ -143,10 +145,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
             case ENCUESTA_HEADER:
                 EncuestaHeaderViewHolder vh1 = (EncuestaHeaderViewHolder) viewHolder;
                 configureEncuestaHeaderViewholder(vh1, i);
-                break;
-            case ENCUESTA_CONTENT:
-                EncuestaContentViewHolder vh2 = (EncuestaContentViewHolder) viewHolder;
-                configureEncuestaContentViewHolder(vh2, i);
                 break;
             case MENSAJE:
                 MensajeViewHolder vh3 = (MensajeViewHolder) viewHolder;
@@ -171,6 +169,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
             case GRAFICO_ENCUESTAS:
                 EncuestasGraficoViewHolder vh8 = (EncuestasGraficoViewHolder) viewHolder;
                 configureEncuestasGraficoViewHolder(vh8, i);
+            case INFO_ENCUESTA:
+                InfoEncuestasViewHolder vh9 = (InfoEncuestasViewHolder) viewHolder;
+                configureInfoEncuestasViewHolder(vh9, i);
         }
     }
 
@@ -178,6 +179,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
     public long getItemId(int position) {
         return super.getItemId(position);
     }
+    public void configureInfoEncuestasViewHolder(InfoEncuestasViewHolder vh, int position){
+
+        vh.mensaje.setText("Recuerda que puedes consultar en directo los resultados de todas las encuestas en las sección de 'Estadísticas'");
+
+        //Fonts
+        vh.mensaje.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+    }
+
 
     public void configureMensajeViewHolder(MensajeViewHolder vh, int position){
         Mensaje msg = (Mensaje) items.get(position);
@@ -601,107 +610,46 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
 
         //Fonts
         vh6.title.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
-
-
     }
 
-    public void configureEncuestaHeaderViewholder(EncuestaHeaderViewHolder vh, final int position){
+    public void configureEncuestaHeaderViewholder(EncuestaHeaderViewHolder vh, final int position) {
         Encuesta encuesta = (Encuesta) items.get(position);
         vh.title.setText(encuesta.titulo);
-        vh.fecha.setText(encuesta.fecha);
-        vh.title.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
-        vh.fecha.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Regular.otf"));
+        vh.fecha.setText(EncuestaHeaderViewHolder.getTimeAgo(encuesta.fecha));
 
-        //Listener SHOW-HIDE
-        vh.layout.setOnClickListener(new onHeaderClickListener(vh,position,encuesta.id));
-    }
+        //Mostrar respuestas
+        //ShowContent
+        if (PreferenceManager.getDefaultSharedPreferences(context).getString(encuesta.id, "false").equals("false")) {//Not answered
+            vh.respuestasDoneLayout.setVisibility(View.GONE);
+            //Fill the answers
+            for(String resp : encuesta.respuestas){
+                LayoutInflater inflater = null;
+                View inflatedLayout=null;
+                TextView respuesta = null;
+                //Bind
+                inflater = LayoutInflater.from(context);
+                inflatedLayout= inflater.inflate(R.layout.respuesta_layout, null, false);
+                //Fill answer
+                respuesta = (TextView) inflatedLayout.findViewById(R.id.respuesta);
+                respuesta.setText(resp);
+                vh.respuestasLayout.addView(inflatedLayout);
 
-    public void configureEncuestaContentViewHolder(EncuestaContentViewHolder vh, int position){
-        List<String> respuestas = new ArrayList<>();
-        Encuesta encuesta = null;
-        try {
-            encuesta = (Encuesta) items.get(position - 1);
-            respuestas = encuesta.respuestas;
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        //Ocultamos todas las respuestas
-        vh.respuesta1.setVisibility(View.GONE);vh.respuesta2.setVisibility(View.GONE);vh.respuesta3.setVisibility(View.GONE);vh.respuesta4.setVisibility(View.GONE);vh.respuesta5.setVisibility(View.GONE);vh.respuesta6.setVisibility(View.GONE);
-        vh.respuesta7.setVisibility(View.GONE);vh.respuesta8.setVisibility(View.GONE);vh.respuesta9.setVisibility(View.GONE);vh.respuesta10.setVisibility(View.GONE);
-
-        //Muestra/Oculta los textview en funcion del numero de respuesta. Artificioswitch (respuestas.size()){
-        if (respuestas.size() >= 1) {
-                vh.respuesta1.setVisibility(View.VISIBLE);
-                vh.respuesta1.setText(respuestas.get(0));
-                vh.respuesta1.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(0), position));
-                if (respuestas.size() >= 2) {
-                    vh.respuesta2.setVisibility(View.VISIBLE);
-                    vh.respuesta2.setText(respuestas.get(1));
-                    vh.respuesta2.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(1),position));
-                    if (respuestas.size() >= 3) {
-                        vh.respuesta3.setVisibility(View.VISIBLE);
-                        vh.respuesta3.setText(respuestas.get(2));
-                        vh.respuesta3.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(2),position));
-                        if (respuestas.size() >= 4) {
-                            vh.respuesta4.setVisibility(View.VISIBLE);
-                            vh.respuesta4.setText(respuestas.get(3));
-                            vh.respuesta4.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(3),position));
-                            if (respuestas.size() >= 5) {
-                                vh.respuesta5.setVisibility(View.VISIBLE);
-                                vh.respuesta5.setText(respuestas.get(4));
-                                vh.respuesta5.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(4),position));
-                                if (respuestas.size() >= 6) {
-                                    vh.respuesta6.setVisibility(View.VISIBLE);
-                                    vh.respuesta6.setText(respuestas.get(5));
-                                    vh.respuesta6.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(5),position));
-                                    if (respuestas.size() >= 7) {
-                                        vh.respuesta7.setVisibility(View.VISIBLE);
-                                        vh.respuesta7.setText(respuestas.get(6));
-                                        vh.respuesta7.setOnClickListener(new myOnEncuestaClickListener(encuesta.id,respuestas.get(6),position));
-                                        if (respuestas.size() >= 8) {
-                                            vh.respuesta8.setVisibility(View.VISIBLE);
-                                            vh.respuesta8.setText(respuestas.get(7));
-                                            vh.respuesta8.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(7),position));
-                                            if (respuestas.size() >= 9) {
-                                                vh.respuesta9.setVisibility(View.VISIBLE);
-                                                vh.respuesta9.setText(respuestas.get(8));
-                                                vh.respuesta9.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(8),position));
-                                                if (respuestas.size() >= 10) {
-                                                    vh.respuesta10.setVisibility(View.VISIBLE);
-                                                    vh.respuesta10.setText(respuestas.get(9));
-                                                    vh.respuesta10.setOnClickListener(new myOnEncuestaClickListener(encuesta.id, respuestas.get(9),position));
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                inflatedLayout.setOnClickListener(new myOnRespuestaClickListener(encuesta.id, resp));
             }
 
-        //Fonts
-        vh.respuesta1.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta2.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta3.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta4.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta5.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta6.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta7.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta8.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta9.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
-        vh.respuesta10.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        } if(PreferenceManager.getDefaultSharedPreferences(context).getString(encuesta.id, "false").equals("true")) {//Answered
+            vh.respuestasLayout.setVisibility(View.GONE);
+            vh.respuestasDoneLayout.setVisibility(View.VISIBLE);
+            vh.hasRespondido.setText("Has respondido: "+ "'" + PreferenceManager.getDefaultSharedPreferences(context).getString("respuesta"+encuesta.id, "") + "'");
+        }
     }
 
-    public class myOnEncuestaClickListener implements View.OnClickListener{
+
+    public class myOnRespuestaClickListener implements View.OnClickListener{
         String idPreg,respuesta;
-        int position;
-        myOnEncuestaClickListener(String idPreg,String respuesta,int position){
+        myOnRespuestaClickListener(String idPreg, String respuesta){
             this.idPreg = idPreg;
             this.respuesta = respuesta;
-            this.position=position;
         }
 
         @Override
@@ -717,10 +665,22 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            //Change viewholder
-            items.remove(position);
-            items.add(position, new Mensaje("Gracias por participar en esta encuesta. Puede ver los resultados globales en la sección de Estadísticas."));
-            notifyItemChanged(position);
+            View parent = (View)v.getParent();
+            if (parent != null) {
+                LinearLayout respuestasLayout = (LinearLayout) parent.findViewById(R.id.respuestasLayout);
+                respuestasLayout.setVisibility(View.GONE);
+
+                View parent2 = (View) parent.getParent();
+                if(parent2 != null) {
+                    LinearLayout respuestasDoneLayout = (LinearLayout) parent2.findViewById(R.id.respuestasDoneLayout);
+                    respuestasDoneLayout.setVisibility(View.VISIBLE);
+                    TextView hasRespondido = (TextView) respuestasDoneLayout.findViewById(R.id.hasRespondido);
+                    hasRespondido.setText("Has respondido: '" + respuesta + "'");
+
+                    //Save respuesta elegida
+                    PreferenceManager.getDefaultSharedPreferences(context).edit().putString("respuesta" + idPreg, respuesta).commit();
+                }
+            }
         }
     }
 

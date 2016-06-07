@@ -14,4 +14,5 @@
     <color name="transparent">#00000000</color>
     <color name="colorPregunta">#404040</color>
     <color name="colorRespuesta">#1565C0</color>
+    <color name="greeHasRespondido">#9DDA5D</color>
 </resources>
