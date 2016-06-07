@@ -169,6 +169,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
             case GRAFICO_ENCUESTAS:
                 EncuestasGraficoViewHolder vh8 = (EncuestasGraficoViewHolder) viewHolder;
                 configureEncuestasGraficoViewHolder(vh8, i);
+                break;
             case INFO_ENCUESTA:
                 InfoEncuestasViewHolder vh9 = (InfoEncuestasViewHolder) viewHolder;
                 configureInfoEncuestasViewHolder(vh9, i);

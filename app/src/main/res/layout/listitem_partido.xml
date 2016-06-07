@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
         android:background="@color/white"
+        card_view:cardUseCompatPadding="true"
         card_view:contentPadding="@dimen/activity_horizontal_margin"
         card_view:cardCornerRadius="6dp"
         card_view:elevation="6dp"
