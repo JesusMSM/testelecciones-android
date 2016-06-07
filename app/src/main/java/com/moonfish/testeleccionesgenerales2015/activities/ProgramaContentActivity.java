@@ -17,14 +17,13 @@ import com.moonfish.testeleccionesgenerales2015.R;
 
 public class ProgramaContentActivity extends AppCompatActivity {
 
-    public String[] partidos = {"PP", "PSOE", "PODEMOS", "Ciudadanos", "UPYD", "IU", "PACMA","CONVERGENCIA","ERC","PNV","EH-Bildu","VOX"};
+    public String[] partidos = {"PP", "PSOE", "UNIDOS PODEMOS", "Ciudadanos", "UPYD", "PACMA","CONVERGENCIA","ERC","PNV","EH-Bildu","VOX"};
     public String[] links = {
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/pp/pp.pdf",
-            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/psoe-programa-electoral-2015/psoe-programa-electoral-2015.pdf",
-            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/programa-elecciones-generales-podemos-2015/programa-elecciones-generales-podemos-2015.pdf",
-            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/programa-electoral-1-30/programa-electoral-1-30.pdf",
+            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2016/06/07/psoe-programa-electoral-2016/psoe-programa-electoral-2016.pdf",
+            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2016/06/07/acuerdo26j-final/acuerdo26j-final.pdf",
+            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2016/06/07/programacs-ecdfil20160607-0001/programacs-ecdfil20160607-0001.pdf",
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/programa-upyd-elecciones-generales-2015/programa-upyd-elecciones-generales-2015.pdf",
-            "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/15/programa-completo-iu-elecciones-generales-20d-2015/programa-completo-iu-elecciones-generales-20d-2015.pdf",
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/programa-electoral-pacma-elecciones-generales-2015/programa-electoral-pacma-elecciones-generales-2015.pdf",
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/programa-dl-2015/programa-dl-2015.pdf",
             "https://docs.google.com/gview?embedded=true&url=http://www.pdf-archive.com/2015/12/07/e2011-programa/e2011-programa.pdf",
@@ -58,7 +57,7 @@ public class ProgramaContentActivity extends AppCompatActivity {
         });
         toolbar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.actionBarColor)));
 
-        if(indice==3||indice==11) {
+        if(indice==3||indice==10) {
             Toast.makeText(this, "Se muestra una versión reducida de este programa al no ser posible cargar el programa completo",
                     Toast.LENGTH_LONG).show();
         }

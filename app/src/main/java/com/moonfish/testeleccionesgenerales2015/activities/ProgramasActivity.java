@@ -66,10 +66,9 @@ public class ProgramasActivity extends AppCompatActivity {
         partidos = new ArrayList<>();
         partidos.add(new PartidoProgramas(R.drawable.logo_pp,"PP"));
         partidos.add(new PartidoProgramas(R.drawable.logo_psoe,"PSOE"));
-        partidos.add(new PartidoProgramas(R.drawable.logo_podemos,"PODEMOS"));
+        partidos.add(new PartidoProgramas(R.drawable.logo_unidos_podemos,"UNIDOS PODEMOS"));
         partidos.add(new PartidoProgramas(R.drawable.logo_ciudadanos,"CIUDADANOS"));
         partidos.add(new PartidoProgramas(R.drawable.logo_upyd,"UPYD"));
-        partidos.add(new PartidoProgramas(R.drawable.logo_iu,"IU"));
         partidos.add(new PartidoProgramas(R.drawable.logo_pacma,"PACMA"));
         partidos.add(new PartidoProgramas(R.drawable.logo_convergencia,"CONVERGENCIA"));
         partidos.add(new PartidoProgramas(R.drawable.logo_erc,"ERC"));

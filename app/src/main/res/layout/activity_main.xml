@@ -31,7 +31,7 @@
             android:layout_weight="4"
             android:id="@+id/titulo"
             android:layout_gravity="center"
-            android:text="Test\nElecciones\n20-D"
+            android:text="Test\nElecciones\n26-J"
             android:textSize="12pt"
             android:layout_marginLeft="10dp"
             android:textColor="@color/ColorTestButtonSecondary"
