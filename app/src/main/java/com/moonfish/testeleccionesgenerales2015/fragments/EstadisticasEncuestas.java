@@ -14,6 +14,8 @@ import com.moonfish.testeleccionesgenerales2015.activities.EncuestasActivity;
 import com.moonfish.testeleccionesgenerales2015.adapters.MyRecyclerViewAdapter;
 import com.moonfish.testeleccionesgenerales2015.model.ResultadoEncuestas;
 import com.moonfish.testeleccionesgenerales2015.model.Title;
+import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -77,24 +79,34 @@ public class EstadisticasEncuestas extends Fragment {
 
     public void getResultsFromParse() throws ParseException {
         //Numero de encuestas
-        int nEncuestas = 0;
-        ParseObject object = ParseQuery.getQuery("Encuesta").whereEqualTo("titulo","nEncuestas").getFirst();
-        nEncuestas= Integer.parseInt(object.getString("json"));
+        ParseQuery.getQuery("Encuesta").whereEqualTo("titulo","nEncuestas").getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                int nEncuestas = Integer.parseInt(object.getString("json"));
 
-        for (int i = nEncuestas-1; i>=0 ;i--){
-            ParseQuery<ParseObject> query = ParseQuery.getQuery("ResultadosEncuestas");
-            List<ParseObject> objects = query.whereEqualTo("idEncuesta", String.valueOf(i+1)).find();
-            listResultados = new ArrayList<>();
+                for (int i = nEncuestas - 1; i >= 0; i--) {
+                    ParseQuery<ParseObject> query = ParseQuery.getQuery("ResultadosEncuestas");
+                    query.whereEqualTo("idEncuesta", String.valueOf(i + 1)).findInBackground(new FindCallback<ParseObject>() {
+                        @Override
+                        public void done(List<ParseObject> objects, ParseException e) {
+                            listResultados = new ArrayList<>();
 
-            for (ParseObject obj : objects){
-                Log.i("Estadisticas", obj.getString("respuesta"));
-                listResultados.add(new ResultadoEncuestas(obj.getString("idEncuesta"), obj.getString("respuesta"), obj.getInt("puntuacion"), obj.getString("tituloPregunta"),obj.getString("color"),obj.getString("niceName")));
+                            for (ParseObject obj : objects) {
+                                Log.i("Estadisticas", obj.getString("respuesta"));
+                                listResultados.add(new ResultadoEncuestas(obj.getString("idEncuesta"), obj.getString("respuesta"), obj.getInt("puntuacion"), obj.getString("tituloPregunta"), obj.getString("color"), obj.getString("niceName")));
+                            }
+                            items.add(new Title(objects.get(0).getString("tituloPregunta")));
+                            items.add(listResultados);
+
+                            mAdapter = new MyRecyclerViewAdapter(getContext(), items);
+                            mRecyclerView.setAdapter(mAdapter);
+                        }
+                    });
+                }
             }
-            items.add(new Title(objects.get(0).getString("tituloPregunta")));
-            items.add(listResultados);
-        }
-        mAdapter = new MyRecyclerViewAdapter(getContext(), items);
-        mRecyclerView.setAdapter(mAdapter);
+        });
+
+
     }
 
 }

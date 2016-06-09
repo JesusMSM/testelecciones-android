@@ -185,7 +185,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         vh.mensaje.setText("Recuerda que puedes consultar en directo los resultados de todas las encuestas en las sección de 'Estadísticas'");
 
         //Fonts
-        vh.mensaje.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Light.otf"));
+        vh.mensaje.setTypeface(Typeface.createFromAsset(context.getAssets(), "Titillium-Semibold.otf"));
     }
 
 
@@ -839,5 +839,16 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter {
         grafico.setData(data);
 
         grafico.invalidate();
+
+        //Respuesta
+        for(ResultadoEncuestas res:resEnc){
+
+            if(PreferenceManager.getDefaultSharedPreferences(context).getString(String.valueOf(res.id), "false").equals("true")){//Answered
+                vh.respuesta.setText("Tu respuesta es: " + "'"+PreferenceManager.getDefaultSharedPreferences(context).getString("respuesta"+res.id, "") + "'");
+            }else{
+                vh.respuesta.setText("No has participado en esta encuesta todavía.");
+            }
+
+        }
     }
 }
