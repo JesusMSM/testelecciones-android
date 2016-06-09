@@ -106,7 +106,7 @@ public class EstadisticasTest extends Fragment {
         pp.setPartido("PP");
         psoe.setPartido("PSOE");
         cs.setPartido("C's");
-        podemos.setPartido("Unidos Podemos");
+        podemos.setPartido("Podemos");
         upyd.setPartido("UPyD");
         iu.setPartido("IU");
         convergencia.setPartido("Convergencia");

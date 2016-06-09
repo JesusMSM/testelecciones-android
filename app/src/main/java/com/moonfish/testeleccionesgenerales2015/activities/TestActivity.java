@@ -153,9 +153,9 @@ public class TestActivity extends AppCompatActivity {
                 pp.setPartido("PP");
                 psoe.setPartido("PSOE");
                 cs.setPartido("C's");
-                podemos.setPartido("Unidos Podemos");
+                podemos.setPartido("Podemos");
                 upyd.setPartido("UPyD");
-                //iu.setPartido("IU");
+                iu.setPartido("IU");
                 convergencia.setPartido("Convergencia");
                 erc.setPartido("ERC");
                 pnv.setPartido("PNV");
@@ -168,7 +168,7 @@ public class TestActivity extends AppCompatActivity {
                 cs.setColor("#f58723");
                 podemos.setColor("#591253");
                 upyd.setColor("#f5407b");
-                //iu.setColor("#18a196");
+                iu.setColor("#18a196");
                 convergencia.setColor("#3838FF");
                 erc.setColor("#FFB232");
                 pnv.setColor("#118747");
@@ -183,7 +183,7 @@ public class TestActivity extends AppCompatActivity {
                 i.putExtra("PODEMOS", podemos);
                 i.putExtra("CIUDADANOS", cs);
                 i.putExtra("UPYD", upyd);
-                //i.putExtra("IU", iu);
+                i.putExtra("IU", iu);
                 i.putExtra("CONVERGENCIA", convergencia);
                 i.putExtra("ERC", erc);
                 i.putExtra("PNV", pnv);

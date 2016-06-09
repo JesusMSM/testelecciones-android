@@ -105,7 +105,7 @@ public class ResultadosActivity extends AppCompatActivity {
         psoe = intent.getParcelableExtra("PSOE");
         cs = intent.getParcelableExtra("CIUDADANOS");
         podemos = intent.getParcelableExtra("PODEMOS");
-        //iu = intent.getParcelableExtra("IU");
+        iu = intent.getParcelableExtra("IU");
         upyd = intent.getParcelableExtra("UPYD");
         convergencia= intent.getParcelableExtra("CONVERGENCIA");
         erc = intent.getParcelableExtra("ERC");
@@ -121,7 +121,7 @@ public class ResultadosActivity extends AppCompatActivity {
         resultados.add(psoe);
         resultados.add(cs);
         resultados.add(podemos);
-        //resultados.add(iu);
+        resultados.add(iu);
         resultados.add(upyd);
         resultados.add(convergencia);
         resultados.add(erc);

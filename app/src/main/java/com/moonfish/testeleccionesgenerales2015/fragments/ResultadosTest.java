@@ -234,7 +234,7 @@ public class ResultadosTest extends Fragment {
                                         object.getJSONArray("Valores").put(2, object.getJSONArray("Valores").getInt(2) + 1);
                                         object.saveInBackground();
                                     }
-                                    if (resultados.get(i).getPartido().equals("Unidos Podemos")) {
+                                    if (resultados.get(i).getPartido().equals("Podemos")) {
                                         object.getJSONArray("Valores").put(3, object.getJSONArray("Valores").getInt(3) + 1);
                                         object.saveInBackground();
                                     }
