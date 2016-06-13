@@ -13,8 +13,8 @@ android {
         applicationId "com.moonfish.testeleccionesgenerales2015"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 5
-        versionName "1.0.15122015"
+        versionCode 6
+        versionName "1.0.13062016"
     }
     buildTypes {
         release {
