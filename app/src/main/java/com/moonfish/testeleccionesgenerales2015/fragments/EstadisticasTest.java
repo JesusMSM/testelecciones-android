@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +81,7 @@ public class EstadisticasTest extends Fragment {
         PartidoGrafica podemos = new PartidoGrafica();
         PartidoGrafica cs = new PartidoGrafica();
         PartidoGrafica upyd = new PartidoGrafica();
-        PartidoGrafica iu = new PartidoGrafica();
+        //PartidoGrafica iu = new PartidoGrafica();
         PartidoGrafica convergencia = new PartidoGrafica();
         PartidoGrafica erc = new PartidoGrafica();
         PartidoGrafica pnv = new PartidoGrafica();
@@ -93,22 +94,24 @@ public class EstadisticasTest extends Fragment {
             cs.setPorcentaje(datos.getInt(2));
             podemos.setPorcentaje(datos.getInt(3));
             upyd.setPorcentaje(datos.getInt(4));
-            iu.setPorcentaje(datos.getInt(5));
-            convergencia.setPorcentaje(datos.getInt(6));
-            erc.setPorcentaje(datos.getInt(7));
-            pnv.setPorcentaje(datos.getInt(8));
-            bildu.setPorcentaje(datos.getInt(9));
-            pacma.setPorcentaje(datos.getInt(10));
-            vox.setPorcentaje(datos.getInt(11));
+            //iu.setPorcentaje(datos.getInt(5));
+            convergencia.setPorcentaje(datos.getInt(5));
+            erc.setPorcentaje(datos.getInt(6));
+            pnv.setPorcentaje(datos.getInt(7));
+            bildu.setPorcentaje(datos.getInt(8));
+            pacma.setPorcentaje(datos.getInt(9));
+            vox.setPorcentaje(datos.getInt(10));
+            for (int i=0; i<datos.length(); i++)
+                Log.d("Valores", ""+datos.getInt(i));
         }catch (Exception e){
             e.printStackTrace();
         }
         pp.setPartido("PP");
         psoe.setPartido("PSOE");
         cs.setPartido("C's");
-        podemos.setPartido("Podemos");
+        podemos.setPartido("Unidos Podemos");
         upyd.setPartido("UPyD");
-        iu.setPartido("IU");
+        //iu.setPartido("IU");
         convergencia.setPartido("Convergencia");
         erc.setPartido("ERC");
         pnv.setPartido("PNV");
@@ -121,7 +124,7 @@ public class EstadisticasTest extends Fragment {
         cs.setColor("#f58723");
         podemos.setColor("#591253");
         upyd.setColor("#f5407b");
-        iu.setColor("#18a196");
+        //iu.setColor("#18a196");
         convergencia.setColor("#3838FF");
         erc.setColor("#FFB232");
         pnv.setColor("#118747");
@@ -134,7 +137,7 @@ public class EstadisticasTest extends Fragment {
         resultados.add(psoe);
         resultados.add(cs);
         resultados.add(podemos);
-        resultados.add(iu);
+        //resultados.add(iu);
         resultados.add(upyd);
         resultados.add(convergencia);
         resultados.add(erc);

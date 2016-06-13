@@ -236,19 +236,19 @@ public class ResultadosTest extends Fragment {
                                 if (def == resultados.get(i).getPuntuacionTotal()) {
                                     if (resultados.get(i).getPartido().equals("PP")) {
                                         Log.i("RESULTADOS TEST","PP");
-                                        resultsList.add(0, object.getJSONArray("Valores").getInt(0) + 1);
+                                        resultsList.set(0, object.getJSONArray("Valores").getInt(0) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("PSOE")) {
                                         Log.i("RESULTADOS TEST","PSOE");
-                                        resultsList.add(1, object.getJSONArray("Valores").getInt(1) + 1);
+                                        resultsList.set(1, object.getJSONArray("Valores").getInt(1) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("C's")) {
                                         Log.i("RESULTADOS TEST", "Cs");
-                                        resultsList.add(2, object.getJSONArray("Valores").getInt(2) + 1);
+                                        resultsList.set(2, object.getJSONArray("Valores").getInt(2) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         Log.i("RESULTADOS TEST","object updated"+ String.valueOf(object.getJSONArray("Valores").get(2)));
 
@@ -256,13 +256,13 @@ public class ResultadosTest extends Fragment {
                                     }
                                     if (resultados.get(i).getPartido().equals("Unidos Podemos")) {
                                         Log.i("RESULTADOS TEST","Unidos Podemos");
-                                        resultsList.add(3, object.getJSONArray("Valores").getInt(3) + 1);
+                                        resultsList.set(3, object.getJSONArray("Valores").getInt(3) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("UPyD")) {
                                         Log.i("RESULTADOS TEST","UPyD");
-                                        resultsList.add(4, object.getJSONArray("Valores").getInt(4) + 1);
+                                        resultsList.set(4, object.getJSONArray("Valores").getInt(4) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
@@ -272,37 +272,37 @@ public class ResultadosTest extends Fragment {
                                     }*/
                                     if (resultados.get(i).getPartido().equals("Convergencia")) {
                                         Log.i("RESULTADOS TEST","Convergencia");
-                                        resultsList.add(5, object.getJSONArray("Valores").getInt(5) + 1);
+                                        resultsList.set(5, object.getJSONArray("Valores").getInt(5) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("ERC")) {
                                         Log.i("RESULTADOS TEST","ERC");
-                                        resultsList.add(6, object.getJSONArray("Valores").getInt(6) + 1);
+                                        resultsList.set(6, object.getJSONArray("Valores").getInt(6) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("PNV")) {
                                         Log.i("RESULTADOS TEST","PNV");
-                                        resultsList.add(7, object.getJSONArray("Valores").getInt(7) + 1);
+                                        resultsList.set(7, object.getJSONArray("Valores").getInt(7) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("EH-Bildu")) {
                                         Log.i("RESULTADOS TEST","BILDU");
-                                        resultsList.add(8, object.getJSONArray("Valores").getInt(8) + 1);
+                                        resultsList.set(8, object.getJSONArray("Valores").getInt(8) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("PACMA")) {
                                         Log.i("RESULTADOS TEST","PACMA");
-                                        resultsList.add(9, object.getJSONArray("Valores").getInt(9) + 1);
+                                        resultsList.set(9, object.getJSONArray("Valores").getInt(9) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("VOX")) {
                                         Log.i("RESULTADOS TEST","VOX");
-                                        resultsList.add(10, object.getJSONArray("Valores").getInt(10) + 1);
+                                        resultsList.set(10, object.getJSONArray("Valores").getInt(10) + 1);
                                         object.put("Valores", new JSONArray(resultsList));
                                         object.save();
                                     }

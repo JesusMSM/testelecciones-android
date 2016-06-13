@@ -209,29 +209,29 @@ public class TestActivity extends AppCompatActivity {
     public void setPregunta(){
         try {
             JSONArray jArray = new JSONArray(json);
-                try {
-                    Log.i("puntuacion", "El número de pregunta actuales es el " + nPreguntaActual);
-                    JSONObject preguntaObject = jArray.getJSONObject(nPreguntaActual-1);
-                    //Rellenamos el encabezado y la pregunta
-                    categoria.setText(preguntaObject.getString("categoria"));
-                    pregunta.setText(preguntaObject.getString("pregunta"));
-                    Log.i("puntuacion", "Nueva pregunta:  " + preguntaObject.getString("pregunta"));
-                    //Rellenamos las respuestas
-                    JSONObject respuesta1Object = preguntaObject.getJSONObject("opcion_1");
-                    respuesta1.setText(respuesta1Object.getString("respuesta"));
-                    respuesta1.setX(5000);
-                    respuesta1.animate().translationX(0).setDuration(1500).start();
-                    JSONObject respuesta2Object = preguntaObject.getJSONObject("opcion_2");
-                    respuesta2.setText(respuesta2Object.getString("respuesta"));
-                    respuesta2.setX(5000);
-                    respuesta2.animate().translationX(0).setDuration(1600).start();
-                    JSONObject respuesta3Object = preguntaObject.getJSONObject("opcion_3");
-                    respuesta3.setText(respuesta3Object.getString("respuesta"));
-                    respuesta3.setX(5000);
-                    respuesta3.animate().translationX(0).setDuration(1700).start();
-                } catch (JSONException e) {
-                    Log.i("puntuacion", "Error lectura de JSON");
-                }
+            try {
+                Log.i("puntuacion", "El número de pregunta actuales es el " + nPreguntaActual);
+                JSONObject preguntaObject = jArray.getJSONObject(nPreguntaActual-1);
+                //Rellenamos el encabezado y la pregunta
+                categoria.setText(preguntaObject.getString("categoria"));
+                pregunta.setText(preguntaObject.getString("pregunta"));
+                Log.i("puntuacion", "Nueva pregunta:  " + preguntaObject.getString("pregunta"));
+                //Rellenamos las respuestas
+                JSONObject respuesta1Object = preguntaObject.getJSONObject("opcion_1");
+                respuesta1.setText(respuesta1Object.getString("respuesta"));
+                respuesta1.setX(5000);
+                respuesta1.animate().translationX(0).setDuration(1500).start();
+                JSONObject respuesta2Object = preguntaObject.getJSONObject("opcion_2");
+                respuesta2.setText(respuesta2Object.getString("respuesta"));
+                respuesta2.setX(5000);
+                respuesta2.animate().translationX(0).setDuration(1600).start();
+                JSONObject respuesta3Object = preguntaObject.getJSONObject("opcion_3");
+                respuesta3.setText(respuesta3Object.getString("respuesta"));
+                respuesta3.setX(5000);
+                respuesta3.animate().translationX(0).setDuration(1700).start();
+            } catch (JSONException e) {
+                Log.i("puntuacion", "Error lectura de JSON");
+            }
         } catch (JSONException e) {
             Log.i("puntuacion", "Error lectura de JSONArray");
             e.printStackTrace();
