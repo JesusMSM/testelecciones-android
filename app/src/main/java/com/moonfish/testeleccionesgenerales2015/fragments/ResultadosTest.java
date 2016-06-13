@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,14 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by Jesus on 06/12/2015.
@@ -220,57 +225,87 @@ public class ResultadosTest extends Fragment {
                 public void done(ParseObject object, ParseException e) {
                     if (e == null) {
                         try {
+                            Log.i("RESULTADOS TEST INICIO",object.getJSONArray("Valores").toString());
+                            //List of current results
+                            List<Integer> resultsList = new ArrayList<>();
+                            for ( int i = 0; i< object.getJSONArray("Valores").length();i++){
+                                resultsList.add((Integer) object.getJSONArray("Valores").get(i));
+                            }
+
                             for (int i = 0; i < resultados.size(); i++) {
                                 if (def == resultados.get(i).getPuntuacionTotal()) {
                                     if (resultados.get(i).getPartido().equals("PP")) {
-                                        object.getJSONArray("Valores").put(0, object.getJSONArray("Valores").getInt(0) + 1);
+                                        Log.i("RESULTADOS TEST","PP");
+                                        resultsList.add(0, object.getJSONArray("Valores").getInt(0) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("PSOE")) {
-                                        object.getJSONArray("Valores").put(1, object.getJSONArray("Valores").getInt(1) + 1);
+                                        Log.i("RESULTADOS TEST","PSOE");
+                                        resultsList.add(1, object.getJSONArray("Valores").getInt(1) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("C's")) {
-                                        object.getJSONArray("Valores").put(2, object.getJSONArray("Valores").getInt(2) + 1);
+                                        Log.i("RESULTADOS TEST", "Cs");
+                                        resultsList.add(2, object.getJSONArray("Valores").getInt(2) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
+                                        Log.i("RESULTADOS TEST","object updated"+ String.valueOf(object.getJSONArray("Valores").get(2)));
+
                                         object.saveInBackground();
                                     }
-                                    if (resultados.get(i).getPartido().equals("Podemos")) {
-                                        object.getJSONArray("Valores").put(3, object.getJSONArray("Valores").getInt(3) + 1);
+                                    if (resultados.get(i).getPartido().equals("Unidos Podemos")) {
+                                        Log.i("RESULTADOS TEST","Unidos Podemos");
+                                        resultsList.add(3, object.getJSONArray("Valores").getInt(3) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("UPyD")) {
-                                        object.getJSONArray("Valores").put(4, object.getJSONArray("Valores").getInt(4) + 1);
+                                        Log.i("RESULTADOS TEST","UPyD");
+                                        resultsList.add(4, object.getJSONArray("Valores").getInt(4) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
-                                    if (resultados.get(i).getPartido().equals("IU")) {
+                                    /*if (resultados.get(i).getPartido().equals("IU")) {
                                         object.getJSONArray("Valores").put(5, object.getJSONArray("Valores").getInt(5) + 1);
                                         object.saveInBackground();
-                                    }
+                                    }*/
                                     if (resultados.get(i).getPartido().equals("Convergencia")) {
-                                        object.getJSONArray("Valores").put(6, object.getJSONArray("Valores").getInt(6) + 1);
+                                        Log.i("RESULTADOS TEST","Convergencia");
+                                        resultsList.add(5, object.getJSONArray("Valores").getInt(5) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("ERC")) {
-                                        object.getJSONArray("Valores").put(7, object.getJSONArray("Valores").getInt(7) + 1);
+                                        Log.i("RESULTADOS TEST","ERC");
+                                        resultsList.add(6, object.getJSONArray("Valores").getInt(6) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("PNV")) {
-                                        object.getJSONArray("Valores").put(8, object.getJSONArray("Valores").getInt(8) + 1);
+                                        Log.i("RESULTADOS TEST","PNV");
+                                        resultsList.add(7, object.getJSONArray("Valores").getInt(7) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("EH-Bildu")) {
-                                        object.getJSONArray("Valores").put(9, object.getJSONArray("Valores").getInt(9) + 1);
+                                        Log.i("RESULTADOS TEST","BILDU");
+                                        resultsList.add(8, object.getJSONArray("Valores").getInt(8) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("PACMA")) {
-                                        object.getJSONArray("Valores").put(10, object.getJSONArray("Valores").getInt(10) + 1);
+                                        Log.i("RESULTADOS TEST","PACMA");
+                                        resultsList.add(9, object.getJSONArray("Valores").getInt(9) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
                                         object.saveInBackground();
                                     }
                                     if (resultados.get(i).getPartido().equals("VOX")) {
-                                        object.getJSONArray("Valores").put(11, object.getJSONArray("Valores").getInt(11) + 1);
-                                        object.saveInBackground();
+                                        Log.i("RESULTADOS TEST","VOX");
+                                        resultsList.add(10, object.getJSONArray("Valores").getInt(10) + 1);
+                                        object.put("Valores", new JSONArray(resultsList));
+                                        object.save();
                                     }
-
                                 }
                             }
                         } catch (Exception ex) {

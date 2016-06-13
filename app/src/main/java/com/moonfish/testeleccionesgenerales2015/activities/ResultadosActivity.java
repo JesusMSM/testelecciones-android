@@ -49,7 +49,7 @@ public class ResultadosActivity extends AppCompatActivity {
     public ResultadosPartido psoe = new ResultadosPartido();
     public ResultadosPartido cs = new ResultadosPartido();
     public ResultadosPartido podemos = new ResultadosPartido();
-    public ResultadosPartido iu = new ResultadosPartido();
+    //public ResultadosPartido iu = new ResultadosPartido();
     public ResultadosPartido upyd = new ResultadosPartido();
     public ResultadosPartido convergencia = new ResultadosPartido();
     public ResultadosPartido pnv = new ResultadosPartido();
@@ -105,7 +105,7 @@ public class ResultadosActivity extends AppCompatActivity {
         psoe = intent.getParcelableExtra("PSOE");
         cs = intent.getParcelableExtra("CIUDADANOS");
         podemos = intent.getParcelableExtra("PODEMOS");
-        iu = intent.getParcelableExtra("IU");
+        //iu = intent.getParcelableExtra("IU");
         upyd = intent.getParcelableExtra("UPYD");
         convergencia= intent.getParcelableExtra("CONVERGENCIA");
         erc = intent.getParcelableExtra("ERC");
@@ -121,7 +121,7 @@ public class ResultadosActivity extends AppCompatActivity {
         resultados.add(psoe);
         resultados.add(cs);
         resultados.add(podemos);
-        resultados.add(iu);
+        //resultados.add(iu);
         resultados.add(upyd);
         resultados.add(convergencia);
         resultados.add(erc);
@@ -137,7 +137,7 @@ public class ResultadosActivity extends AppCompatActivity {
         Log.i("puntuaciones", "Puntuaciones cs: " + cs.getPuntuacionTotal() + " " + cs.getPuntuacionEconomia() + " "+ cs.getPuntuacionSocial() + " "+ cs.getPuntuacionEstado() + " ");
         Log.i("puntuaciones", "Puntuaciones upyd: " + upyd.getPuntuacionTotal() + " " + upyd.getPuntuacionEconomia() + " "+ upyd.getPuntuacionSocial() + " "+ upyd.getPuntuacionEstado() + " ");
         Log.i("puntuaciones", "Puntuaciones podemos: " + podemos.getPuntuacionTotal() + " " + podemos.getPuntuacionEconomia() + " "+ podemos.getPuntuacionSocial() + " "+ podemos.getPuntuacionEstado() + " ");
-        Log.i("puntuaciones", "Puntuaciones iu: " + iu.getPuntuacionTotal() + " " + iu.getPuntuacionEconomia() + " "+ iu.getPuntuacionSocial() + " "+ iu.getPuntuacionEstado() + " ");
+        //Log.i("puntuaciones", "Puntuaciones iu: " + iu.getPuntuacionTotal() + " " + iu.getPuntuacionEconomia() + " "+ iu.getPuntuacionSocial() + " "+ iu.getPuntuacionEstado() + " ");
         Log.i("puntuaciones", "Puntuaciones convergencia: " + convergencia.getPuntuacionTotal() + " " + convergencia.getPuntuacionEconomia() + " "+ convergencia.getPuntuacionSocial() + " "+ convergencia.getPuntuacionEstado() + " ");
         Log.i("puntuaciones", "Puntuaciones pnv: " + pnv.getPuntuacionTotal() + " " + pnv.getPuntuacionEconomia() + " "+ pnv.getPuntuacionSocial() + " "+ pnv.getPuntuacionEstado() + " ");
         Log.i("puntuaciones", "Puntuaciones erc: " + erc.getPuntuacionTotal() + " " + erc.getPuntuacionEconomia() + " "+ erc.getPuntuacionSocial() + " "+ erc.getPuntuacionEstado() + " ");
@@ -275,8 +275,8 @@ public class ResultadosActivity extends AppCompatActivity {
             }
             String text="";
             switch (viewPager.getCurrentItem()){
-                case 0: text="Estos han sido mis resultados en @testelecciones.Descárgala en https://goo.gl/T0C426 #Elecciones20D #Indecisos20D";break;
-                case 1:text="Estos han sido mis resultados en @testelecciones.Descárgala en https://goo.gl/T0C426 #Elecciones20D #Indecisos20";break;
+                case 0: text="Estos han sido mis resultados en @testelecciones.Descárgala en https://goo.gl/T0C426 #Elecciones26J #Indecisos26J";break;
+                case 1:text="Estos han sido mis resultados en @testelecciones.Descárgala en https://goo.gl/T0C426 #Elecciones26J #Indecisos26J";break;
             }
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("image/png");

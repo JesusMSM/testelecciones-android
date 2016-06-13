@@ -69,7 +69,7 @@ public class TestActivity extends AppCompatActivity {
     public ResultadosPartido psoe = new ResultadosPartido();
     public ResultadosPartido cs = new ResultadosPartido();
     public ResultadosPartido podemos = new ResultadosPartido();
-    public ResultadosPartido iu = new ResultadosPartido();
+    //public ResultadosPartido iu = new ResultadosPartido();
     public ResultadosPartido upyd = new ResultadosPartido();
     public ResultadosPartido convergencia = new ResultadosPartido();
     public ResultadosPartido pnv = new ResultadosPartido();
@@ -153,9 +153,9 @@ public class TestActivity extends AppCompatActivity {
                 pp.setPartido("PP");
                 psoe.setPartido("PSOE");
                 cs.setPartido("C's");
-                podemos.setPartido("Podemos");
+                podemos.setPartido("Unidos Podemos");
                 upyd.setPartido("UPyD");
-                iu.setPartido("IU");
+                //iu.setPartido("IU");
                 convergencia.setPartido("Convergencia");
                 erc.setPartido("ERC");
                 pnv.setPartido("PNV");
@@ -168,7 +168,7 @@ public class TestActivity extends AppCompatActivity {
                 cs.setColor("#f58723");
                 podemos.setColor("#591253");
                 upyd.setColor("#f5407b");
-                iu.setColor("#18a196");
+                //iu.setColor("#18a196");
                 convergencia.setColor("#3838FF");
                 erc.setColor("#FFB232");
                 pnv.setColor("#118747");
@@ -183,7 +183,7 @@ public class TestActivity extends AppCompatActivity {
                 i.putExtra("PODEMOS", podemos);
                 i.putExtra("CIUDADANOS", cs);
                 i.putExtra("UPYD", upyd);
-                i.putExtra("IU", iu);
+                //i.putExtra("IU", iu);
                 i.putExtra("CONVERGENCIA", convergencia);
                 i.putExtra("ERC", erc);
                 i.putExtra("PNV", pnv);
@@ -257,7 +257,7 @@ public class TestActivity extends AppCompatActivity {
                         psoe.addPuntuacionTotal(respuesta1Object.getInt("PSOE"));
                         cs.addPuntuacionTotal(respuesta1Object.getInt("CIUDADANOS"));
                         podemos.addPuntuacionTotal(respuesta1Object.getInt("PODEMOS"));
-                        iu.addPuntuacionTotal(respuesta1Object.getInt("IU"));
+                        //iu.addPuntuacionTotal(respuesta1Object.getInt("IU"));
                         upyd.addPuntuacionTotal(respuesta1Object.getInt("UPYD"));
                         convergencia.addPuntuacionTotal(respuesta1Object.getInt("CONVERGENCIA"));
                         pnv.addPuntuacionTotal(respuesta1Object.getInt("PNV"));
@@ -273,7 +273,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionEconomia(respuesta1Object.getInt("PSOE"));
                             cs.addPuntuacionEconomia(respuesta1Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionEconomia(respuesta1Object.getInt("PODEMOS"));
-                            iu.addPuntuacionEconomia(respuesta1Object.getInt("IU"));
+                            //iu.addPuntuacionEconomia(respuesta1Object.getInt("IU"));
                             upyd.addPuntuacionEconomia(respuesta1Object.getInt("UPYD"));
                             convergencia.addPuntuacionEconomia(respuesta1Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionEconomia(respuesta1Object.getInt("PNV"));
@@ -288,7 +288,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionSocial(respuesta1Object.getInt("PSOE"));
                             cs.addPuntuacionSocial(respuesta1Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionSocial(respuesta1Object.getInt("PODEMOS"));
-                            iu.addPuntuacionSocial(respuesta1Object.getInt("IU"));
+                            //  iu.addPuntuacionSocial(respuesta1Object.getInt("IU"));
                             upyd.addPuntuacionSocial(respuesta1Object.getInt("UPYD"));
                             convergencia.addPuntuacionSocial(respuesta1Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionSocial(respuesta1Object.getInt("PNV"));
@@ -303,7 +303,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionEstado(respuesta1Object.getInt("PSOE"));
                             cs.addPuntuacionEstado(respuesta1Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionEstado(respuesta1Object.getInt("PODEMOS"));
-                            iu.addPuntuacionEstado(respuesta1Object.getInt("IU"));
+                            //iu.addPuntuacionEstado(respuesta1Object.getInt("IU"));
                             upyd.addPuntuacionEstado(respuesta1Object.getInt("UPYD"));
                             convergencia.addPuntuacionEstado(respuesta1Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionEstado(respuesta1Object.getInt("PNV"));
@@ -325,7 +325,7 @@ public class TestActivity extends AppCompatActivity {
                         psoe.addPuntuacionTotal(respuesta2Object.getInt("PSOE"));
                         cs.addPuntuacionTotal(respuesta2Object.getInt("CIUDADANOS"));
                         podemos.addPuntuacionTotal(respuesta2Object.getInt("PODEMOS"));
-                        iu.addPuntuacionTotal(respuesta2Object.getInt("IU"));
+                        //iu.addPuntuacionTotal(respuesta2Object.getInt("IU"));
                         upyd.addPuntuacionTotal(respuesta2Object.getInt("UPYD"));
                         convergencia.addPuntuacionTotal(respuesta2Object.getInt("CONVERGENCIA"));
                         pnv.addPuntuacionTotal(respuesta2Object.getInt("PNV"));
@@ -341,7 +341,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionEconomia(respuesta2Object.getInt("PSOE"));
                             cs.addPuntuacionEconomia(respuesta2Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionEconomia(respuesta2Object.getInt("PODEMOS"));
-                            iu.addPuntuacionEconomia(respuesta2Object.getInt("IU"));
+                            //iu.addPuntuacionEconomia(respuesta2Object.getInt("IU"));
                             upyd.addPuntuacionEconomia(respuesta2Object.getInt("UPYD"));
                             convergencia.addPuntuacionEconomia(respuesta2Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionEconomia(respuesta2Object.getInt("PNV"));
@@ -356,7 +356,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionSocial(respuesta2Object.getInt("PSOE"));
                             cs.addPuntuacionSocial(respuesta2Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionSocial(respuesta2Object.getInt("PODEMOS"));
-                            iu.addPuntuacionSocial(respuesta2Object.getInt("IU"));
+                            //iu.addPuntuacionSocial(respuesta2Object.getInt("IU"));
                             upyd.addPuntuacionSocial(respuesta2Object.getInt("UPYD"));
                             convergencia.addPuntuacionSocial(respuesta2Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionSocial(respuesta2Object.getInt("PNV"));
@@ -371,7 +371,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionEstado(respuesta2Object.getInt("PSOE"));
                             cs.addPuntuacionEstado(respuesta2Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionEstado(respuesta2Object.getInt("PODEMOS"));
-                            iu.addPuntuacionEstado(respuesta2Object.getInt("IU"));
+                            //iu.addPuntuacionEstado(respuesta2Object.getInt("IU"));
                             upyd.addPuntuacionEstado(respuesta2Object.getInt("UPYD"));
                             convergencia.addPuntuacionEstado(respuesta2Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionEstado(respuesta2Object.getInt("PNV"));
@@ -392,7 +392,7 @@ public class TestActivity extends AppCompatActivity {
                         psoe.addPuntuacionTotal(respuesta3Object.getInt("PSOE"));
                         cs.addPuntuacionTotal(respuesta3Object.getInt("CIUDADANOS"));
                         podemos.addPuntuacionTotal(respuesta3Object.getInt("PODEMOS"));
-                        iu.addPuntuacionTotal(respuesta3Object.getInt("IU"));
+                        //iu.addPuntuacionTotal(respuesta3Object.getInt("IU"));
                         upyd.addPuntuacionTotal(respuesta3Object.getInt("UPYD"));
                         convergencia.addPuntuacionTotal(respuesta3Object.getInt("CONVERGENCIA"));
                         pnv.addPuntuacionTotal(respuesta3Object.getInt("PNV"));
@@ -409,7 +409,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionEconomia(respuesta3Object.getInt("PSOE"));
                             cs.addPuntuacionEconomia(respuesta3Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionEconomia(respuesta3Object.getInt("PODEMOS"));
-                            iu.addPuntuacionEconomia(respuesta3Object.getInt("IU"));
+                            //iu.addPuntuacionEconomia(respuesta3Object.getInt("IU"));
                             upyd.addPuntuacionEconomia(respuesta3Object.getInt("UPYD"));
                             convergencia.addPuntuacionEconomia(respuesta3Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionEconomia(respuesta3Object.getInt("PNV"));
@@ -424,7 +424,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionSocial(respuesta3Object.getInt("PSOE"));
                             cs.addPuntuacionSocial(respuesta3Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionSocial(respuesta3Object.getInt("PODEMOS"));
-                            iu.addPuntuacionSocial(respuesta3Object.getInt("IU"));
+                            //iu.addPuntuacionSocial(respuesta3Object.getInt("IU"));
                             upyd.addPuntuacionSocial(respuesta3Object.getInt("UPYD"));
                             convergencia.addPuntuacionSocial(respuesta3Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionSocial(respuesta3Object.getInt("PNV"));
@@ -439,7 +439,7 @@ public class TestActivity extends AppCompatActivity {
                             psoe.addPuntuacionEstado(respuesta3Object.getInt("PSOE"));
                             cs.addPuntuacionEstado(respuesta3Object.getInt("CIUDADANOS"));
                             podemos.addPuntuacionEstado(respuesta3Object.getInt("PODEMOS"));
-                            iu.addPuntuacionEstado(respuesta3Object.getInt("IU"));
+                            //iu.addPuntuacionEstado(respuesta3Object.getInt("IU"));
                             upyd.addPuntuacionEstado(respuesta3Object.getInt("UPYD"));
                             convergencia.addPuntuacionEstado(respuesta3Object.getInt("CONVERGENCIA"));
                             pnv.addPuntuacionEstado(respuesta3Object.getInt("PNV"));
